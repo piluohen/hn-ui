@@ -1,8 +1,21 @@
-import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  TemplateRef,
+  ChangeDetectionStrategy,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   selector: 'hn-detail-list',
   templateUrl: './hn-detail-list.component.html',
+  exportAs: 'hnDetailList',
+  preserveWhitespaces: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./hn-detail-list.component.less']
 })
 export class HnDetailListComponent implements OnInit {

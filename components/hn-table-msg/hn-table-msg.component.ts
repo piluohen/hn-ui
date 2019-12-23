@@ -1,7 +1,19 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   selector: 'hn-table-msg',
+  exportAs: 'hnTableMsg',
+  preserveWhitespaces: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './hn-table-msg.component.html',
   styleUrls: ['./hn-table-msg.component.less']
 })

@@ -1,8 +1,22 @@
-import { Component, OnInit, OnChanges, Input, ElementRef, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnChanges,
+  Input,
+  ElementRef,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+  ViewEncapsulation
+} from '@angular/core';
 import { CountUp } from 'countup.js';
 
 @Component({
   selector: 'hn-countup',
+  exportAs: 'hnCountup',
+  preserveWhitespaces: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   template: `
     <span class="hn-countup"></span>
   `

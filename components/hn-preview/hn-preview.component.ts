@@ -1,7 +1,20 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  ChangeDetectionStrategy,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   selector: 'hn-preview',
+  exportAs: 'hnPreview',
+  preserveWhitespaces: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './hn-preview.component.html',
   styleUrls: ['./hn-preview.component.less']
 })

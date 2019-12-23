@@ -1,7 +1,11 @@
-import { Component, OnInit, Input, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'hn-img-list',
+  exportAs: 'hnImgList',
+  preserveWhitespaces: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './hn-img-list.component.html',
   styleUrls: ['./hn-img-list.component.less']
 })

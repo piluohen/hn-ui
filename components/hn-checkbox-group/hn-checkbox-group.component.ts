@@ -8,7 +8,8 @@ import {
   OnDestroy,
   OnInit,
   Renderer2,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -17,8 +18,9 @@ import { InputBoolean } from 'ng-zorro-antd/core';
 @Component({
   selector: 'hn-checkbox-group',
   templateUrl: './hn-checkbox-group.component.html',
-  exportAs: 'angCheckboxGroup',
+  exportAs: 'hnCheckboxGroup',
   preserveWhitespaces: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   providers: [
     {
@@ -29,7 +31,6 @@ import { InputBoolean } from 'ng-zorro-antd/core';
   ]
 })
 export class HnCheckboxGroupComponent implements ControlValueAccessor, OnInit, OnDestroy {
-
   @Input() options: any[] = [];
 
   @Input() @InputBoolean() disabled = false;
@@ -88,7 +89,7 @@ export class HnCheckboxGroupComponent implements ControlValueAccessor, OnInit, O
    * 写入value方法
    * @param value 值
    */
-  writeValue(value: any[]): void {
+  writeValue(value: any): void {
     if (!value) {
       return;
     }
@@ -135,8 +136,6 @@ export class HnCheckboxGroupComponent implements ControlValueAccessor, OnInit, O
     this.onChange(data);
   }
 
-
-
   handleAllChecked(type: any): void {
     this.options.forEach(item => {
       if (!item.disabled) {
@@ -163,11 +162,12 @@ export class HnCheckboxGroupComponent implements ControlValueAccessor, OnInit, O
   }
 
   filterData(data: any[]) {
-    return data.filter(item => {
-      return item.checked;
-    }).map(item => {
-      return item.value;
-    });
+    return data
+      .filter(item => {
+        return item.checked;
+      })
+      .map(item => {
+        return item.value;
+      });
   }
 }
-

@@ -1,7 +1,21 @@
-import { Component, OnInit, Input, Output, EventEmitter, TemplateRef, OnChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  TemplateRef,
+  OnChanges,
+  ChangeDetectionStrategy,
+  ViewEncapsulation
+} from '@angular/core';
 
 @Component({
   selector: 'hn-table',
+  exportAs: 'hnTable',
+  preserveWhitespaces: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './hn-table.component.html',
   styleUrls: ['./hn-table.component.less']
 })

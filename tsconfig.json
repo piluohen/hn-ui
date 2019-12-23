@@ -13,8 +13,5 @@
     "lib": ["es2017", "dom"],
     "resolveJsonModule": true,
     "esModuleInterop": true
-  },
-  "angularCompilerOptions": {
-    "skipTemplateCodegen": true
   }
 }

@@ -1,4 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  TemplateRef,
+  ChangeDetectionStrategy,
+  ViewEncapsulation
+} from '@angular/core';
 import {
   trigger,
   state,
@@ -10,6 +19,10 @@ import {
 
 @Component({
   selector: 'hn-scroll-list',
+  exportAs: 'hnScrollList',
+  preserveWhitespaces: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './hn-scroll-list.component.html',
   styleUrls: ['./hn-scroll-list.component.less'],
   animations: []
