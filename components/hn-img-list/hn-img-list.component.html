@@ -1,0 +1,7 @@
+<div class="hn-img-list">
+  <div class="hn-img-list-item" *ngFor="let item of list; index as i" (click)="handleClick(item, i)">
+    <img [src]="item.url">
+  </div>
+</div>
+
+<hn-preview [(visible)]="visible" [list]="list" [index]="showIndex"></hn-preview>

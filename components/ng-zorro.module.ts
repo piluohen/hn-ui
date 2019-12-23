@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
   NZ_I18N,
@@ -9,7 +10,18 @@ import {
   NzModalModule,
   NzButtonModule,
   NzCheckboxModule,
-  NzTableModule
+  NzTableModule,
+  NzInputModule,
+  NzDatePickerModule,
+  NzFormModule,
+  NzGridModule,
+  NzTimePickerModule,
+  NzEmptyModule,
+  NzSelectModule,
+  NzCascaderModule,
+  NzTreeModule,
+  NzTreeSelectModule,
+  NzInputNumberModule
 } from 'ng-zorro-antd';
 
 const ngZorro = [
@@ -18,22 +30,24 @@ const ngZorro = [
   NzModalModule,
   NzButtonModule,
   NzCheckboxModule,
-  NzTableModule
+  NzTableModule,
+  NzInputModule,
+  NzDatePickerModule,
+  NzFormModule,
+  NzGridModule,
+  NzTimePickerModule,
+  NzEmptyModule,
+  NzSelectModule,
+  NzCascaderModule,
+  NzTreeModule,
+  NzTreeSelectModule,
+  NzInputNumberModule
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ...ngZorro
-  ],
-  declarations: [
-  ],
-  providers: [
-    { provide: NZ_I18N, useValue: zh_CN }
-  ],
-  exports: [
-    CommonModule,
-    ...ngZorro
-  ]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ...ngZorro],
+  declarations: [],
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
+  exports: [CommonModule, FormsModule, ReactiveFormsModule, ...ngZorro]
 })
-export class NgZorroModule { }
+export class NgZorroModule {}

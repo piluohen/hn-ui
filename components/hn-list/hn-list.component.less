@@ -1,0 +1,41 @@
+@import '../../src/assets/less/var.less';
+
+.hn-list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .hn-list-item {
+    .flexCenter;
+    justify-content: space-between;
+
+    .hn-list-title {
+      .alignItems;
+      flex: 1;
+      position: relative;
+      .ellipsis;
+
+      .title {
+        margin-left: 10px;
+        .ellipsis;
+      }
+
+      .anticon {
+        color: @primary;
+      }
+    }
+
+    .hn-list-desc {
+      flex: 0 0 90px;
+      .ellipsis;
+      text-align: right;
+      color: @disabled;
+    }
+  }
+}
+
+.hn-empty {
+  height: 100%;
+  .flexCenter;
+}

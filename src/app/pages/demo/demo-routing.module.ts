@@ -12,62 +12,57 @@ import { TableComponent } from './table/table.component';
 const routes: Routes = [
   {
     path: '',
-    children: [
-      {
-        path: '',
-        redirectTo: '/demo/color',
-        pathMatch: 'full'
-      },
-      {
-        path: 'color',
-        component: ColorComponent,
-        data: {
-          breadcrumb: '颜色'
-        }
-      },
-      {
-        path: 'hn-button',
-        component: ButtonComponent,
-        data: {
-          breadcrumb: 'hn-button 组件'
-        }
-      },
-      {
-        path: 'hn-countup',
-        component: CountupComponent,
-        data: {
-          breadcrumb: 'hn-countup 组件'
-        }
-      },
-      {
-        path: 'hn-preview',
-        component: PreviewComponent,
-        data: {
-          breadcrumb: 'hn-preview 组件'
-        }
-      },
-      {
-        path: 'hn-scroll-list',
-        component: ScrollListComponent,
-        data: {
-          breadcrumb: 'hn-scroll-list 组件'
-        }
-      },
-      {
-        path: 'hn-checkbox-group',
-        component: CheckboxGroupComponent,
-        data: {
-          breadcrumb: 'hn-checkbox-group 组件'
-        }
-      },
-      {
-        path: 'hn-table',
-        component: TableComponent,
-        data: {
-          breadcrumb: 'hn-table 组件'
-        }
-      }
-    ]
+    redirectTo: '/demo/color',
+    pathMatch: 'full'
+  },
+  {
+    path: 'color',
+    component: ColorComponent,
+    data: {
+      breadcrumb: '颜色'
+    }
+  },
+  {
+    path: 'hn-button',
+    component: ButtonComponent,
+    data: {
+      breadcrumb: 'hn-button 组件'
+    }
+  },
+  {
+    path: 'hn-countup',
+    component: CountupComponent,
+    data: {
+      breadcrumb: 'hn-countup 组件'
+    }
+  },
+  {
+    path: 'hn-preview',
+    component: PreviewComponent,
+    data: {
+      breadcrumb: 'hn-preview 组件'
+    }
+  },
+  {
+    path: 'hn-scroll-list',
+    component: ScrollListComponent,
+    data: {
+      breadcrumb: 'hn-scroll-list 组件'
+    }
+  },
+  {
+    path: 'hn-checkbox-group',
+    component: CheckboxGroupComponent,
+    data: {
+      breadcrumb: 'hn-checkbox-group 组件'
+    }
+  },
+  {
+    path: 'hn-table',
+    component: TableComponent,
+    data: {
+      breadcrumb: 'hn-table 组件'
+    }
   }
 ];
 

@@ -1,0 +1,41 @@
+@import '../../src/assets/less/var.less';
+
+.hn-table-msg {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  line-height: 32px;
+  margin-left: 10px;
+  padding-right: 10px;
+  border-radius: 2px;
+
+  & > div {
+    margin-left: 10px;
+  }
+
+  .msg-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    color: @white;
+    font-size: 12px;
+    background-color: @primary;
+  }
+
+  .msg-clear {
+    cursor: pointer;
+  }
+
+  .msg-total {
+    .value {
+      font-weight: 500;
+    }
+  }
+}
+
+.font-blue {
+  color: @primary;
+}

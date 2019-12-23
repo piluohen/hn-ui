@@ -1,0 +1,11 @@
+<div class="hn-detail-list">
+  <nz-col *ngFor="let item of list; index as index" [nzSpan]="item.col || 8" class="hn-detail-item">
+    <div class="hn-detail-label">{{item.label}}：</div>
+    <div class="hn-detail-value">
+      <ng-template [ngIf]="item.render" [ngTemplateOutlet]="item.render"
+        [ngTemplateOutletContext]="{ $implicit: item, index: index }">
+      </ng-template>
+      <span *ngIf="!item.render">{{item.value}}</span>
+    </div>
+  </nz-col>
+</div>

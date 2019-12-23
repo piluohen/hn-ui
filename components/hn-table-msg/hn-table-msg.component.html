@@ -1,0 +1,15 @@
+<div class="hn-table-msg" *ngIf="check > 0">
+  <div class="msg-icon">
+    <i nz-icon nzType="info" nzTheme="outline"></i>
+  </div>
+  <div class="msg-check">
+    <span>已选择</span>
+    <span class="font-blue"> {{check}} </span>
+    <span>项</span>
+  </div>
+  <!-- <div class="msg-total">
+    <span>总计：</span>
+    <span class="value">{{total}}条</span>
+  </div> -->
+  <div class="msg-clear font-blue" (click)="handleClear()">清空</div>
+</div>

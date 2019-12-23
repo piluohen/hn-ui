@@ -6,7 +6,7 @@ const appRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/demo'
+    redirectTo: '/demo/color'
   },
   {
     path: 'demo',

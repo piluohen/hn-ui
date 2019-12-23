@@ -1,0 +1,14 @@
+<div *ngIf="list.length > 0; else empty" class="hn-list">
+  <div class="hn-list-item" *ngFor="let item of list">
+    <div class="hn-list-title">
+      <i *ngIf="icon" nz-icon [iconfont]="icon"></i>
+      <div class="title">{{item.title}}</div>
+    </div>
+    <div class="hn-list-desc">{{item.desc}}</div>
+  </div>
+</div>
+<ng-template #empty>
+  <div class="hn-empty">
+    <nz-empty></nz-empty>
+  </div>
+</ng-template>

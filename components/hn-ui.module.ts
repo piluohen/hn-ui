@@ -6,9 +6,44 @@ import { HnScrollListModule } from './hn-scroll-list/hn-scroll-list.module';
 import { HnButtonModule } from './hn-button/hn-button.module';
 import { HnCheckboxGroupModule } from './hn-checkbox-group/hn-checkbox-group.module';
 import { HnTableModule } from './hn-table/hn-table.module';
+import { HnDetailListModule } from './hn-detail-list/hn-detail-list.module';
+import { HnDetailTitleModule } from './hn-detail-title/hn-detail-title.module';
+import { HnImgListModule } from './hn-img-list/hn-img-list.module';
+import { HnListModule } from './hn-list/hn-list.module';
+import { HnSearchModule } from './hn-search/hn-search.module';
+import { HnSingleSearchModule } from './hn-single-search/hn-single-search.module';
+import { HnTableMsgModule } from './hn-table-msg/hn-table-msg.module';
+
+export * from './hn-countup';
+export * from './hn-preview';
+export * from './hn-scroll-list';
+export * from './hn-button';
+export * from './hn-checkbox-group';
+export * from './hn-table';
+export * from './hn-detail-list';
+export * from './hn-detail-title';
+export * from './hn-img-list';
+export * from './hn-list';
+export * from './hn-search';
+export * from './hn-single-search';
+export * from './hn-table-msg';
 
 @NgModule({
-  exports: [HnCountupModule, HnPreviewModule, HnScrollListModule, HnButtonModule, HnCheckboxGroupModule, HnTableModule]
+  exports: [
+    HnCountupModule,
+    HnPreviewModule,
+    HnScrollListModule,
+    HnButtonModule,
+    HnCheckboxGroupModule,
+    HnTableModule,
+    HnDetailListModule,
+    HnDetailTitleModule,
+    HnImgListModule,
+    HnListModule,
+    HnSearchModule,
+    HnSingleSearchModule,
+    HnTableMsgModule
+  ]
 })
 export class HnUiModule {
   /**

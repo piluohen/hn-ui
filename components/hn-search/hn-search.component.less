@@ -1,0 +1,62 @@
+@import '../../src/assets/less/var.less';
+
+::ng-deep .hn-search {
+  padding-top: 32px;
+
+  .ant-btn-link {
+    padding: 0;
+    margin-left: 10px;
+  }
+
+  .hn-search-icon {
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 12px;
+    z-index: 1;
+    cursor: pointer;
+  }
+
+  .hn-search-simple {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    .ant-input-search-button {
+      padding: 0 10px;
+    }
+  }
+
+  .ant-calendar-picker {
+    width: auto !important;
+  }
+}
+
+.search-popover {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid rgba(186, 231, 255, 1);
+  border-top: 1px solid @primary;
+  border-radius: 2px;
+
+  .search-popover-btns {
+    text-align: right;
+
+    .ant-btn + .ant-btn {
+      margin-left: 10px;
+    }
+  }
+
+  .search-children {
+    display: flex;
+
+    .search-children-item + .search-children-item {
+      margin-left: 10px;
+    }
+  }
+}
