@@ -1,0 +1,50 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <!-- <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo"> -->
+      <h1>Hn-ui</h1>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <ng-container *ngFor="let menu of menusList;index as index">
+        <li nz-submenu *ngIf="menu.children" [nzOpen]="menu.open" [nzOpen]="menu.selected"
+          [ngClass]="menu.selected? 'ant-menu-submenu-selected':''">
+          <span title>
+            <i nz-icon [type]="menu.icon" *ngIf="menu.icon"></i>
+            <span class="nav-text">{{ menu.title }}</span>
+          </span>
+          <ul>
+            <li nz-menu-item *ngFor="let li of menu.children"
+              nzMatchRouter
+              [ngClass]="li.selected? 'ant-menu-item-selected':''">
+              <a [routerLink]="li.path">{{li.title}}</a>
+            </li>
+          </ul>
+        </li>
+        <li nz-menu-item *ngIf="!menu.children"
+          nzMatchRouter
+          [ngClass]="menu.selected? 'ant-menu-item-selected':''">
+          <a [routerLink]="menu.path">{{menu.title}}</a>
+        </li>
+      </ng-container>
+    </ul>
+  </nz-sider>
+  <nz-layout style="overflow: hidden; height: 100%">
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content style="overflow: auto">
+      <router-outlet></router-outlet>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

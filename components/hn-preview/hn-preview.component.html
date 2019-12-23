@@ -1,0 +1,25 @@
+<nz-modal
+  [nzVisible]="modeVisible"
+  nzWrapClassName="hn-preview-wrap"
+  nzClassName="hn-preview"
+  [nzContent]="modalContent"
+  [nzFooter]="null"
+  nzWidth="100%"
+  (nzAfterOpen)="handleAfterOpen()"
+  (nzOnCancel)="handleCancel()">
+  <ng-template #modalContent>
+    <div class="hn-preview-btn hn-preview-btn-prev" (click)="handlePrev()">
+      <i nz-icon nzType="left" nzTheme="outline"></i>
+    </div>
+
+    <nz-carousel #carousel nzEffect="scrollx">
+      <div nz-carousel-content *ngFor="let item of imgList">
+        <img [src]="item.url">
+      </div>
+    </nz-carousel>
+
+    <div class="hn-preview-btn hn-preview-btn-next" (click)="handleNext()">
+      <i nz-icon nzType="right" nzTheme="outline"></i>
+    </div>
+  </ng-template>
+</nz-modal>

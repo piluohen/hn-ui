@@ -1,0 +1,61 @@
+@import '../../src/assets/less/var.less';
+
+.mixinHnBtn (@color) {
+  color: #ffffff;
+  border-color: @color;
+  background-color: @color;
+
+  &:hover {
+    color: #ffffff;
+    border-color: rgba(@color, 0.8);
+    background-color: rgba(@color, 0.8);
+  }
+
+  &.ant-btn-background-ghost {
+    color: @color;
+
+    &:hover {
+      color: rgba(@color, 0.8);
+    }
+
+    &.ant-btn[disabled] {
+      color: rgba(@color, 0.6);
+
+      &:hover {
+        color: rgba(@color, 0.6);
+      }
+    }
+  }
+
+  &.ant-btn[disabled] {
+    border-color: rgba(@color, 0.6);
+    background-color: rgba(@color, 0.6);
+  }
+}
+
+::ng-deep .hn-btn {
+  .anticon + span,
+  span + .anticon {
+    margin-left: 8px;
+  }
+}
+
+::ng-deep .hn-btn-primary {
+  .mixinHnBtn(@primary);
+}
+
+::ng-deep .hn-btn-success {
+  .mixinHnBtn(@success);
+}
+
+::ng-deep .hn-btn-warning {
+  .mixinHnBtn(@warning);
+}
+
+::ng-deep .hn-btn-danger {
+  .mixinHnBtn(@danger);
+}
+
+::ng-deep .hn-btn-info {
+  .mixinHnBtn(@info);
+}
