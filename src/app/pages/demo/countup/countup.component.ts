@@ -14,9 +14,7 @@ export class CountupComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    console.log(this.apiMarkdown);
-  }
+  ngOnInit() {}
 
   handleChange() {
     this.value = Math.floor(Math.random() * 2000);

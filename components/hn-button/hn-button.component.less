@@ -1,4 +1,4 @@
-@import '../../src/assets/less/var.less';
+@import '../style/theme.less';
 
 .mixinHnBtn (@color) {
   color: #ffffff;
@@ -33,29 +33,30 @@
   }
 }
 
-::ng-deep .hn-btn {
-  .anticon + span,
-  span + .anticon {
+.hn-btn {
+
+  .anticon+span,
+  span+.anticon {
     margin-left: 8px;
   }
 }
 
-::ng-deep .hn-btn-primary {
-  .mixinHnBtn(@primary);
+.hn-btn-primary {
+  .mixinHnBtn(@primary-color);
 }
 
-::ng-deep .hn-btn-success {
-  .mixinHnBtn(@success);
+.hn-btn-success {
+  .mixinHnBtn(@success-color);
 }
 
-::ng-deep .hn-btn-warning {
-  .mixinHnBtn(@warning);
+.hn-btn-warning {
+  .mixinHnBtn(@warning-color);
 }
 
-::ng-deep .hn-btn-danger {
-  .mixinHnBtn(@danger);
+.hn-btn-danger {
+  .mixinHnBtn(@error-color);
 }
 
-::ng-deep .hn-btn-info {
-  .mixinHnBtn(@info);
+.hn-btn-info {
+  .mixinHnBtn(@info-color);
 }

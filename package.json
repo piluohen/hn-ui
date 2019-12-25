@@ -1,6 +1,6 @@
 {
   "name": "hn-ui",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "author": {
     "name": "piluohen<1012106967@qq.com>"
   },
@@ -8,13 +8,14 @@
   "repository": "https://github.com/piluohen/hn-ui",
   "description": "An Components for Angular",
   "scripts": {
+    "lib": "ng build hn-ui-lib && npm run style",
     "ng": "ng",
+    "style": "node build/compile-styles.js && cp README.md publish/README.md",
     "start": "ng serve --aot --host 0.0.0.0 --port 3660 --proxy-config proxy.conf.json --open",
     "build": "ng build --prod",
     "build-test": "ng build --prod --configuration=test",
     "test": "ng test",
-    "lint": "ng lint",
-    "lib": "ng run hn-ui-lib:build"
+    "lint": "ng lint"
   },
   "private": false,
   "dependencies": {
@@ -41,8 +42,10 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
-    "core-js": "^2.5.4",
+    "classlist.js": "^1.1.20150312",
     "codelyzer": "~4.5.0",
+    "core-js": "^2.5.4",
+    "fs-extra": "^8.1.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.0.0",
@@ -51,6 +54,7 @@
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
     "less": "^3.10.3",
+    "less-plugin-clean-css": "^1.5.1",
     "ng-packagr": "^5.7.1",
     "ng2-cookies": "^1.0.12",
     "ngx-markdown": "^8.1.0",

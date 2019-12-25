@@ -1,12 +1,12 @@
-@import '../../src/assets/less/var.less';
+@import '../style/theme.less';
 
-::ng-deep .hn-table {
+.hn-table {
   .table-btns {
     display: flex;
 
     .table-btn {
       cursor: pointer;
-      color: @primary;
+      color: @primary-color;
       position: relative;
 
       & + .table-btn {
@@ -21,7 +21,7 @@
           position: absolute;
           top: 4px;
           left: 0;
-          border-left: 1px solid @border;
+          border-left: 1px solid @border-color-base;
         }
       }
     }
