@@ -183,6 +183,27 @@
           }
         }
       }
+    },
+    "hn-ui-lib": {
+      "root": "components",
+      "sourceRoot": "src/app",
+      "projectType": "library",
+      "prefix": "hn",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "components/tsconfig.lib.json", //读取的编译文件
+            "project": "components/ng-package.json" //读取的配置
+          }
+          // "styles": [
+          //   "components/hn-ui.less"
+          // ],
+          // "assets": [
+          //   "components/hn-ui.less"
+          // ]
+        }
+      }
     }
   },
   "defaultProject": "hn-ui"

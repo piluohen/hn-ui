@@ -6,8 +6,7 @@ import { Component, OnInit, Input, TemplateRef, ChangeDetectionStrategy, ViewEnc
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './hn-img-list.component.html',
-  styleUrls: ['./hn-img-list.component.less']
+  templateUrl: './hn-img-list.component.html'
 })
 export class HnImgListComponent implements OnInit {
   visible: Boolean = false;

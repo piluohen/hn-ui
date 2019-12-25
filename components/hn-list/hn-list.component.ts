@@ -6,8 +6,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, ViewEncapsulation } 
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './hn-list.component.html',
-  styleUrls: ['./hn-list.component.less']
+  templateUrl: './hn-list.component.html'
 })
 export class HnListComponent implements OnInit {
   @Input() icon: string;

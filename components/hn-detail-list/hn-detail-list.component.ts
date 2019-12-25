@@ -15,8 +15,7 @@ import {
   exportAs: 'hnDetailList',
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./hn-detail-list.component.less']
+  encapsulation: ViewEncapsulation.None
 })
 export class HnDetailListComponent implements OnInit {
   detailList: any[] = [];

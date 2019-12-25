@@ -15,8 +15,7 @@ import {
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './hn-preview.component.html',
-  styleUrls: ['./hn-preview.component.less']
+  templateUrl: './hn-preview.component.html'
 })
 export class HnPreviewComponent implements OnInit {
   modeVisible = false;

@@ -6,8 +6,7 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, ViewEncapsulation } 
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './hn-detail-title.component.html',
-  styleUrls: ['./hn-detail-title.component.less']
+  templateUrl: './hn-detail-title.component.html'
 })
 export class HnDetailTitleComponent implements OnInit {
   @Input() icon: String = 'star';

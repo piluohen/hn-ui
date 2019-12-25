@@ -14,8 +14,7 @@ import {
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './hn-table-msg.component.html',
-  styleUrls: ['./hn-table-msg.component.less']
+  templateUrl: './hn-table-msg.component.html'
 })
 export class HnTableMsgComponent implements OnInit {
   @Input() check: number;

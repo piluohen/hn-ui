@@ -16,8 +16,7 @@ import {
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './hn-table.component.html',
-  styleUrls: ['./hn-table.component.less']
+  templateUrl: './hn-table.component.html'
 })
 export class HnTableComponent implements OnInit, OnChanges {
   @Input() data: any[] = [];

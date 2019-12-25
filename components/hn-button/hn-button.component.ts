@@ -15,8 +15,7 @@ import {
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './hn-button.component.html',
-  styleUrls: ['./hn-button.component.less']
+  templateUrl: './hn-button.component.html'
 })
 export class HnButtonComponent implements OnInit {
   @Input() type = 'default';

@@ -24,7 +24,6 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   templateUrl: './hn-scroll-list.component.html',
-  styleUrls: ['./hn-scroll-list.component.less'],
   animations: []
 })
 export class HnScrollListComponent implements OnInit {

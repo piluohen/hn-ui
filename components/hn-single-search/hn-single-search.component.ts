@@ -16,8 +16,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './hn-single-search.component.html',
-  styleUrls: ['./hn-single-search.component.less']
+  templateUrl: './hn-single-search.component.html'
 })
 export class HnSingleSearchComponent implements OnInit {
   @Input() formList: any = [];
