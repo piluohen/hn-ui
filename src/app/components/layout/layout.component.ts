@@ -22,7 +22,8 @@ export class LayoutComponent implements OnInit {
         { title: 'hn-preview', path: '/demo/hn-preview' },
         { title: 'hn-scroll-list', path: '/demo/hn-scroll-list' },
         { title: 'hn-checkbox-group', path: '/demo/hn-checkbox-group' },
-        { title: 'hn-table', path: '/demo/hn-table' }
+        { title: 'hn-table', path: '/demo/hn-table' },
+        { title: 'hn-detail-list', path: '/demo/hn-detail-list' }
       ]
     }
   ];

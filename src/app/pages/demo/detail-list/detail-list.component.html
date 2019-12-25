@@ -1,0 +1,14 @@
+<div class="breadcrumb">
+  <nz-breadcrumb [nzAutoGenerate]="true">
+  </nz-breadcrumb>
+</div>
+
+<div class="layout-content">
+  <h2>示例</h2>
+  <hn-detail-list [columns]="columns" [data]="data" colon="" [render]="{linkTemp: linkTemp}">
+    <ng-template #linkTemp let-scope>
+      <a [href]="scope.value" target="_blank">{{scope.value}}</a>
+    </ng-template>
+  </hn-detail-list>
+  <markdown ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
+</div>

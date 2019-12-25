@@ -14,6 +14,7 @@ import { ScrollListComponent } from './scroll-list/scroll-list.component';
 import { ButtonComponent } from './button/button.component';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { TableComponent } from './table/table.component';
+import { DetailListComponent } from './detail-list/detail-list.component';
 
 @NgModule({
   imports: [ShareModule, DemoRoutingModule, HttpClientModule, MarkdownModule.forChild()],
@@ -26,7 +27,8 @@ import { TableComponent } from './table/table.component';
     ScrollListComponent,
     ButtonComponent,
     CheckboxGroupComponent,
-    TableComponent
+    TableComponent,
+    DetailListComponent
   ],
   entryComponents: [DemoComponent]
 })

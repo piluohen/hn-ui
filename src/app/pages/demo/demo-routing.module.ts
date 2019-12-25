@@ -8,6 +8,7 @@ import { ScrollListComponent } from './scroll-list/scroll-list.component';
 import { ButtonComponent } from './button/button.component';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { TableComponent } from './table/table.component';
+import { DetailListComponent } from './detail-list/detail-list.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,13 @@ const routes: Routes = [
     component: TableComponent,
     data: {
       breadcrumb: 'hn-table 组件'
+    }
+  },
+  {
+    path: 'hn-detail-list',
+    component: DetailListComponent,
+    data: {
+      breadcrumb: 'hn-detail-list 组件'
     }
   }
 ];

@@ -1,13 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  TemplateRef,
-  ChangeDetectionStrategy,
-  ViewEncapsulation
-} from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'hn-detail-list',
@@ -17,25 +8,44 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class HnDetailListComponent implements OnInit {
+export class HnDetailListComponent implements OnInit, OnChanges {
   detailList: any[] = [];
 
-  @Input()
-  set list(val: any) {
-    this.detailList = val;
-    setTimeout(() => {
-      this.change.emit(val);
-    }, 0);
-  }
+  @Input() colon = '：';
 
-  get list() {
-    return this.detailList;
-  }
+  @Input() render: any = {};
 
-  @Output()
-  change: EventEmitter<any> = new EventEmitter();
+  @Input() columns: any[] = [];
+
+  @Input() data: any = {};
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.setDataMethod();
+  }
+
+  ngOnChanges(changes: any) {
+    if (changes.data) {
+      const { currentValue, firstChange } = changes.data;
+      if (!firstChange) {
+        this.data = currentValue;
+        this.setDataMethod();
+      }
+    }
+  }
+
+  /**
+   * 设置数据方法
+   */
+  setDataMethod() {
+    this.detailList = this.columns.map(item => {
+      if (item.renderKey) {
+        item.render = this.render[item.renderKey];
+      }
+      const value = this.data[item.key];
+      item.value = item.format ? item.format(this.data) : value;
+      return item;
+    });
+  }
 }
