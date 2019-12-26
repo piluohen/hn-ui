@@ -1,9 +1,3 @@
-# hn-img-list
-
-```HTML
-<hn-img-list [list]="imgList" (itemClick)="handleClick($event)"></hn-img-list>
-```
-
 ```JS
 import { Component, OnInit } from '@angular/core';
 
@@ -46,23 +40,3 @@ export class PreviewComponent implements OnInit {
 }
 
 ```
-
-## Api
-
-| 参数    |       描述       |  类型   | 可选值 | 必须 | 默认值      |
-| ------- | :--------------: | :-----: | :----: | :--: | ----------- |
-| visible |   是否显示预览   | Boolean |        |  是  | false       |
-| list    |     图片列表     |  Array  |        |  是  | [{url: ''}] |
-| index   | 当前展示图片索引 | Number  |        |  是  | 0           |
-
-# hn-preview
-
-```html
-<hn-preview [(visible)]="visible" [list]="list" [index]="showIndex"></hn-preview>
-```
-
-## Api
-
-| 参数 |   描述   | 类型  | 可选值 | 必须 | 默认值      |
-| ---- | :------: | :---: | :----: | :--: | ----------- |
-| list | 图片列表 | Array |        |  是  | [{url: ''}] |

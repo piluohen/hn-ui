@@ -27,13 +27,24 @@ export class PreviewComponent implements OnInit {
     }
   ];
 
-  apiMarkdown = require('raw-loader!./docs/api.md');
+  imgListTabs: any[] = [
+    { title: 'HTML', markdown: require('raw-loader!./docs/hn-img-list/html.md') },
+    { title: 'JS', markdown: require('raw-loader!./docs/hn-img-list/js.md') }
+  ];
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(require('raw-loader!./docs/hn-img-list/html.md'));
+  }
 
   handleClick(data: any): void {
     console.log('点击了图片列表子项', data);
+  }
+
+  handleCopy(event: any): void {
+    console.log(event);
+    const copyStr = event.target.parentElement.children[0].innerText;
+    console.log();
   }
 }

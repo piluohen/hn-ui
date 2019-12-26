@@ -7,5 +7,11 @@
   <h2>示例</h2>
   <hn-img-list [list]="imgList" (itemClick)="handleClick($event)"></hn-img-list>
 
-  <markdown>{{apiMarkdown}}</markdown>
+  <nz-tabset nzType="card">
+    <nz-tab *ngFor="let item of imgListTabs" [nzTitle]="item.title">
+      <markdown>{{item.markdown}}</markdown>
+      <button class="copy-btn" nz-button nzType="link" (click)="handleCopy($event)">复制</button>
+    </nz-tab>
+  </nz-tabset>
+
 </div>
