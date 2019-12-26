@@ -12,6 +12,7 @@ import { HnListModule } from './hn-list/hn-list.module';
 import { HnSearchModule } from './hn-search/hn-search.module';
 import { HnSingleSearchModule } from './hn-single-search/hn-single-search.module';
 import { HnTableMsgModule } from './hn-table-msg/hn-table-msg.module';
+import { HnExportModule } from './hn-export/hn-export.module';
 
 export * from './hn-countup';
 export * from './hn-preview';
@@ -25,6 +26,7 @@ export * from './hn-list';
 export * from './hn-search';
 export * from './hn-single-search';
 export * from './hn-table-msg';
+export * from './hn-export';
 
 @NgModule({
   exports: [
@@ -39,7 +41,8 @@ export * from './hn-table-msg';
     HnListModule,
     HnSearchModule,
     HnSingleSearchModule,
-    HnTableMsgModule
+    HnTableMsgModule,
+    HnExportModule
   ]
 })
 export class HnUiModule {

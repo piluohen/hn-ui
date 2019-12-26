@@ -12,6 +12,7 @@ import { ButtonComponent } from './button/button.component';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { TableComponent } from './table/table.component';
 import { DetailListComponent } from './detail-list/detail-list.component';
+import { ExportComponent } from './export/export.component';
 
 @NgModule({
   imports: [ShareModule, DemoRoutingModule],
@@ -25,7 +26,8 @@ import { DetailListComponent } from './detail-list/detail-list.component';
     ButtonComponent,
     CheckboxGroupComponent,
     TableComponent,
-    DetailListComponent
+    DetailListComponent,
+    ExportComponent
   ],
   entryComponents: [DemoComponent]
 })

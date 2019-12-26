@@ -9,6 +9,7 @@ import { ButtonComponent } from './button/button.component';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { TableComponent } from './table/table.component';
 import { DetailListComponent } from './detail-list/detail-list.component';
+import { ExportComponent } from './export/export.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'hn-checkbox-group',
+    component: CheckboxGroupComponent,
+    data: {
+      breadcrumb: 'hn-checkbox-group 组件'
+    }
+  },
+  {
     path: 'hn-scroll-list',
     component: ScrollListComponent,
     data: {
@@ -52,10 +60,10 @@ const routes: Routes = [
     }
   },
   {
-    path: 'hn-checkbox-group',
-    component: CheckboxGroupComponent,
+    path: 'hn-detail-list',
+    component: DetailListComponent,
     data: {
-      breadcrumb: 'hn-checkbox-group 组件'
+      breadcrumb: 'hn-detail-list 组件'
     }
   },
   {
@@ -66,10 +74,10 @@ const routes: Routes = [
     }
   },
   {
-    path: 'hn-detail-list',
-    component: DetailListComponent,
+    path: 'hn-export',
+    component: ExportComponent,
     data: {
-      breadcrumb: 'hn-detail-list 组件'
+      breadcrumb: 'hn-export 组件'
     }
   }
 ];
