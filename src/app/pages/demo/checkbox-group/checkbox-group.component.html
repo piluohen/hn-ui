@@ -12,7 +12,7 @@
     <div style="margin-bottom: 20px;">值：{{value}}</div>
   </div>
 
-  <markdown ngPreserveWhitespaces>{{baseMarkdown}}</markdown>
+  <app-markdown-tab [list]="baseTabs"></app-markdown-tab>
 
   <h2>form表单</h2>
   <div>
@@ -29,7 +29,7 @@
     <button nz-button nzType="primary" (click)="handleSave()">提交</button>
   </div>
 
-  <markdown ngPreserveWhitespaces>{{formMarkdown}}</markdown>
+  <app-markdown-tab [list]="formTabs"></app-markdown-tab>
 
   <markdown ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
 

@@ -4,7 +4,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  TemplateRef,
   OnChanges,
   ChangeDetectionStrategy,
   ViewEncapsulation
@@ -79,14 +78,22 @@ export class HnTableComponent implements OnInit, OnChanges {
       const { currentValue, firstChange } = changes.params;
       if (!firstChange) {
         this.params = currentValue;
-        this.getInterfaceList(true);
+        this.getList(true);
+      }
+    }
+    if (changes.api) {
+      const { currentValue, firstChange } = changes.api;
+
+      if (!firstChange) {
+        this.api = currentValue;
+        this.getList(true);
       }
     }
     if (changes.data) {
       const { currentValue, firstChange } = changes.data;
       if (!firstChange) {
         this.data = currentValue;
-        this.getLocalData();
+        this.getList();
       }
     }
   }
@@ -100,7 +107,7 @@ export class HnTableComponent implements OnInit, OnChanges {
       this.pagination.pageIndex = 1;
     }
     if (this.api && this.data.length === 0) {
-      this.getInterfaceList();
+      this.getInterfaceList(reset);
     } else {
       this.getLocalData();
     }
@@ -141,7 +148,7 @@ export class HnTableComponent implements OnInit, OnChanges {
         const data = res.data;
         if (data) {
           this.pagination.total = data[this.totalKey];
-          this.tableData = data[this.contentKey].map((item, i) => {
+          this.tableData = [...data[this.contentKey]].map((item, i) => {
             return {
               ...item,
               number: (data.pageNo - 1) * this.pagination.pageSize + i + 1

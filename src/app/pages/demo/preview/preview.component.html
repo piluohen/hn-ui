@@ -7,6 +7,12 @@
   <h2>示例</h2>
   <hn-img-list [list]="imgList" (itemClick)="handleClick($event)"></hn-img-list>
 
+  <h1>hn-img-list</h1>
   <app-markdown-tab [list]="imgListTabs"></app-markdown-tab>
+  <markdown>{{imgListApiMarkdown}}</markdown>
+
+  <h1>hn-preview</h1>
+  <app-markdown-tab [list]="previewTabs"></app-markdown-tab>
+  <markdown>{{previewApiMarkdown}}</markdown>
 
 </div>

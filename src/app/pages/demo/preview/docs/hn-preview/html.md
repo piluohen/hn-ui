@@ -1,3 +1,3 @@
 ```HTML
-<hn-img-list [list]="imgList" (itemClick)="handleClick($event)"></hn-img-list>
+<hn-preview [(visible)]="visible" [list]="list" [index]="showIndex"></hn-preview>
 ```

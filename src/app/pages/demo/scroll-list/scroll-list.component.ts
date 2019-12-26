@@ -12,6 +12,11 @@ export class ScrollListComponent implements OnInit {
 
   apiMarkdown = require('raw-loader!./docs/api.md');
 
+  markdownTabs: any[] = [
+    { title: 'HTML', markdown: require('raw-loader!./docs/html.md') },
+    { title: 'JS', markdown: require('raw-loader!./docs/js.md') }
+  ];
+
   constructor() {}
 
   ngOnInit() {

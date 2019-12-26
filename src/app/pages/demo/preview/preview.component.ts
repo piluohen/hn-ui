@@ -32,6 +32,12 @@ export class PreviewComponent implements OnInit {
     { title: 'JS', markdown: require('raw-loader!./docs/hn-img-list/js.md') }
   ];
 
+  imgListApiMarkdown = require('raw-loader!./docs/hn-img-list/api.md');
+
+  previewTabs: any[] = [{ title: 'HTML', markdown: require('raw-loader!./docs/hn-preview/html.md') }];
+
+  previewApiMarkdown = require('raw-loader!./docs/hn-preview/api.md');
+
   constructor() {}
 
   ngOnInit() {}

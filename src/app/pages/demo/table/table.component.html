@@ -6,7 +6,7 @@
 <div class="layout-content">
   <h2>基础示例</h2>
   <hn-table
-    #table
+    #baseTable
     [columns]="columns"
     [data]="tableData"
     [params]="params"
@@ -23,11 +23,12 @@
       </div>
     </ng-template>
   </hn-table>
-  <markdown ngPreserveWhitespaces>{{baseMarkdown}}</markdown>
+
+  <app-markdown-tab [list]="baseTabs"></app-markdown-tab>
 
   <h2>远程请求示例</h2>
   <hn-table
-    #table
+    #interfaceTable
     [columns]="columns"
     [api]="getListApi"
     [params]="params"
@@ -44,7 +45,8 @@
       </div>
     </ng-template>
   </hn-table>
-  <markdown ngPreserveWhitespaces>{{interfaceMarkdown}}</markdown>
+
+  <app-markdown-tab [list]="interfaceTabs"></app-markdown-tab>
 
   <markdown ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
 </div>

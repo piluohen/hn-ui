@@ -9,8 +9,12 @@ declare const require: any;
   styleUrls: ['./table.component.less']
 })
 export class TableComponent implements OnInit {
-  @ViewChild('table') table: any;
+  @ViewChild('baseTable') baseTable: any;
+
+  @ViewChild('interfaceTable') interfaceTable: any;
+
   getListApi: any;
+
   columns: any[] = [
     { title: '名称', key: 'name' },
     { title: '性别', key: 'gender' },
@@ -24,9 +28,17 @@ export class TableComponent implements OnInit {
 
   params: any = {};
 
-  baseMarkdown = require('raw-loader!./docs/base.md');
-  interfaceMarkdown = require('raw-loader!./docs/interface.md');
   apiMarkdown = require('raw-loader!./docs/api.md');
+
+  baseTabs: any[] = [
+    { title: 'HTML', markdown: require('raw-loader!./docs/base/html.md') },
+    { title: 'JS', markdown: require('raw-loader!./docs/base/js.md') }
+  ];
+
+  interfaceTabs: any[] = [
+    { title: 'HTML', markdown: require('raw-loader!./docs/interface/html.md') },
+    { title: 'JS', markdown: require('raw-loader!./docs/interface/js.md') }
+  ];
 
   constructor(private http: HttpClient) {
     this.getListApi = (params: any = {}) => {
@@ -43,12 +55,14 @@ export class TableComponent implements OnInit {
       pageSize: 10,
       pageNo: 1
     };
-    this.getListApi(params).subscribe((res: any) => {
-      if (res.success) {
-        const data = res.data.list;
-        this.tableData = data;
-      }
-    });
+    this.http
+      .get('http://test.mgt.campus.huanuo-nsb.com/ipark-cost-service/mock/list', params)
+      .subscribe((res: any) => {
+        if (res.success) {
+          const data = res.data.list;
+          this.tableData = data;
+        }
+      });
   }
 
   handleView(scope: any = {}): void {

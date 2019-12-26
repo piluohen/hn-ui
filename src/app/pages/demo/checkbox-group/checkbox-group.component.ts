@@ -17,9 +17,17 @@ export class CheckboxGroupComponent implements OnInit {
 
   validateForm: FormGroup;
 
-  baseMarkdown = require('raw-loader!./docs/base.md');
-  formMarkdown = require('raw-loader!./docs/form.md');
   apiMarkdown = require('raw-loader!./docs/api.md');
+
+  baseTabs: any[] = [
+    { title: 'HTML', markdown: require('raw-loader!./docs/base/html.md') },
+    { title: 'JS', markdown: require('raw-loader!./docs/base/js.md') }
+  ];
+
+  formTabs: any[] = [
+    { title: 'HTML', markdown: require('raw-loader!./docs/form/html.md') },
+    { title: 'JS', markdown: require('raw-loader!./docs/form/js.md') }
+  ];
 
   constructor(private fb: FormBuilder) {
     this.validateForm = this.fb.group({

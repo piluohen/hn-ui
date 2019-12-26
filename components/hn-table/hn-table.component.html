@@ -12,6 +12,7 @@
     [(nzPageIndex)]="pagination.pageIndex"
     [(nzPageSize)]="pagination.pageSize"
     (nzPageIndexChange)="getList()"
+    (nzPageSizeChange)="getList(true)"
     [nzFooter]="footer">
     <thead>
       <tr>

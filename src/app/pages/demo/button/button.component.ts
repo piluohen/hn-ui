@@ -8,17 +8,17 @@ declare const require: any;
   styleUrls: ['./button.component.less']
 })
 export class ButtonComponent implements OnInit {
-  baseMarkdown = require('raw-loader!./docs/base.md');
-
-  iconMarkdown = require('raw-loader!./docs/icon.md');
-
-  sizeMarkdown = require('raw-loader!./docs/size.md');
-
-  ghostMarkdown = require('raw-loader!./docs/ghost.md');
-
   apiMarkdown = require('raw-loader!./docs/api.md');
 
-  blockMarkdown = require('raw-loader!./docs/block.md');
+  baseTabs: any[] = [{ title: 'HTML', markdown: require('raw-loader!./docs/base.md') }];
+
+  iconTabs: any[] = [{ title: 'HTML', markdown: require('raw-loader!./docs/icon.md') }];
+
+  sizeTabs: any[] = [{ title: 'HTML', markdown: require('raw-loader!./docs/size.md') }];
+
+  ghostTabs: any[] = [{ title: 'HTML', markdown: require('raw-loader!./docs/ghost.md') }];
+
+  blockTabs: any[] = [{ title: 'HTML', markdown: require('raw-loader!./docs/block.md') }];
 
   constructor() {}
 

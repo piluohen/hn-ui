@@ -10,6 +10,11 @@ declare const require: any;
 export class DetailListComponent implements OnInit {
   apiMarkdown = require('raw-loader!./docs/api.md');
 
+  markdownTabs: any[] = [
+    { title: 'HTML', markdown: require('raw-loader!./docs/html.md') },
+    { title: 'JS', markdown: require('raw-loader!./docs/js.md') }
+  ];
+
   data = {
     name: '刘备',
     age: '48',
