@@ -1,28 +1,3 @@
-<!-- @Input() data: any[] = [];
-
-  @Input() api: any;
-
-  @Input() params: any;
-
-  @Input() columns: any;
-
-  @Input() totalKey: any = 'total';
-
-  @Input() contentKey: any = 'list';
-
-  @Input() showSelect = true;
-
-  @Input() showPagination = true;
-
-  @Input() scroll: any{};
-
-  @Input() footer: any;
-
-  @Input() bordered = false;
-
-  @Input() render: any = {};
-  @Output() checkChange: EventEmitter<any> = new EventEmitter(); -->
-
 ## Api
 
 | 参数           | 描述                                             | 类型                        | 可选值 | 必须  | 默认值 |

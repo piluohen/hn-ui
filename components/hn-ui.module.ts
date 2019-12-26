@@ -7,7 +7,6 @@ import { HnButtonModule } from './hn-button/hn-button.module';
 import { HnCheckboxGroupModule } from './hn-checkbox-group/hn-checkbox-group.module';
 import { HnTableModule } from './hn-table/hn-table.module';
 import { HnDetailListModule } from './hn-detail-list/hn-detail-list.module';
-import { HnDetailTitleModule } from './hn-detail-title/hn-detail-title.module';
 import { HnImgListModule } from './hn-img-list/hn-img-list.module';
 import { HnListModule } from './hn-list/hn-list.module';
 import { HnSearchModule } from './hn-search/hn-search.module';
@@ -21,7 +20,6 @@ export * from './hn-button';
 export * from './hn-checkbox-group';
 export * from './hn-table';
 export * from './hn-detail-list';
-export * from './hn-detail-title';
 export * from './hn-img-list';
 export * from './hn-list';
 export * from './hn-search';
@@ -37,7 +35,6 @@ export * from './hn-table-msg';
     HnCheckboxGroupModule,
     HnTableModule,
     HnDetailListModule,
-    HnDetailTitleModule,
     HnImgListModule,
     HnListModule,
     HnSearchModule,

@@ -1,4 +1,13 @@
-import { Component, OnInit, Input, TemplateRef, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  TemplateRef,
+  EventEmitter,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+  Output
+} from '@angular/core';
 
 @Component({
   selector: 'hn-img-list',
@@ -15,12 +24,15 @@ export class HnImgListComponent implements OnInit {
 
   @Input() list: any[] = [];
 
+  @Output() itemClick: EventEmitter<any> = new EventEmitter();
+
   constructor() {}
 
   ngOnInit() {}
 
-  handleClick(val, index): void {
+  handleClick(item: any, index: any): void {
     this.visible = true;
     this.showIndex = index;
+    this.itemClick.emit({ item, index });
   }
 }

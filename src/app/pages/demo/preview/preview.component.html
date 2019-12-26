@@ -5,12 +5,7 @@
 
 <div class="layout-content">
   <h2>示例</h2>
-  <div class="img-list">
-    <div class="img-list-item" *ngFor="let item of imgList; index as index">
-      <img [src]="item.url" (click)="handleClick(index)">
-    </div>
-  </div>
-  <hn-preview [(visible)]="previewVisible" [list]="imgList" [index]="previewIndex"></hn-preview>
+  <hn-img-list [list]="imgList" (itemClick)="handleClick($event)"></hn-img-list>
 
   <markdown>{{apiMarkdown}}</markdown>
 </div>
