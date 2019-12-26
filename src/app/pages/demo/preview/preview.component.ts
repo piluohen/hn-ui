@@ -34,17 +34,9 @@ export class PreviewComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    console.log(require('raw-loader!./docs/hn-img-list/html.md'));
-  }
+  ngOnInit() {}
 
   handleClick(data: any): void {
     console.log('点击了图片列表子项', data);
-  }
-
-  handleCopy(event: any): void {
-    console.log(event);
-    const copyStr = event.target.parentElement.children[0].innerText;
-    console.log();
   }
 }

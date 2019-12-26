@@ -10,18 +10,23 @@ import { HttpExceptionInterceptor } from './httpExceptionInterceptor';
 import { TrustHtmlPipe, TrustScriptPipe, TrustStylePipe, TrustUrlPipe } from './trust-resource.pipe';
 import { WebcamModule } from 'ngx-webcam';
 
+import { MarkdownModule, MarkedOptions, MarkedRenderer } from 'ngx-markdown';
+
 import { HnUiModule } from 'components/hn-ui.module';
+
+import { HttpService } from '../service/http/http.service';
+import { AuthService } from '../auth.service';
 
 import { ScrollDirective } from '../directive/scroll.directive';
 import { LayoutComponent } from '../components/layout/layout.component';
-import { HttpService } from '../service/http/http.service';
-import { AuthService } from '../auth.service';
+
+import { MarkdownTabComponent } from '../components/model/markdown-tab/markdown-tab.component';
 
 /**
  *公共组件
  * @type {any[]}
  */
-const COMPONENT = [TrustUrlPipe, TrustHtmlPipe, TrustScriptPipe, TrustStylePipe, LayoutComponent];
+const COMPONENT = [TrustUrlPipe, TrustHtmlPipe, TrustScriptPipe, TrustStylePipe, LayoutComponent, MarkdownTabComponent];
 
 /**
  * 第三方模块
@@ -43,6 +48,7 @@ const DIRECTIVES = [ScrollDirective];
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    MarkdownModule.forChild(),
     ...THIRD_MODULE
   ],
   declarations: [...COMPONENT, ...DIRECTIVES],
@@ -58,6 +64,7 @@ const DIRECTIVES = [ScrollDirective];
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    MarkdownModule,
     ...THIRD_MODULE,
     ...COMPONENT,
     ...DIRECTIVES

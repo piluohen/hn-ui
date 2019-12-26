@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ShareModule } from 'src/app/share/share.module';
 
-import { MarkdownModule, MarkedOptions, MarkedRenderer } from 'ngx-markdown';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-
 import { DemoRoutingModule } from './demo-routing.module';
 import { DemoComponent } from './demo.component';
 
@@ -17,7 +14,7 @@ import { TableComponent } from './table/table.component';
 import { DetailListComponent } from './detail-list/detail-list.component';
 
 @NgModule({
-  imports: [ShareModule, DemoRoutingModule, HttpClientModule, MarkdownModule.forChild()],
+  imports: [ShareModule, DemoRoutingModule],
   providers: [],
   declarations: [
     DemoComponent,

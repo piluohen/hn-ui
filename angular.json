@@ -168,8 +168,8 @@
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "tsConfig": "components/tsconfig.lib.json", //读取的编译文件
-            "project": "components/ng-package.json" //读取的配置
+            "tsConfig": "components/tsconfig.lib.json",
+            "project": "components/ng-package.json"
           }
         }
       }
