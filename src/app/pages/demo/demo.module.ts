@@ -14,6 +14,7 @@ import { TableComponent } from './table/table.component';
 import { DetailListComponent } from './detail-list/detail-list.component';
 import { ExportComponent } from './export/export.component';
 import { SearchComponent } from './search/search.component';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
   imports: [ShareModule, DemoRoutingModule],
@@ -29,7 +30,8 @@ import { SearchComponent } from './search/search.component';
     TableComponent,
     DetailListComponent,
     ExportComponent,
-    SearchComponent
+    SearchComponent,
+    FormComponent
   ],
   entryComponents: [DemoComponent]
 })

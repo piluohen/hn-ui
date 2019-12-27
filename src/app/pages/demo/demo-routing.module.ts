@@ -11,6 +11,7 @@ import { TableComponent } from './table/table.component';
 import { DetailListComponent } from './detail-list/detail-list.component';
 import { ExportComponent } from './export/export.component';
 import { SearchComponent } from './search/search.component';
+import { FormComponent } from './form/form.component';
 
 const routes: Routes = [
   {
@@ -86,6 +87,13 @@ const routes: Routes = [
     component: SearchComponent,
     data: {
       breadcrumb: 'hn-search 组件'
+    }
+  },
+  {
+    path: 'hn-form',
+    component: FormComponent,
+    data: {
+      breadcrumb: 'hn-form 组件'
     }
   }
 ];

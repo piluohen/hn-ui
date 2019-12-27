@@ -49,9 +49,9 @@
                   [formControlName]="data.key"
                   [nzPlaceHolder]="data.placeHolder || ''"
                   [nzDisabled]="data.disabled"
-                  [nzMin]="data.nzMin"
-                  [nzMax]="data.nzMax"
-                  [nzStep]="data.nzStep"
+                  [nzMin]="data.nzMin || -Infinity"
+                  [nzMax]="data.nzMax || Infinity"
+                  [nzStep]="data.nzStep || 1"
                   [nzPrecision]="data.nzPrecision || 0.1">
                 </nz-input-number>
 
