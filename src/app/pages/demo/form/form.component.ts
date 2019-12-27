@@ -12,6 +12,14 @@ declare const require: any;
 export class FormComponent implements OnInit {
   @ViewChild('form') form: any;
 
+  mode = 'grid';
+
+  hasExplain = true;
+
+  hasValidator = true;
+
+  labelWidth = '100px';
+
   params: any = {
     input: '12',
     year: new Date()
@@ -24,6 +32,18 @@ export class FormComponent implements OnInit {
   markdownTabs: any[] = [
     { title: 'HTML', markdown: require('raw-loader!./docs/html.md') },
     { title: 'JS', markdown: require('raw-loader!./docs/js.md') }
+  ];
+
+  btnList: any[] = ['horizontal', 'vertical', 'inline', 'grid'];
+
+  hasExplainList: any[] = [
+    { label: '开启文字错误提示', value: true },
+    { label: '关闭文字错误提示', value: false }
+  ];
+
+  hasValidatorList: any[] = [
+    { label: '开启校验', value: true },
+    { label: '关闭校验', value: false }
   ];
 
   formList: any[] = formList;
@@ -39,6 +59,10 @@ export class FormComponent implements OnInit {
       };
       this.jsonParams = JSON.stringify(this.params);
     }, 1000);
+  }
+
+  handleTabChange(data): void {
+    this.mode = data;
   }
 
   handleClick(): void {

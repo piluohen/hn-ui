@@ -6,8 +6,8 @@
 | formList     |       表单数据列       |    Array    |                                          |  否  | []         |
 | labelWidth   |       label 宽度       |   String    |                                          |  否  | 100px      |
 | params       |        参数数据        |   Object    |                                          |  是  | {}         |
-| hasExplain   |  是否开启文字错误提示  |   Boolean   |                                          |  否  | 是         |
-| hasValidator |      是否开启校验      |   Boolean   |                                          |  否  | 是         |
+| hasExplain   |  是否开启文字错误提示  |   Boolean   |                                          |  否  | true       |
+| hasValidator |      是否开启校验      |   Boolean   |                                          |  否  | true       |
 | render       | control 内容自定义模板 | TemplateRef |                                          |  否  |            |
 
 ## Event

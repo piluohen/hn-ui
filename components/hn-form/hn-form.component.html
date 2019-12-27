@@ -34,13 +34,13 @@
       [nzNoColon]="data.nzNoColon">
       {{data.label.title || data.label}}</nz-form-label>
     <nz-form-control
-      [ngClass]="{'has-error': validateForm.get(data.key)?.dirty && validateForm.get(data.key)?.errors}"
+      [ngClass]="{'has-error': hasValidator && validateForm.get(data.key)?.dirty && validateForm.get(data.key)?.errors}"
       style="flex: 1;">
       <ng-template [ngTemplateOutlet]="controlTemp"
         [ngTemplateOutletContext]="{ $implicit: data, index: index }">
       </ng-template>
       <nz-form-explain
-        *ngIf="hasExplain && validateForm.get(data.key)?.dirty && validateForm.get(data.key)?.errors && data.errorMsg">
+        *ngIf="hasValidator && hasExplain && validateForm.get(data.key)?.dirty && validateForm.get(data.key)?.errors && data.errorMsg">
         {{data.errorMsg}}
       </nz-form-explain>
     </nz-form-control>
