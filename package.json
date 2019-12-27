@@ -8,14 +8,14 @@
   "repository": "https://github.com/piluohen/hn-ui",
   "description": "An Components for Angular",
   "scripts": {
-    "lib": "ng build hn-ui-lib && npm run style",
     "ng": "ng",
-    "style": "node build/compile-styles.js && cp README.md publish/README.md",
     "start": "ng serve --aot --host 0.0.0.0 --port 3660 --proxy-config proxy.conf.json --open",
     "build": "ng build --prod",
     "build-test": "ng build --prod --configuration=test",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "lib": "ng build hn-ui-lib && npm run style",
+    "style": "node build/compile-styles.js && cp README.md publish/README.md"
   },
   "private": false,
   "dependencies": {
