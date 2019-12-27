@@ -12,7 +12,8 @@ export const menuList = [
       { title: 'hn-scroll-list', path: '/demo/hn-scroll-list' },
       { title: 'hn-detail-list', path: '/demo/hn-detail-list' },
       { title: 'hn-table', path: '/demo/hn-table' },
-      { title: 'hn-export', path: '/demo/hn-export' }
+      { title: 'hn-export', path: '/demo/hn-export' },
+      { title: 'hn-search', path: '/demo/hn-search' }
     ]
   }
 ];

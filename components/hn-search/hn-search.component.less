@@ -2,6 +2,7 @@
 
 .hn-search {
   padding-top: 32px;
+  position: relative;
 
   .ant-btn-link {
     padding: 0;
@@ -44,10 +45,14 @@
   border-top: 1px solid @primary-color;
   border-radius: 2px;
 
+  .ant-rate {
+    line-height: 1.5;
+  }
+
   .search-popover-btns {
     text-align: right;
 
-    .ant-btn + .ant-btn {
+    .ant-btn+.ant-btn {
       margin-left: 10px;
     }
   }
@@ -55,7 +60,7 @@
   .search-children {
     display: flex;
 
-    .search-children-item + .search-children-item {
+    .search-children-item+.search-children-item {
       margin-left: 10px;
     }
   }

@@ -13,6 +13,7 @@ import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.componen
 import { TableComponent } from './table/table.component';
 import { DetailListComponent } from './detail-list/detail-list.component';
 import { ExportComponent } from './export/export.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   imports: [ShareModule, DemoRoutingModule],
@@ -27,7 +28,8 @@ import { ExportComponent } from './export/export.component';
     CheckboxGroupComponent,
     TableComponent,
     DetailListComponent,
-    ExportComponent
+    ExportComponent,
+    SearchComponent
   ],
   entryComponents: [DemoComponent]
 })

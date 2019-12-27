@@ -10,7 +10,7 @@
 | icon     |     icon 图标      |  String  |                                                         |  否   | -       |
 | showIcon |   是否展示 iicon   | Boolean  |                                                         |  否   | true    |
 | disabled |        禁用        | Boolean  |                                                         |  否   | false   |
-| api      |    数据请求方法    | Function |                                                         | true  | --      |
-| params   |      传入参数      |  Object  |                                                         | false | {}      |
-| download |    下载文件名称    |  String  |                                                         | false | ''      |
-| text     |      按钮文字      |  String  |                                                         | false | 导出    |
+| api      |    数据请求方法    | Function |                                                         |  是   | --      |
+| params   |      传入参数      |  Object  |                                                         |  否   | {}      |
+| download |    下载文件名称    |  String  |                                                         |  否   | ''      |
+| text     |      按钮文字      |  String  |                                                         |  否   | 导出    |

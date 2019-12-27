@@ -29,7 +29,7 @@ export class HnSearchComponent implements OnInit {
 
   @Output() search: EventEmitter<any> = new EventEmitter();
 
-  modeVisible: any = false;
+  modeVisible: any = true;
 
   form: any = {};
 
@@ -63,11 +63,7 @@ export class HnSearchComponent implements OnInit {
       if (item.children) {
         form = { ...form, ...this.setInitForm(item.children) };
       } else {
-        if (item.type === 'checkbox') {
-          form[item.key] = [Object.assign([], item.options)];
-        } else {
-          form[item.key] = [null];
-        }
+        form[item.key] = [null];
       }
     });
     return form;
@@ -143,12 +139,7 @@ export class HnSearchComponent implements OnInit {
       if (item.children) {
         params = { ...params, ...this.setParams(item.children, data) };
       } else {
-        if (item.type === 'checkbox') {
-          const str = this.filterArr(data[item.key]).join(',') || null;
-          params[item.key] = str;
-        } else {
-          params[item.key] = data[item.key];
-        }
+        params[item.key] = data[item.key];
       }
     });
     return params;

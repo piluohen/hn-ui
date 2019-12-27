@@ -21,7 +21,11 @@ import {
   NzCascaderModule,
   NzTreeModule,
   NzTreeSelectModule,
-  NzInputNumberModule
+  NzInputNumberModule,
+  NzRadioModule,
+  NzRateModule,
+  NzSliderModule,
+  NzSwitchModule
 } from 'ng-zorro-antd';
 
 const ngZorro = [
@@ -41,7 +45,11 @@ const ngZorro = [
   NzCascaderModule,
   NzTreeModule,
   NzTreeSelectModule,
-  NzInputNumberModule
+  NzInputNumberModule,
+  NzRadioModule,
+  NzRateModule,
+  NzSliderModule,
+  NzSwitchModule
 ];
 
 @NgModule({

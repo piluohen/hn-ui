@@ -10,6 +10,7 @@ import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.componen
 import { TableComponent } from './table/table.component';
 import { DetailListComponent } from './detail-list/detail-list.component';
 import { ExportComponent } from './export/export.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
@@ -78,6 +79,13 @@ const routes: Routes = [
     component: ExportComponent,
     data: {
       breadcrumb: 'hn-export 组件'
+    }
+  },
+  {
+    path: 'hn-search',
+    component: SearchComponent,
+    data: {
+      breadcrumb: 'hn-search 组件'
     }
   }
 ];

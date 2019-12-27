@@ -1,0 +1,16 @@
+<div class="breadcrumb">
+  <nz-breadcrumb [nzAutoGenerate]="true">
+  </nz-breadcrumb>
+</div>
+
+<div class="layout-content">
+  <h2>高级搜索</h2>
+  <div class="table-operation">
+    <hn-search [formList]="formList" (search)="handleSearch($event)">
+    </hn-search>
+  </div>
+
+  <app-markdown-tab [list]="markdownTabs"></app-markdown-tab>
+
+  <markdown ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
+</div>
