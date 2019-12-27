@@ -36,7 +36,7 @@ export class HnSearchComponent implements OnInit {
 
   params: any = {};
 
-  modeVisible: any = true;
+  modeVisible: any = false;
 
   validateForm: FormGroup;
 
