@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, TemplateRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { menuList } from './menu';
+import { menuList } from '../../mock/menu';
 
 @Component({
   selector: 'app-layout',

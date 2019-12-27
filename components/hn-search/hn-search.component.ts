@@ -6,7 +6,8 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ViewChild
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -19,6 +20,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './hn-search.component.html'
 })
 export class HnSearchComponent implements OnInit {
+  @ViewChild('form') form: any;
+
   @Input() formList: any = [];
 
   @Input() keyword = 'searchContent';
@@ -27,61 +30,19 @@ export class HnSearchComponent implements OnInit {
 
   @Input() render: any;
 
+  @Input() itemRender: any;
+
   @Output() search: EventEmitter<any> = new EventEmitter();
 
+  params: any = {};
+
   modeVisible: any = true;
-
-  form: any = {};
-
-  resetForm: any = [];
 
   validateForm: FormGroup;
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
-    this.form[this.keyword] = null;
-    this.resetForm = JSON.parse(JSON.stringify(this.formList));
-    this.initForm();
-  }
-
-  /**
-   * 初始化表单
-   */
-  initForm() {
-    const form: any = this.setInitForm(this.formList);
-    this.validateForm = this.fb.group({ ...form });
-  }
-
-  /**
-   * 设置初始化表单数据
-   * @param arr 数据
-   */
-  setInitForm(arr: any) {
-    let form: any = {};
-    arr.forEach(item => {
-      if (item.children) {
-        form = { ...form, ...this.setInitForm(item.children) };
-      } else {
-        form[item.key] = [null];
-      }
-    });
-    return form;
-  }
-
-  /**
-   * 过滤数组
-   * @param data 值：数组
-   */
-  filterArr(data: any[]) {
-    return data
-      .filter(item => {
-        return item.checked;
-      })
-      .map(item => {
-        return item.value;
-      });
-  }
+  ngOnInit() {}
 
   /**
    * 切换高级搜索
@@ -101,47 +62,25 @@ export class HnSearchComponent implements OnInit {
    * 重置表单
    */
   handleReset(): void {
-    this.formList = JSON.parse(JSON.stringify([...this.resetForm]));
-    this.initForm();
-    this.search.emit({ ...this.form });
+    this.form.resetForm();
   }
 
   /**
    * 确认操作
    */
   handleConfirm(): void {
-    this.submitForm();
+    this.form.submitForm();
   }
 
   /**
    * 键盘enter事件
    */
   handleKeyupEnter(): void {
-    this.submitForm();
+    this.form.submitForm();
   }
 
-  /**
-   * 提交表单
-   */
-  submitForm(): void {
-    const value = this.validateForm.value;
-    const params: any = { ...this.form, ...this.setParams(this.formList, value) };
+  handleSubmit(event: any): void {
+    const params = { ...this.params, ...event };
     this.search.emit(params);
-  }
-
-  /**
-   * 设置data
-   * @param data 数据
-   */
-  setParams(arr: any, data: any) {
-    let params = {};
-    arr.forEach(item => {
-      if (item.children) {
-        params = { ...params, ...this.setParams(item.children, data) };
-      } else {
-        params[item.key] = data[item.key];
-      }
-    });
-    return params;
   }
 }

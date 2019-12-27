@@ -30,12 +30,11 @@
     <nz-form-label
       [ngStyle]="labelStyle(labelWidth)"
       [nzFor]="data.key"
-      [nzRequired]="data.required"
+      [nzRequired]="hasValidator && data.required"
       [nzNoColon]="data.nzNoColon">
       {{data.label.title || data.label}}</nz-form-label>
     <nz-form-control
       [ngClass]="{'has-error': validateForm.get(data.key)?.dirty && validateForm.get(data.key)?.errors}"
-      nzHasFeedback
       style="flex: 1;">
       <ng-template [ngTemplateOutlet]="controlTemp"
         [ngTemplateOutletContext]="{ $implicit: data, index: index }">
