@@ -29,20 +29,20 @@ export class HnFormComponent implements OnInit, OnChanges {
 
   @Input() hasExplain = true; // 是否开启文字提示
 
-  @Output() search: EventEmitter<any> = new EventEmitter();
+  @Input() hasValidator = true;
+
+  @Input() render: any;
+
+  @Output() submit: EventEmitter<any> = new EventEmitter();
 
   modeVisible: any = true;
-
-  form: any = {};
-
-  resetForm: any = [];
 
   validateForm: FormGroup;
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.resetForm = JSON.parse(JSON.stringify(this.formList));
+    this.formList = this.initFormList([...this.formList]);
     this.initForm();
   }
 
@@ -54,6 +54,23 @@ export class HnFormComponent implements OnInit, OnChanges {
         this.initFormParams();
       }
     }
+  }
+
+  /**
+   * 初始化formList
+   */
+  initFormList(arr: any) {
+    const list = [];
+    arr.forEach((item: any) => {
+      if (item.children) {
+        item.children = this.initFormList(item.children);
+      }
+      if (item.renderKey) {
+        item.render = this.render[item.renderKey];
+      }
+      list.push(item);
+    });
+    return list;
   }
 
   /**
@@ -74,7 +91,7 @@ export class HnFormComponent implements OnInit, OnChanges {
       if (item.children) {
         form = { ...form, ...this.setInitForm(item.children) };
       } else {
-        form[item.key] = [null, item.validators || [Validators.required]];
+        form[item.key] = [null, item.validators || []];
       }
     });
     return form;
@@ -104,52 +121,47 @@ export class HnFormComponent implements OnInit, OnChanges {
   }
 
   /**
-   * 确认操作
-   */
-  handleConfirm(): void {
-    this.submitForm();
-  }
-
-  /**
-   * 键盘enter事件
-   */
-  handleKeyupEnter(): void {
-    this.submitForm();
-  }
-
-  /**
    * 提交表单
    */
   submitForm(): void {
-    if (this.validateForm.controls) {
-      for (const key in this.validateForm.controls) {
-        if (key) {
-          this.validateForm.controls[key].markAsDirty();
-          this.validateForm.controls[key].updateValueAndValidity();
+    if (this.hasValidator) {
+      if (this.validateForm.controls) {
+        for (const key in this.validateForm.controls) {
+          if (key) {
+            this.validateForm.controls[key].markAsDirty();
+            this.validateForm.controls[key].updateValueAndValidity();
+          }
         }
       }
-    }
-    console.log(this.validateForm);
-    if (this.validateForm.valid) {
-      const value = this.validateForm.value;
-      const params: any = { ...this.params, ...value };
-      this.search.emit(params);
+      if (this.validateForm.valid) {
+        this.submitData();
+      }
+    } else {
+      this.submitData();
     }
   }
 
   /**
-   * 设置data
-   * @param data 数据
+   * 提交数据
    */
-  setParams(arr: any, data: any) {
-    let params = {};
-    arr.forEach(item => {
-      if (item.children) {
-        params = { ...params, ...this.setParams(item.children, data) };
-      } else {
-        params[item.key] = data[item.key];
-      }
-    });
-    return params;
+  submitData(): void {
+    const value = this.validateForm.value;
+    const params: any = { ...this.params, ...value };
+    this.submit.emit(params);
+  }
+
+  /**
+   * 获取数据
+   */
+  getParams() {
+    return this.params;
+  }
+
+  /**
+   * 重置表单
+   */
+  resetForm(): void {
+    this.validateForm.reset();
+    this.initFormParams();
   }
 }

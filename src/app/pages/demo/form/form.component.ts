@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpService } from 'src/app/service/http/http.service';
-import { Utils } from 'src/app/share/util/utils';
 import { Validators } from '@angular/forms';
 
 declare const require: any;
@@ -11,10 +10,14 @@ declare const require: any;
   styleUrls: ['./form.component.less']
 })
 export class FormComponent implements OnInit {
+  @ViewChild('form') form: any;
+
   params: any = {
     input: '12',
     year: new Date()
   };
+
+  jsonParams = {};
 
   apiMarkdown = require('raw-loader!./docs/api.md');
 
@@ -108,7 +111,7 @@ export class FormComponent implements OnInit {
       label: '子项',
       col: 12,
       children: [
-        { label: '输入框', key: 'inputChildren', type: 'input' },
+        { label: '输入框', key: 'inputChildren', type: 'input', renderKey: 'inputTemp' },
         { label: '数字输入框', key: 'inputNumberChildren', type: 'input-number' }
       ]
     }
@@ -123,15 +126,20 @@ export class FormComponent implements OnInit {
         inputNumber: 45,
         year: new Date()
       };
+      this.jsonParams = JSON.stringify(this.params);
     }, 1000);
   }
 
-  /**
-   * 搜索方法
-   * @param data 搜索数据
-   */
-  handleSearch(data: any): void {
-    // const params = Utils.filterEmptyObj(data);
-    console.log(data);
+  handleClick(): void {
+    this.form.submitForm();
+  }
+
+  handleReset(): void {
+    this.form.resetForm();
+  }
+
+  handleSubmit(event: any) {
+    this.params = { ...this.params, ...event };
+    this.jsonParams = JSON.stringify(this.params);
   }
 }

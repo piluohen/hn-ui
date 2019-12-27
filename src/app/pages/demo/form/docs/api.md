@@ -1,14 +1,17 @@
 ## Api
 
-| 参数        |            描述            |    类型     | 可选值 | 必须 | 默认值         |
-| ----------- | :------------------------: | :---------: | :----: | :--: | -------------- |
-| formList    |         表单数据列         |    Array    |        |  否  | []             |
-| keyword     |       模糊搜索关键字       |   String    |        |  否  | searchContent  |
-| placeholder | 模糊搜索输入框 placeholder |   String    |        |  否  | 请输入查询条件 |
-| render      | 模糊搜索输入框 render 模板 | TemplateRef |        |  否  |                |
+| 参数         |          描述          |    类型     |                  可选值                  | 必须 | 默认值     |
+| ------------ | :--------------------: | :---------: | :--------------------------------------: | :--: | ---------- |
+| mode         |        布局模式        |   String    | horizontal \| vertical \| inline \| grid |  否  | horizontal |
+| formList     |       表单数据列       |    Array    |                                          |  否  | []         |
+| labelWidth   |       label 宽度       |   String    |                                          |  否  | 100px      |
+| params       |        参数数据        |   Object    |                                          |  是  | {}         |
+| hasExplain   |  是否开启文字错误提示  |   Boolean   |                                          |  否  | 是         |
+| hasValidator |      是否开启校验      |   Boolean   |                                          |  否  | 是         |
+| render       | control 内容自定义模板 | TemplateRef |                                          |  否  |            |
 
 ## Event
 
-| 事件   |   描述   |     参数      |
-| ------ | :------: | :-----------: |
-| search | 搜索方法 | 搜索数据 data |
+| 事件   |     描述     | 参数 |
+| ------ | :----------: | :--: |
+| submit | 提交表单数据 | data |

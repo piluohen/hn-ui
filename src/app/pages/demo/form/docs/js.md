@@ -1,15 +1,22 @@
 ```JS
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpService } from 'src/app/service/http/http.service';
-import { Utils } from 'src/app/share/util/utils';
+import { Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.less']
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.less']
 })
-export class SearchComponent implements OnInit {
-  params = {};
+export class FormComponent implements OnInit {
+  @ViewChild('form') form: any;
+
+  params: any = {
+    input: '12',
+    year: new Date()
+  };
+
+  jsonParams = {};
 
   items: any[] = [
     { label: '选项一', value: '1' },
@@ -54,8 +61,22 @@ export class SearchComponent implements OnInit {
   ];
 
   formList: any[] = [
-    { label: '输入框', key: 'input', type: 'input' },
-    { label: '数字输入框', key: 'inputNumber', type: 'input-number' },
+    {
+      label: '输入框',
+      key: 'input',
+      type: 'input',
+      required: true,
+      validators: [Validators.required],
+      errorMsg: '请输入'
+    },
+    {
+      label: '数字输入框',
+      key: 'inputNumber',
+      type: 'input-number',
+      required: true,
+      validators: [Validators.required],
+      errorMsg: '请输入'
+    },
     { label: '单选框', key: 'radio', type: 'radio', disabled: true, options: [...this.items] },
     { label: '单选框按钮', key: 'radioBtn', type: 'radio-button', options: [...this.items] },
     { label: '多选框', key: 'checkbox', type: 'checkbox', options: [...this.items] },
@@ -82,7 +103,7 @@ export class SearchComponent implements OnInit {
       label: '子项',
       col: 12,
       children: [
-        { label: '输入框', key: 'inputChildren', type: 'input' },
+        { label: '输入框', key: 'inputChildren', type: 'input', renderKey: 'inputTemp' },
         { label: '数字输入框', key: 'inputNumberChildren', type: 'input-number' }
       ]
     }
@@ -90,16 +111,28 @@ export class SearchComponent implements OnInit {
 
   constructor(private http: HttpService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    setTimeout(() => {
+      this.params = {
+        input: '1245',
+        inputNumber: 45,
+        year: new Date()
+      };
+      this.jsonParams = JSON.stringify(this.params);
+    }, 1000);
+  }
 
-  /**
-   * 搜索方法
-   * @param data 搜索数据
-   */
-  handleSearch(data: any): void {
-    const params = {};
-    this.params = Utils.filterEmptyObj(params);
-    console.log(data);
+  handleClick(): void {
+    this.form.submitForm();
+  }
+
+  handleReset(): void {
+    this.form.resetForm();
+  }
+
+  handleSubmit(event: any) {
+    this.params = { ...this.params, ...event };
+    this.jsonParams = JSON.stringify(this.params);
   }
 }
 

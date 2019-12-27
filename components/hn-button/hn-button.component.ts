@@ -27,7 +27,7 @@ export class HnButtonComponent implements OnInit {
   @Input() icon = '';
   @Input() disabled = false;
 
-  @Output() click: EventEmitter<any> = new EventEmitter();
+  @Output() hnClick: EventEmitter<any> = new EventEmitter();
 
   angClass: any;
 
@@ -48,6 +48,6 @@ export class HnButtonComponent implements OnInit {
    * 点击事件
    */
   handleClick(): void {
-    this.click.emit();
+    this.hnClick.emit();
   }
 }

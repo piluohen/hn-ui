@@ -48,7 +48,7 @@
   </ng-template>
 
   <ng-template #controlTemp let-data>
-    <ng-template #render let-data>
+    <ng-template #contentTemp let-data>
       <input
         *ngIf="data.type === 'input'"
         nz-input
@@ -267,17 +267,15 @@
       </nz-range-picker>
 
     </ng-template>
-    <ng-template [ngTemplateOutlet]="render"
+    <ng-template [ngTemplateOutlet]="data.render ? data.render : contentTemp"
       [ngTemplateOutletContext]="{ $implicit: data, index: index }">
     </ng-template>
     <div *ngIf="data.children" class="form-children" nzType="flex" nz-row [nzGutter]="10">
       <div class="form-children-item" nz-col *ngFor="let item of data.children">
-        <ng-template [ngTemplateOutlet]="render"
+        <ng-template [ngTemplateOutlet]="item.render ? item.render : contentTemp"
           [ngTemplateOutletContext]="{ $implicit: item, index: index }">
         </ng-template>
       </div>
     </div>
   </ng-template>
 </form>
-
-<button nz-button nzType="primary" (click)="handleConfirm()">搜索</button>

@@ -42,7 +42,7 @@ export class HnScrollListComponent implements OnInit {
 
   @Input() renderItem: TemplateRef<void>;
   // 滚动项click事件
-  @Output() click: EventEmitter<any> = new EventEmitter();
+  @Output() itemClick: EventEmitter<any> = new EventEmitter();
 
   y = 0;
   curr = 0;
@@ -188,6 +188,6 @@ export class HnScrollListComponent implements OnInit {
    * @param row 滚动项数据
    */
   handleClick(row: any) {
-    this.click.emit(row);
+    this.itemClick.emit(row);
   }
 }
