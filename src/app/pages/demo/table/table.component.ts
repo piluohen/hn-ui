@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Utils } from 'src/app/share/util/utils';
+import { formList } from '../../../mock/formList';
 
 declare const require: any;
 
@@ -28,6 +30,8 @@ export class TableComponent implements OnInit {
 
   params: any = {};
 
+  formList: any[] = formList;
+
   apiMarkdown = require('raw-loader!./docs/api.md');
 
   baseTabs: any[] = [
@@ -39,6 +43,9 @@ export class TableComponent implements OnInit {
     { title: 'HTML', markdown: require('raw-loader!./docs/interface/html.md') },
     { title: 'JS', markdown: require('raw-loader!./docs/interface/js.md') }
   ];
+
+  checkedData: any[] = [];
+  numberOfChecked = 0;
 
   constructor(private http: HttpClient) {
     this.getListApi = (params: any = {}) => {
@@ -71,5 +78,31 @@ export class TableComponent implements OnInit {
 
   handleEdit(type: string, data: any = {}) {
     console.log(type, data);
+  }
+
+  /**
+   * check选中操作
+   * @param data 数据
+   */
+  handleCheckChange(data: any) {
+    this.checkedData = data;
+    this.numberOfChecked = data.length;
+  }
+
+  /**
+   * 清除选中
+   */
+  handleClear() {
+    this.baseTable.clearChecked();
+  }
+
+  /**
+   * 搜索方法
+   * @param data 搜索数据
+   */
+  handleSearch(data: any): void {
+    this.params = Utils.filterEmptyObj({ ...this.params, ...data });
+    console.log(this.params);
+    this.getData();
   }
 }

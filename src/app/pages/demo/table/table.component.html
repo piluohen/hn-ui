@@ -5,6 +5,17 @@
 
 <div class="layout-content">
   <h2>基础示例</h2>
+  <div class="table-operation">
+    <div class="table-operation-left">
+      <hn-export></hn-export>
+      <hn-table-msg [check]="numberOfChecked" (clear)="handleClear()"></hn-table-msg>
+    </div>
+    <hn-search [formList]="formList" (search)="handleSearch($event)" [itemRender]="{inputTemp: inputTemp}">
+      <ng-template #inputTemp>
+        <input nz-input [(ngModel)]="params.input1" placeholder="render input">
+      </ng-template>
+    </hn-search>
+  </div>
   <hn-table
     #baseTable
     [columns]="columns"
@@ -13,7 +24,8 @@
     [scroll]="{x: '600px'}"
     [showPagination]="true"
     [showSelect]="true"
-    [render]="{linkTemp: linkTemp, operateTemp: operateTemp}">
+    [render]="{linkTemp: linkTemp, operateTemp: operateTemp}"
+    (checkChange)="handleCheckChange($event)">
     <ng-template #linkTemp let-scope>
       <a class="color-primary" (click)="handleView(scope)">{{scope.data[scope.item.key]}}</a>
     </ng-template>

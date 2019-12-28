@@ -1,0 +1,29 @@
+// 混入居中
+.flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alignItems(@type: center) {
+  display: flex;
+  align-items: @type;
+}
+
+.justifyContent(@type: center) {
+  display: flex;
+  justify-content: @type;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.beforeAfter {
+  content: '';
+  display: block;
+  height: 0;
+  width: 0;
+}
