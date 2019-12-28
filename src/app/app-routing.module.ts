@@ -6,13 +6,27 @@ const appRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/demo/color'
+    redirectTo: '/usage'
+  },
+  {
+    path: 'usage',
+    loadChildren: './pages/usage/usage.module#UsageModule',
+    data: {
+      breadcrumb: '如何使用'
+    }
+  },
+  {
+    path: 'theme',
+    loadChildren: './pages/theme/theme.module#ThemeModule',
+    data: {
+      breadcrumb: '定制主题'
+    }
   },
   {
     path: 'demo',
     loadChildren: './pages/demo/demo.module#DemoModule',
     data: {
-      breadcrumb: 'demo'
+      breadcrumb: '组件'
     }
   }
 ];

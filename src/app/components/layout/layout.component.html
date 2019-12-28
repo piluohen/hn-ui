@@ -28,7 +28,10 @@
         <li nz-menu-item *ngIf="!menu.children"
           nzMatchRouter
           [ngClass]="menu.selected? 'ant-menu-item-selected':''">
-          <a [routerLink]="menu.path">{{menu.title}}</a>
+          <a [routerLink]="menu.path">
+            <i nz-icon [type]="menu.icon" *ngIf="menu.icon"></i>
+            <span class="nav-text">{{ menu.title }}</span>
+          </a>
         </li>
       </ng-container>
     </ul>
