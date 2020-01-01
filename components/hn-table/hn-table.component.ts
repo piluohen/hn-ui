@@ -66,10 +66,15 @@ export class HnTableComponent implements OnInit, OnChanges {
   constructor() {}
 
   ngOnInit() {
-    this.tableColumns = this.columns.map(item => {
-      item.render = this.render[item.renderKey];
-      return item;
-    });
+    const length = Object.keys(this.render).length;
+    if (length > 0) {
+      this.tableColumns = this.columns.map(item => {
+        if (item.renderKey) {
+          item.render = this.render[item.renderKey];
+        }
+        return item;
+      });
+    }
     this.getList();
   }
 
@@ -81,9 +86,13 @@ export class HnTableComponent implements OnInit, OnChanges {
         this.getList(true);
       }
     }
+    if (changes.columns) {
+      const { currentValue, firstChange } = changes.columns;
+      this.tableColumns = currentValue;
+      this.getList(true);
+    }
     if (changes.api) {
       const { currentValue, firstChange } = changes.api;
-
       if (!firstChange) {
         this.api = currentValue;
         this.getList(true);
