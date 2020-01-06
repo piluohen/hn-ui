@@ -11,7 +11,9 @@ declare const require: any;
   styleUrls: ['./search.component.less']
 })
 export class SearchComponent implements OnInit {
-  params = {};
+  params = {
+    input: ''
+  };
 
   jsonParams: any;
 

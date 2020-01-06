@@ -8,7 +8,7 @@
   <div class="table-operation">
     <hn-search [formList]="formList" (search)="handleSearch($event)" [itemRender]="{inputTemp: inputTemp}">
       <ng-template #inputTemp>
-        <input nz-input [(ngModel)]="params.input1" placeholder="render input">
+        <input nz-input [(ngModel)]="params.input" placeholder="render input">
       </ng-template>
     </hn-search>
   </div>

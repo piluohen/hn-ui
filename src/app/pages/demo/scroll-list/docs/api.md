@@ -8,7 +8,7 @@
 | scrollCount |     滚动子项数量     |   Number    |        |  否  | 1        |
 | speed       |     子项滚动时间     |   Number    |        |  否  | 300(ms)  |
 | delay       |     滚动间隔时间     |   Number    |        |  否  | 2000(ms) |
-| renderItem  | 内嵌 render 子项模板 | TemplateRef |        |  是  |          |
+| renderItem  | 内嵌 render 子项模板 | TemplateRef |        |  否  |          |
 
 ## Event
 
