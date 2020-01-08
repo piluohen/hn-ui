@@ -22,8 +22,6 @@ import { LayoutComponent } from '../components/layout/layout.component';
 
 import { MarkdownTabComponent } from '../components/model/markdown-tab/markdown-tab.component';
 
-console.log(HnUiModule);
-
 /**
  *公共组件
  * @type {any[]}

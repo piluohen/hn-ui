@@ -265,6 +265,9 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
   private setDisplayForChildNodes(parentNode: NzTreeNode): void {
     const { children } = parentNode;
     if (children.length > 0) {
+      // 修复点击搜索搜索项，子项消失的bug
+      parentNode.canHide = false;
+
       children.map(node => {
         const canHide = !node.isMatched;
         node.canHide = canHide;

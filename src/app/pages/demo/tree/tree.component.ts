@@ -19,6 +19,8 @@ export class TreeComponent implements OnInit {
   // 当前活动子节点数据
   childNodes: any[] = [];
 
+  searchNum: 0;
+
   constructor() {}
 
   ngOnInit() {
@@ -51,6 +53,7 @@ export class TreeComponent implements OnInit {
 
   handleSearchValue(event: any) {
     console.log(event);
+    this.searchNum = event.matchedKeys.length;
     // if (event.eventName === 'search' && event.nodes.length > 0) {
     //   event.nodes.forEach(node => {
     //     if (!node.isExpanded) {

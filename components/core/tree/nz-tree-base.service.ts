@@ -22,8 +22,8 @@ export class NzTreeBaseService implements OnDestroy {
   DRAG_SIDE_RANGE = 0.25;
   DRAG_MIN_GAP = 2;
 
-  isCheckStrictly: boolean = false;
-  isMultiple: boolean = false;
+  isCheckStrictly = false;
+  isMultiple = false;
   selectedNode: NzTreeNode;
   rootNodes: NzTreeNode[] = [];
   selectedNodeList: NzTreeNode[] = [];
@@ -372,7 +372,7 @@ export class NzTreeBaseService implements OnDestroy {
         n.isMatched = true;
         this.matchedNodeList.push(n);
         // expand parentNode
-        expandParent(n);
+        // expandParent(n);
       } else {
         n.isMatched = false;
       }
@@ -380,10 +380,23 @@ export class NzTreeBaseService implements OnDestroy {
       n.children.forEach(child => {
         searchChild(child);
       });
+      // 修复点击搜索搜索项消失的bug start
+      if (n.canHide && n.children.length > 0) {
+        let allHidden = true;
+        allHidden = !n.children.some(child => {
+          return child.isMatched;
+        });
+        n.canHide = allHidden === true;
+      }
+      // 修复点击搜索搜索项消失的bug end
     };
     this.rootNodes.forEach(child => {
       searchChild(child);
     });
+    // 默认展开搜索第一项，解决大批量数据匹配渲染问题
+    if (this.matchedNodeList.length > 0) {
+      expandParent(this.matchedNodeList[0]);
+    }
     // expand matched keys
     this.calcExpandedKeys(expandedKeys, this.rootNodes);
   }

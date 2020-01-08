@@ -6,20 +6,23 @@
 <div class="layout-content">
   <h2>示例</h2>
   <div nz-row nzGutter="20">
-    <div nz-col nzSpan="8">
-      <nz-input-group [nzSuffix]="suffixIcon">
-        <input type="text" nz-input placeholder="Search" [(ngModel)]="searchValue" />
-      </nz-input-group>
-      <ng-template #suffixIcon>
-        <i nz-icon nzType="search"></i>
-      </ng-template>
+    <div nz-col nzSpan="12">
+      <div style="display: flex; align-items: center;">
+        <nz-input-group [nzSuffix]="suffixIcon">
+          <input type="text" nz-input placeholder="Search" [(ngModel)]="searchValue" />
+        </nz-input-group>
+        <ng-template #suffixIcon>
+          <i nz-icon nzType="search"></i>
+        </ng-template>
+        <div style="flex:0 0 120px;margin-left: 20px;">匹配项：{{searchNum}}</div>
+      </div>
 
       <hn-tree
         nzNoAnimation
         #nzTreeComponent
         [nzData]="nodes"
         nzAsyncData
-        [nzHideUnMatched]="false"
+        [nzHideUnMatched]="true"
         [nzSearchValue]="searchValue"
         (nzSearchValueChange)="handleSearchValue($event)"
         (nzClick)="handleClick($event)"
