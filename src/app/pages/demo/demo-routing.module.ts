@@ -12,6 +12,7 @@ import { DetailListComponent } from './detail-list/detail-list.component';
 import { ExportComponent } from './export/export.component';
 import { SearchComponent } from './search/search.component';
 import { FormComponent } from './form/form.component';
+import { TreeComponent } from './tree/tree.component';
 
 const routes: Routes = [
   {
@@ -94,6 +95,13 @@ const routes: Routes = [
     component: FormComponent,
     data: {
       breadcrumb: 'hn-form 组件'
+    }
+  },
+  {
+    path: 'hn-tree',
+    component: TreeComponent,
+    data: {
+      breadcrumb: 'hn-tree 组件'
     }
   }
 ];

@@ -15,6 +15,7 @@ import { DetailListComponent } from './detail-list/detail-list.component';
 import { ExportComponent } from './export/export.component';
 import { SearchComponent } from './search/search.component';
 import { FormComponent } from './form/form.component';
+import { TreeComponent } from './tree/tree.component';
 
 @NgModule({
   imports: [ShareModule, DemoRoutingModule],
@@ -31,7 +32,8 @@ import { FormComponent } from './form/form.component';
     DetailListComponent,
     ExportComponent,
     SearchComponent,
-    FormComponent
+    FormComponent,
+    TreeComponent
   ],
   entryComponents: [DemoComponent]
 })

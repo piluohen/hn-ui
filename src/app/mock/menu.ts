@@ -24,7 +24,8 @@ export const menuList = [
       { title: 'hn-form', path: '/demo/hn-form' },
       { title: 'hn-table', path: '/demo/hn-table' },
       { title: 'hn-export', path: '/demo/hn-export' },
-      { title: 'hn-search', path: '/demo/hn-search' }
+      { title: 'hn-search', path: '/demo/hn-search' },
+      { title: 'hn-tree', path: '/demo/hn-tree' }
     ]
   }
 ];

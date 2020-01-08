@@ -25,7 +25,9 @@ import {
   NzRadioModule,
   NzRateModule,
   NzSliderModule,
-  NzSwitchModule
+  NzSwitchModule,
+  NzAddOnModule,
+  NzNoAnimationModule
 } from 'ng-zorro-antd';
 
 const ngZorro = [
@@ -49,7 +51,9 @@ const ngZorro = [
   NzRadioModule,
   NzRateModule,
   NzSliderModule,
-  NzSwitchModule
+  NzSwitchModule,
+  NzAddOnModule,
+  NzNoAnimationModule
 ];
 
 @NgModule({

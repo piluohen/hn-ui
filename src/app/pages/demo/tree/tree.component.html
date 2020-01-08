@@ -1,0 +1,30 @@
+<div class="breadcrumb">
+  <nz-breadcrumb [nzAutoGenerate]="true">
+  </nz-breadcrumb>
+</div>
+
+<div class="layout-content">
+  <h2>示例</h2>
+  <div nz-row nzGutter="20">
+    <div nz-col nzSpan="8">
+      <nz-input-group [nzSuffix]="suffixIcon">
+        <input type="text" nz-input placeholder="Search" [(ngModel)]="searchValue" />
+      </nz-input-group>
+      <ng-template #suffixIcon>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+
+      <hn-tree
+        nzNoAnimation
+        #nzTreeComponent
+        [nzData]="nodes"
+        nzAsyncData
+        [nzHideUnMatched]="false"
+        [nzSearchValue]="searchValue"
+        (nzSearchValueChange)="handleSearchValue($event)"
+        (nzClick)="handleClick($event)"
+        (nzExpandChange)="handleExpandChange($event)">
+      </hn-tree>
+    </div>
+  </div>
+</div>
