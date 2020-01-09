@@ -8,6 +8,6 @@
 
 import { InjectionToken } from '@angular/core';
 
-import { NzTreeBaseService } from './nz-tree-base.service';
+import { HnTreeBaseService } from './hn-tree-base.service';
 
-export const NzTreeHigherOrderServiceToken = new InjectionToken<NzTreeBaseService>('NzTreeHigherOrder');
+export const HnTreeHigherOrderServiceToken = new InjectionToken<HnTreeBaseService>('HnTreeHigherOrder');

@@ -6,25 +6,25 @@
  * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
  */
 
-import { NzTreeNode } from './nz-tree-base-node';
-import { NzTreeBaseService } from './nz-tree-base.service';
+import { HnTreeNode } from './hn-tree-base-node';
+import { HnTreeBaseService } from './hn-tree-base.service';
 
-export class NzTreeBase {
-  constructor(public nzTreeService: NzTreeBaseService) {}
+export class HnTreeBase {
+  constructor(public nzTreeService: HnTreeBaseService) {}
 
   /**
-   * Coerces a value({@link any[]}) to a TreeNodes({@link NzTreeNode[]})
+   * Coerces a value({@link any[]}) to a TreeNodes({@link HnTreeNode[]})
    */
   coerceTreeNodes(
     // tslint:disable-next-line:no-any
     value: any[]
-  ): NzTreeNode[] {
-    let nodes: NzTreeNode[] = [];
+  ): HnTreeNode[] {
+    let nodes: HnTreeNode[] = [];
     if (!this.nzTreeService.isArrayOfNzTreeNode(value)) {
-      // has not been new NzTreeNode
-      nodes = value.map(item => new NzTreeNode(item, null, this.nzTreeService));
+      // has not been new HnTreeNode
+      nodes = value.map(item => new HnTreeNode(item, null, this.nzTreeService));
     } else {
-      nodes = value.map((item: NzTreeNode) => {
+      nodes = value.map((item: HnTreeNode) => {
         item.service = this.nzTreeService;
         return item;
       });
@@ -33,19 +33,19 @@ export class NzTreeBase {
   }
 
   /**
-   * Get all nodes({@link NzTreeNode})
+   * Get all nodes({@link HnTreeNode})
    */
-  getTreeNodes(): NzTreeNode[] {
+  getTreeNodes(): HnTreeNode[] {
     return this.nzTreeService.rootNodes;
   }
 
   /**
-   * Get {@link NzTreeNode} with key
+   * Get {@link HnTreeNode} with key
    */
-  getTreeNodeByKey(key: string): NzTreeNode | null {
+  getTreeNodeByKey(key: string): HnTreeNode | null {
     // flat tree nodes
-    const nodes: NzTreeNode[] = [];
-    const getNode = (node: NzTreeNode): void => {
+    const nodes: HnTreeNode[] = [];
+    const getNode = (node: HnTreeNode): void => {
       nodes.push(node);
       node.getChildren().forEach(n => {
         getNode(n);
@@ -60,35 +60,35 @@ export class NzTreeBase {
   /**
    * Get checked nodes(merged)
    */
-  getCheckedNodeList(): NzTreeNode[] {
+  getCheckedNodeList(): HnTreeNode[] {
     return this.nzTreeService.getCheckedNodeList();
   }
 
   /**
    * Get selected nodes
    */
-  getSelectedNodeList(): NzTreeNode[] {
+  getSelectedNodeList(): HnTreeNode[] {
     return this.nzTreeService.getSelectedNodeList();
   }
 
   /**
    * Get half checked nodes
    */
-  getHalfCheckedNodeList(): NzTreeNode[] {
+  getHalfCheckedNodeList(): HnTreeNode[] {
     return this.nzTreeService.getHalfCheckedNodeList();
   }
 
   /**
    * Get expanded nodes
    */
-  getExpandedNodeList(): NzTreeNode[] {
+  getExpandedNodeList(): HnTreeNode[] {
     return this.nzTreeService.getExpandedNodeList();
   }
 
   /**
    * Get matched nodes(if nzSearchValue is not null)
    */
-  getMatchedNodeList(): NzTreeNode[] {
+  getMatchedNodeList(): HnTreeNode[] {
     return this.nzTreeService.getMatchedNodeList();
   }
 }

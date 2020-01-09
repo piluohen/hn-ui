@@ -22,7 +22,7 @@ function encodeEntities(value: string): string {
   name: 'hnHighlight',
   pure: true
 })
-export class NzHighlightPipe implements PipeTransform {
+export class HnHighlightPipe implements PipeTransform {
   private UNIQUE_WRAPPERS: [string, string] = ['##==-open_tag-==##', '##==-close_tag-==##'];
 
   transform(value: string, highlightValue: string, flags?: string, klass?: string): string | null {

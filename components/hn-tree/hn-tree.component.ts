@@ -20,23 +20,23 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import {
-  isNotNil,
-  InputBoolean,
-  NzFormatBeforeDropEvent,
-  NzFormatEmitEvent,
-  NzNoAnimationDirective,
-  NzTreeHigherOrderServiceToken
-} from 'ng-zorro-antd/core';
+import { isNotNil, InputBoolean, NzNoAnimationDirective } from 'ng-zorro-antd/core';
 
-import { NzTreeBase, NzTreeBaseService, NzTreeNode } from '../core';
+import {
+  HnTreeBase,
+  HnTreeBaseService,
+  HnTreeNode,
+  HnFormatBeforeDropEvent,
+  HnFormatEmitEvent,
+  HnTreeHigherOrderServiceToken
+} from '../core';
 
 import { HnTreeService } from './hn-tree.service';
 
 export function NzTreeServiceFactory(
-  higherOrderService: NzTreeBaseService,
+  higherOrderService: HnTreeBaseService,
   treeService: HnTreeService
-): NzTreeBaseService {
+): HnTreeBaseService {
   return higherOrderService ? higherOrderService : treeService;
 }
 
@@ -50,9 +50,9 @@ const NZ_CONFIG_COMPONENT_NAME = 'tree';
   providers: [
     HnTreeService,
     {
-      provide: NzTreeBaseService,
+      provide: HnTreeBaseService,
       useFactory: NzTreeServiceFactory,
-      deps: [[new SkipSelf(), new Optional(), NzTreeHigherOrderServiceToken], HnTreeService]
+      deps: [[new SkipSelf(), new Optional(), HnTreeHigherOrderServiceToken], HnTreeService]
     },
     {
       provide: NG_VALUE_ACCESSOR,
@@ -61,11 +61,11 @@ const NZ_CONFIG_COMPONENT_NAME = 'tree';
     }
   ]
 })
-export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, ControlValueAccessor, OnChanges {
+export class HnTreeComponent extends HnTreeBase implements OnInit, OnDestroy, ControlValueAccessor, OnChanges {
   @Input() @InputBoolean() hnShowIcon = false;
   @Input() @InputBoolean() hnShowExpand = true;
   @Input() @InputBoolean() hnShowLine = false;
-  @Input() hnExpandedIcon: TemplateRef<{ $implicit: NzTreeNode }>;
+  @Input() hnExpandedIcon: TemplateRef<{ $implicit: HnTreeNode }>;
   @Input() @InputBoolean() hnCheckable = false;
   @Input() @InputBoolean() hnAsyncData = false;
   @Input() @InputBoolean() hnDraggable = false;
@@ -79,9 +79,9 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
   @Input() hnNodeKey = 'key';
   @Input() hnNodeTitle = 'title';
 
-  @Input() hnTreeTemplate: TemplateRef<{ $implicit: NzTreeNode }>;
-  @ContentChild('nzTreeTemplate') hnTreeTemplateChild: TemplateRef<{ $implicit: NzTreeNode }>;
-  get treeTemplate(): TemplateRef<{ $implicit: NzTreeNode }> {
+  @Input() hnTreeTemplate: TemplateRef<{ $implicit: HnTreeNode }>;
+  @ContentChild('nzTreeTemplate') hnTreeTemplateChild: TemplateRef<{ $implicit: HnTreeNode }>;
+  get treeTemplate(): TemplateRef<{ $implicit: HnTreeNode }> {
     return this.hnTreeTemplate || this.hnTreeTemplateChild;
   }
 
@@ -101,7 +101,7 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
 
   private _nzDefaultExpandAll = false;
 
-  @Input() hnBeforeDrop: (confirm: NzFormatBeforeDropEvent) => Observable<boolean>;
+  @Input() hnBeforeDrop: (confirm: HnFormatBeforeDropEvent) => Observable<boolean>;
 
   @Input() @InputBoolean() hnMultiple = false;
 
@@ -171,7 +171,7 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
   /**
    * To render nodes if root is changed.
    */
-  get hnNodes(): NzTreeNode[] {
+  get hnNodes(): HnTreeNode[] {
     return this.nzTreeService.rootNodes;
   }
 
@@ -179,25 +179,25 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
   @Output() readonly hnSelectedKeysChange: EventEmitter<string[]> = new EventEmitter<string[]>();
   @Output() readonly hnCheckedKeysChange: EventEmitter<string[]> = new EventEmitter<string[]>();
 
-  @Output() readonly hnSearchValueChange = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnSearchValueChange = new EventEmitter<HnFormatEmitEvent>();
 
   /**
    * @deprecated use `nzSearchValueChange` instead.
    */
-  @Output() readonly hnOnSearchNode = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnOnSearchNode = new EventEmitter<HnFormatEmitEvent>();
 
-  @Output() readonly hnClick = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly hnDblClick = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly hnContextMenu = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly hnCheckBoxChange = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly hnExpandChange = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnClick = new EventEmitter<HnFormatEmitEvent>();
+  @Output() readonly hnDblClick = new EventEmitter<HnFormatEmitEvent>();
+  @Output() readonly hnContextMenu = new EventEmitter<HnFormatEmitEvent>();
+  @Output() readonly hnCheckBoxChange = new EventEmitter<HnFormatEmitEvent>();
+  @Output() readonly hnExpandChange = new EventEmitter<HnFormatEmitEvent>();
 
-  @Output() readonly hnOnDragStart = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly hnOnDragEnter = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly hnOnDragOver = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly hnOnDragLeave = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly hnOnDrop = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly hnOnDragEnd = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnOnDragStart = new EventEmitter<HnFormatEmitEvent>();
+  @Output() readonly hnOnDragEnter = new EventEmitter<HnFormatEmitEvent>();
+  @Output() readonly hnOnDragOver = new EventEmitter<HnFormatEmitEvent>();
+  @Output() readonly hnOnDragLeave = new EventEmitter<HnFormatEmitEvent>();
+  @Output() readonly hnOnDrop = new EventEmitter<HnFormatEmitEvent>();
+  @Output() readonly hnOnDragEnd = new EventEmitter<HnFormatEmitEvent>();
 
   _searchValue: string;
   nzDefaultSubject = new ReplaySubject<{ type: string; keys: string[] }>(6);
@@ -205,7 +205,7 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
   prefixCls = 'ant-tree';
   classMap = {};
 
-  onChange: (value: NzTreeNode[]) => void = () => null;
+  onChange: (value: HnTreeNode[]) => void = () => null;
   onTouched: () => void = () => null;
 
   setClassMap(): void {
@@ -219,11 +219,11 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
     };
   }
 
-  writeValue(value: NzTreeNode[]): void {
+  writeValue(value: HnTreeNode[]): void {
     this.initNzData(value);
   }
 
-  registerOnChange(fn: (_: NzTreeNode[]) => void): void {
+  registerOnChange(fn: (_: HnTreeNode[]) => void): void {
     this.onChange = fn;
   }
 
@@ -262,7 +262,7 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
   }
 
   constructor(
-    nzTreeService: NzTreeBaseService,
+    nzTreeService: HnTreeBaseService,
     private cdr: ChangeDetectorRef,
     @Host() @Optional() public noAnimation?: NzNoAnimationDirective
   ) {

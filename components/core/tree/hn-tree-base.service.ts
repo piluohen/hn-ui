@@ -9,41 +9,41 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-import { NzTreeNode } from './nz-tree-base-node';
-import { isCheckDisabled, isInArray } from './nz-tree-base-util';
-import { NzFormatEmitEvent } from './nz-tree-base.definitions';
+import { HnTreeNode } from './hn-tree-base-node';
+import { isCheckDisabled, isInArray } from './hn-tree-base-util';
+import { HnFormatEmitEvent } from './hn-tree-base.definitions';
 
 export function isNotNil<T>(value: T): value is NonNullable<T> {
   return typeof value !== 'undefined' && value !== null;
 }
 
 @Injectable()
-export class NzTreeBaseService implements OnDestroy {
+export class HnTreeBaseService implements OnDestroy {
   DRAG_SIDE_RANGE = 0.25;
   DRAG_MIN_GAP = 2;
 
   isCheckStrictly = false;
   isMultiple = false;
-  selectedNode: NzTreeNode;
-  rootNodes: NzTreeNode[] = [];
-  selectedNodeList: NzTreeNode[] = [];
-  expandedNodeList: NzTreeNode[] = [];
-  checkedNodeList: NzTreeNode[] = [];
-  halfCheckedNodeList: NzTreeNode[] = [];
-  matchedNodeList: NzTreeNode[] = [];
-  triggerEventChange$ = new Subject<NzFormatEmitEvent>();
+  selectedNode: HnTreeNode;
+  rootNodes: HnTreeNode[] = [];
+  selectedNodeList: HnTreeNode[] = [];
+  expandedNodeList: HnTreeNode[] = [];
+  checkedNodeList: HnTreeNode[] = [];
+  halfCheckedNodeList: HnTreeNode[] = [];
+  matchedNodeList: HnTreeNode[] = [];
+  triggerEventChange$ = new Subject<HnFormatEmitEvent>();
 
   /**
    * trigger event
    */
-  eventTriggerChanged(): Observable<NzFormatEmitEvent> {
+  eventTriggerChanged(): Observable<HnFormatEmitEvent> {
     return this.triggerEventChange$.asObservable();
   }
 
   /**
    * reset tree nodes will clear default node list
    */
-  initTree(nzNodes: NzTreeNode[]): void {
+  initTree(nzNodes: HnTreeNode[]): void {
     this.rootNodes = nzNodes;
     this.expandedNodeList = [];
     this.selectedNodeList = [];
@@ -56,52 +56,52 @@ export class NzTreeBaseService implements OnDestroy {
     });
   }
 
-  getSelectedNode(): NzTreeNode | null {
+  getSelectedNode(): HnTreeNode | null {
     return this.selectedNode;
   }
 
   /**
    * get some list
    */
-  getSelectedNodeList(): NzTreeNode[] {
+  getSelectedNodeList(): HnTreeNode[] {
     return this.conductNodeState('select');
   }
 
   /**
    * return checked nodes
    */
-  getCheckedNodeList(): NzTreeNode[] {
+  getCheckedNodeList(): HnTreeNode[] {
     return this.conductNodeState('check');
   }
 
-  getHalfCheckedNodeList(): NzTreeNode[] {
+  getHalfCheckedNodeList(): HnTreeNode[] {
     return this.conductNodeState('halfCheck');
   }
 
   /**
    * return expanded nodes
    */
-  getExpandedNodeList(): NzTreeNode[] {
+  getExpandedNodeList(): HnTreeNode[] {
     return this.conductNodeState('expand');
   }
 
   /**
    * return search matched nodes
    */
-  getMatchedNodeList(): NzTreeNode[] {
+  getMatchedNodeList(): HnTreeNode[] {
     return this.conductNodeState('match');
   }
 
   // tslint:disable-next-line:no-any
   isArrayOfNzTreeNode(value: any[]): boolean {
-    return value.every(item => item instanceof NzTreeNode);
+    return value.every(item => item instanceof HnTreeNode);
   }
 
   /**
    * reset selectedNodeList
    */
-  calcSelectedKeys(selectedKeys: string[], nzNodes: NzTreeNode[], isMulti: boolean = false): void {
-    const calc = (nodes: NzTreeNode[]): boolean => {
+  calcSelectedKeys(selectedKeys: string[], nzNodes: HnTreeNode[], isMulti: boolean = false): void {
+    const calc = (nodes: HnTreeNode[]): boolean => {
       return nodes.every(node => {
         if (isInArray(node.key, selectedKeys)) {
           node.isSelected = true;
@@ -125,9 +125,9 @@ export class NzTreeBaseService implements OnDestroy {
   /**
    * reset expandedNodeList
    */
-  calcExpandedKeys(expandedKeys: string[], nzNodes: NzTreeNode[]): void {
+  calcExpandedKeys(expandedKeys: string[], nzNodes: HnTreeNode[]): void {
     this.expandedNodeList = [];
-    const calc = (nodes: NzTreeNode[]) => {
+    const calc = (nodes: HnTreeNode[]) => {
       nodes.forEach(node => {
         node.isExpanded = isInArray(node.key, expandedKeys);
         if (node.children.length > 0) {
@@ -141,10 +141,10 @@ export class NzTreeBaseService implements OnDestroy {
   /**
    * reset checkedNodeList
    */
-  calcCheckedKeys(checkedKeys: string[], nzNodes: NzTreeNode[], isCheckStrictly: boolean = false): void {
+  calcCheckedKeys(checkedKeys: string[], nzNodes: HnTreeNode[], isCheckStrictly: boolean = false): void {
     this.checkedNodeList = [];
     this.halfCheckedNodeList = [];
-    const calc = (nodes: NzTreeNode[]) => {
+    const calc = (nodes: HnTreeNode[]) => {
       nodes.forEach(node => {
         if (isInArray(node.key, checkedKeys)) {
           node.isChecked = true;
@@ -166,14 +166,14 @@ export class NzTreeBaseService implements OnDestroy {
   /**
    * set drag node
    */
-  setSelectedNode(node: NzTreeNode): void {
+  setSelectedNode(node: HnTreeNode): void {
     this.selectedNode = node;
   }
 
   /**
    * set node selected status
    */
-  setNodeActive(node: NzTreeNode): void {
+  setNodeActive(node: HnTreeNode): void {
     if (!this.isMultiple && node.isSelected) {
       this.selectedNodeList.forEach(n => {
         if (node.key !== n.key) {
@@ -190,7 +190,7 @@ export class NzTreeBaseService implements OnDestroy {
   /**
    * add or remove node to selectedNodeList
    */
-  setSelectedNodeList(node: NzTreeNode, isMultiple: boolean = false): void {
+  setSelectedNodeList(node: HnTreeNode, isMultiple: boolean = false): void {
     const index = this.selectedNodeList.findIndex(n => node.key === n.key);
     if (isMultiple) {
       if (node.isSelected && index === -1) {
@@ -209,7 +209,7 @@ export class NzTreeBaseService implements OnDestroy {
   /**
    * merge checked nodes
    */
-  setHalfCheckedNodeList(node: NzTreeNode): void {
+  setHalfCheckedNodeList(node: HnTreeNode): void {
     const index = this.halfCheckedNodeList.findIndex(n => node.key === n.key);
     if (node.isHalfChecked && index === -1) {
       this.halfCheckedNodeList.push(node);
@@ -218,7 +218,7 @@ export class NzTreeBaseService implements OnDestroy {
     }
   }
 
-  setCheckedNodeList(node: NzTreeNode): void {
+  setCheckedNodeList(node: HnTreeNode): void {
     const index = this.checkedNodeList.findIndex(n => node.key === n.key);
     if (node.isChecked && index === -1) {
       this.checkedNodeList.push(node);
@@ -230,8 +230,8 @@ export class NzTreeBaseService implements OnDestroy {
   /**
    * conduct checked/selected/expanded keys
    */
-  conductNodeState(type: string = 'check'): NzTreeNode[] {
-    let resultNodesList: NzTreeNode[] = [];
+  conductNodeState(type: string = 'check'): HnTreeNode[] {
+    let resultNodesList: HnTreeNode[] = [];
     switch (type) {
       case 'select':
         resultNodesList = this.selectedNodeList;
@@ -244,7 +244,7 @@ export class NzTreeBaseService implements OnDestroy {
         break;
       case 'check':
         resultNodesList = this.checkedNodeList;
-        const isIgnore = (node: NzTreeNode): boolean => {
+        const isIgnore = (node: HnTreeNode): boolean => {
           const parentNode = node.getParentNode();
           if (parentNode) {
             if (this.checkedNodeList.findIndex(n => n.key === parentNode.key) > -1) {
@@ -272,7 +272,7 @@ export class NzTreeBaseService implements OnDestroy {
   /**
    * set expanded nodes
    */
-  setExpandedNodeList(node: NzTreeNode): void {
+  setExpandedNodeList(node: HnTreeNode): void {
     if (node.isLeaf) {
       return;
     }
@@ -298,7 +298,7 @@ export class NzTreeBaseService implements OnDestroy {
   }
 
   // reset other node checked state based current node
-  conduct(node: NzTreeNode): void {
+  conduct(node: HnTreeNode): void {
     const isChecked = node.isChecked;
     if (node) {
       this.conductUp(node);
@@ -311,7 +311,7 @@ export class NzTreeBaseService implements OnDestroy {
    * 2、children all checked, parent checked
    * 3、no children checked
    */
-  conductUp(node: NzTreeNode): void {
+  conductUp(node: HnTreeNode): void {
     const parentNode = node.getParentNode();
     if (parentNode) {
       if (!isCheckDisabled(parentNode)) {
@@ -335,7 +335,7 @@ export class NzTreeBaseService implements OnDestroy {
   /**
    * reset child check state
    */
-  conductDown(node: NzTreeNode, value: boolean): void {
+  conductDown(node: HnTreeNode, value: boolean): void {
     if (!isCheckDisabled(node)) {
       node.isChecked = value;
       node.isHalfChecked = false;
@@ -358,7 +358,7 @@ export class NzTreeBaseService implements OnDestroy {
       return;
     }
     // to reset expandedNodeList
-    const expandParent = (n: NzTreeNode) => {
+    const expandParent = (n: HnTreeNode) => {
       // expand parent node
       const parentNode = n.getParentNode();
       if (parentNode) {
@@ -366,7 +366,7 @@ export class NzTreeBaseService implements OnDestroy {
         expandParent(parentNode);
       }
     };
-    const searchChild = (n: NzTreeNode) => {
+    const searchChild = (n: HnTreeNode) => {
       if (value && n.title.includes(value)) {
         // match the node
         n.isMatched = true;
@@ -404,9 +404,9 @@ export class NzTreeBaseService implements OnDestroy {
   /**
    * flush after delete node
    */
-  afterRemove(nodes: NzTreeNode[]): void {
+  afterRemove(nodes: HnTreeNode[]): void {
     // to reset selectedNodeList & expandedNodeList
-    const loopNode = (node: NzTreeNode) => {
+    const loopNode = (node: HnTreeNode) => {
       // remove selected node
       this.selectedNodeList = this.selectedNodeList.filter(n => n.key !== node.key);
       // remove expanded node
@@ -428,7 +428,7 @@ export class NzTreeBaseService implements OnDestroy {
   /**
    * drag event
    */
-  refreshDragNode(node: NzTreeNode): void {
+  refreshDragNode(node: HnTreeNode): void {
     if (node.children.length === 0) {
       // until root
       this.conductUp(node);
@@ -440,7 +440,7 @@ export class NzTreeBaseService implements OnDestroy {
   }
 
   // reset node level
-  resetNodeLevel(node: NzTreeNode): void {
+  resetNodeLevel(node: HnTreeNode): void {
     const parentNode = node.getParentNode();
     if (parentNode) {
       node.level = parentNode.level + 1;
@@ -473,7 +473,7 @@ export class NzTreeBaseService implements OnDestroy {
    * drop
    * 0: inner -1: pre 1: next
    */
-  dropAndApply(targetNode: NzTreeNode, dragPos: number = -1): void {
+  dropAndApply(targetNode: HnTreeNode, dragPos: number = -1): void {
     if (!targetNode || dragPos > 1) {
       return;
     }
@@ -525,8 +525,8 @@ export class NzTreeBaseService implements OnDestroy {
    * event: MouseEvent / DragEvent
    * dragNode
    */
-  formatEvent(eventName: string, node: NzTreeNode | null, event: MouseEvent | DragEvent | null): NzFormatEmitEvent {
-    const emitStructure: NzFormatEmitEvent = {
+  formatEvent(eventName: string, node: HnTreeNode | null, event: MouseEvent | DragEvent | null): HnFormatEmitEvent {
+    const emitStructure: HnFormatEmitEvent = {
       eventName: eventName,
       node: node,
       event: event

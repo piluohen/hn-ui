@@ -18,9 +18,9 @@ import {
 import { fromEvent, Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { InputBoolean, NzFormatBeforeDropEvent, NzNoAnimationDirective } from 'ng-zorro-antd/core';
+import { InputBoolean, NzNoAnimationDirective } from 'ng-zorro-antd/core';
 
-import { NzTreeBaseService, NzTreeNode, treeCollapseMotion } from '../core';
+import { HnTreeBaseService, HnTreeNode, treeCollapseMotion, HnFormatBeforeDropEvent } from '../core';
 
 @Component({
   selector: 'hn-tree-node',
@@ -36,7 +36,7 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * for global property
    */
-  @Input() hnTreeNode: NzTreeNode;
+  @Input() hnTreeNode: HnTreeNode;
   @Input() @InputBoolean() hnShowLine: boolean;
   @Input() @InputBoolean() hnShowExpand: boolean;
   @Input() @InputBoolean() hnCheckable: boolean;
@@ -45,9 +45,9 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
   @Input() @InputBoolean() hnNoAnimation = false;
   @Input() @InputBoolean() hnSelectMode = false;
   @Input() @InputBoolean() hnShowIcon = false;
-  @Input() hnExpandedIcon: TemplateRef<{ $implicit: NzTreeNode }>;
-  @Input() hnTreeTemplate: TemplateRef<{ $implicit: NzTreeNode }>;
-  @Input() hnBeforeDrop: (confirm: NzFormatBeforeDropEvent) => Observable<boolean>;
+  @Input() hnExpandedIcon: TemplateRef<{ $implicit: HnTreeNode }>;
+  @Input() hnTreeTemplate: TemplateRef<{ $implicit: HnTreeNode }>;
+  @Input() hnBeforeDrop: (confirm: HnFormatBeforeDropEvent) => Observable<boolean>;
   @Input() hnSearchValue = '';
   @Input() @InputBoolean() hnAccordion = false;
 
@@ -269,7 +269,7 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  private setDisplayForChildNodes(parentNode: NzTreeNode): void {
+  private setDisplayForChildNodes(parentNode: HnTreeNode): void {
     const { children } = parentNode;
     if (children.length > 0) {
       // 修复点击搜索搜索项，子项消失的bug
@@ -283,7 +283,7 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  private setDisplayForParentNodes(targetNode: NzTreeNode): void {
+  private setDisplayForParentNodes(targetNode: HnTreeNode): void {
     const parentNode = targetNode.getParentNode();
     if (parentNode) {
       parentNode.canHide = false;
@@ -460,7 +460,7 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   constructor(
-    public nzTreeService: NzTreeBaseService,
+    public nzTreeService: HnTreeBaseService,
     private ngZone: NgZone,
     private renderer: Renderer2,
     private elRef: ElementRef,

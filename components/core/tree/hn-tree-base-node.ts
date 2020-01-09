@@ -6,10 +6,10 @@
  * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
  */
 
-import { NzTreeNodeBaseComponent } from './nz-tree-base.definitions';
-import { NzTreeBaseService } from './nz-tree-base.service';
+import { HnTreeNodeBaseComponent } from './hn-tree-base.definitions';
+import { HnTreeBaseService } from './hn-tree-base.service';
 
-export interface NzTreeNodeOptions {
+export interface HnTreeNodeOptions {
   title: string;
   key: string;
   icon?: string;
@@ -20,21 +20,21 @@ export interface NzTreeNodeOptions {
   disabled?: boolean;
   disableCheckbox?: boolean;
   expanded?: boolean;
-  children?: NzTreeNodeOptions[];
+  children?: HnTreeNodeOptions[];
 
   // tslint:disable-next-line:no-any
   [key: string]: any;
 }
 
-export class NzTreeNode {
+export class HnTreeNode {
   private _title: string;
   key: string;
   level = 0;
-  origin: NzTreeNodeOptions;
+  origin: HnTreeNodeOptions;
   // Parent Node
-  parentNode: NzTreeNode | null;
+  parentNode: HnTreeNode | null;
   private _icon: string;
-  private _children: NzTreeNode[];
+  private _children: HnTreeNode[];
   private _isLeaf: boolean;
   private _isChecked: boolean;
   /**
@@ -51,19 +51,19 @@ export class NzTreeNode {
   canHide: boolean;
   isMatched: boolean;
 
-  service: NzTreeBaseService | null;
-  component: NzTreeNodeBaseComponent;
+  service: HnTreeBaseService | null;
+  component: HnTreeNodeBaseComponent;
 
-  get treeService(): NzTreeBaseService | null {
+  get treeService(): HnTreeBaseService | null {
     return this.service || (this.parentNode && this.parentNode.treeService);
   }
 
   constructor(
-    option: NzTreeNodeOptions | NzTreeNode,
-    parent: NzTreeNode | null = null,
-    service: NzTreeBaseService | null = null
+    option: HnTreeNodeOptions | HnTreeNode,
+    parent: HnTreeNode | null = null,
+    service: HnTreeBaseService | null = null
   ) {
-    if (option instanceof NzTreeNode) {
+    if (option instanceof HnTreeNode) {
       return option;
     }
     this.service = service || null;
@@ -106,7 +106,7 @@ export class NzTreeNode {
         ) {
           nodeOptions.checked = option.checked;
         }
-        this._children.push(new NzTreeNode(nodeOptions, this));
+        this._children.push(new HnTreeNode(nodeOptions, this));
       });
     }
   }
@@ -134,11 +134,11 @@ export class NzTreeNode {
     this.update();
   }
 
-  get children(): NzTreeNode[] {
+  get children(): HnTreeNode[] {
     return this._children;
   }
 
-  set children(value: NzTreeNode[]) {
+  set children(value: HnTreeNode[]) {
     this._children = value;
     this.update();
   }
@@ -273,11 +273,11 @@ export class NzTreeNode {
     this.isSelected = value;
   }
 
-  public getParentNode(): NzTreeNode | null {
+  public getParentNode(): HnTreeNode | null {
     return this.parentNode;
   }
 
-  public getChildren(): NzTreeNode[] {
+  public getChildren(): HnTreeNode[] {
     return this.children;
   }
 
@@ -288,7 +288,7 @@ export class NzTreeNode {
   public addChildren(children: any[], childPos: number = -1): void {
     if (!this.isLeaf) {
       children.forEach(node => {
-        const refreshLevel = (n: NzTreeNode) => {
+        const refreshLevel = (n: HnTreeNode) => {
           n.getChildren().forEach(c => {
             c.level = c.getParentNode()!.level + 1;
             // flush origin
@@ -297,10 +297,10 @@ export class NzTreeNode {
           });
         };
         let child = node;
-        if (child instanceof NzTreeNode) {
+        if (child instanceof HnTreeNode) {
           child.parentNode = this;
         } else {
-          child = new NzTreeNode(node, this);
+          child = new HnTreeNode(node, this);
         }
         child.level = this.level + 1;
         child.origin.level = child.level;

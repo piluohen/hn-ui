@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NzTreeBaseService } from '../core';
+import { HnTreeBaseService } from '../core';
 
 @Injectable()
-export class HnTreeService extends NzTreeBaseService {}
+export class HnTreeService extends HnTreeBaseService {}

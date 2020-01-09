@@ -6,27 +6,27 @@
  * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
  */
 
-import { NzTreeNode } from './nz-tree-base-node';
+import { HnTreeNode } from './hn-tree-base-node';
 
-export interface NzFormatEmitEvent {
+export interface HnFormatEmitEvent {
   eventName: string;
-  node?: NzTreeNode | null;
+  node?: HnTreeNode | null;
   event?: MouseEvent | DragEvent | null;
-  dragNode?: NzTreeNode;
-  selectedKeys?: NzTreeNode[];
-  checkedKeys?: NzTreeNode[];
-  matchedKeys?: NzTreeNode[];
-  nodes?: NzTreeNode[];
+  dragNode?: HnTreeNode;
+  selectedKeys?: HnTreeNode[];
+  checkedKeys?: HnTreeNode[];
+  matchedKeys?: HnTreeNode[];
+  nodes?: HnTreeNode[];
   keys?: string[];
 }
 
-export interface NzFormatBeforeDropEvent {
-  dragNode: NzTreeNode;
-  node: NzTreeNode;
+export interface HnFormatBeforeDropEvent {
+  dragNode: HnTreeNode;
+  node: HnTreeNode;
   pos: number;
 }
 
-export interface NzTreeNodeBaseComponent {
+export interface HnTreeNodeBaseComponent {
   setClassMap(): void;
   markForCheck(): void;
 }
