@@ -83,6 +83,7 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
   @Input() @InputBoolean() nzCheckStrictly = false;
   @Input() @InputBoolean() nzBlockNode = false;
   @Input() @InputBoolean() nzExpandAll = false;
+  @Input() @InputBoolean() nzAccordion = false;
 
   @Input() nzTreeTemplate: TemplateRef<{ $implicit: NzTreeNode }>;
   @ContentChild('nzTreeTemplate') nzTreeTemplateChild: TemplateRef<{ $implicit: NzTreeNode }>;

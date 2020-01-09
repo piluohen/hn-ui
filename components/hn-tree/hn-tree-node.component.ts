@@ -57,6 +57,7 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
   @Input() nzTreeTemplate: TemplateRef<{ $implicit: NzTreeNode }>;
   @Input() nzBeforeDrop: (confirm: NzFormatBeforeDropEvent) => Observable<boolean>;
   @Input() nzSearchValue = '';
+  @Input() @InputBoolean() nzAccordion = false;
 
   @Input()
   set nzDraggable(value: boolean) {
@@ -251,6 +252,20 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
       // set async state
       if (this.nzAsyncData && this.nzTreeNode.children.length === 0 && !this.nzTreeNode.isExpanded) {
         this.nzTreeNode.isLoading = true;
+      }
+      // 手风琴模式
+      if (this.nzAccordion) {
+        let clearNodes = [];
+        if (this.nzTreeNode.parentNode) {
+          clearNodes = this.nzTreeNode.parentNode.children;
+        } else {
+          clearNodes = this.nzTreeNode.treeService.rootNodes;
+        }
+        clearNodes.forEach(child => {
+          if (child.key !== this.nzTreeNode.key && child.isExpanded === true) {
+            child.setExpanded(false);
+          }
+        });
       }
       this.nzTreeNode.isExpanded = !this.nzTreeNode.isExpanded;
       if (this.nzTreeNode.isMatched) {

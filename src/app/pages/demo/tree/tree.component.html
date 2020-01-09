@@ -21,8 +21,8 @@
         nzNoAnimation
         #nzTreeComponent
         [nzData]="nodes"
-        nzAsyncData
         [nzHideUnMatched]="true"
+        [nzAccordion]="true"
         [nzSearchValue]="searchValue"
         (nzSearchValueChange)="handleSearchValue($event)"
         (nzClick)="handleClick($event)"
