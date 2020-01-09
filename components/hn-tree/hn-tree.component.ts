@@ -86,6 +86,7 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
   @Input() @InputBoolean() nzAccordion = false;
   @Input() nzNodeKey = 'key';
   @Input() nzNodeTitle = 'title';
+  @Input() nzNodeChildren = 'children';
 
   @Input() nzTreeTemplate: TemplateRef<{ $implicit: NzTreeNode }>;
   @ContentChild('nzTreeTemplate') nzTreeTemplateChild: TemplateRef<{ $implicit: NzTreeNode }>;
@@ -249,6 +250,26 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
     }
   }
 
+  /**
+   * 处理nodes，设置title与key
+   * @param list 数组
+   */
+  filterNodes(list: any = []) {
+    return list.map(item => {
+      if (item.children) {
+        item.children = this.filterNodes(item.children);
+      } else {
+        item.children = null;
+      }
+      return {
+        ...item,
+        title: item[this.nzNodeTitle],
+        key: item[this.nzNodeKey],
+        children: item[item.nzNodeChildren]
+      };
+    });
+  }
+
   constructor(
     nzTreeService: NzTreeBaseService,
     private cdr: ChangeDetectorRef,
@@ -320,28 +341,6 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
             break;
         }
       });
-  }
-
-  /**
-   * 处理nodes，设置title与key
-   * @param list 数组
-   */
-  filterNodes(list: any = []) {
-    return list.map(item => {
-      if (item.children) {
-        item.children = this.filterNodes(item.children);
-      } else {
-        item.children = null;
-      }
-      return {
-        ...item,
-        title: item[this.nzNodeTitle],
-        key: item[this.nzNodeKey],
-        level: item.level,
-        isLeaf: item.isLeaf,
-        children: item.children
-      };
-    });
   }
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }): void {
