@@ -1,5 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
+import { HnHighlightModule } from './core/highlight/highlight.module';
 import { HnCountupModule } from './hn-countup/hn-countup.module';
 import { HnPreviewModule } from './hn-preview/hn-preview.module';
 import { HnScrollListModule } from './hn-scroll-list/hn-scroll-list.module';
@@ -15,7 +16,6 @@ import { HnTableMsgModule } from './hn-table-msg/hn-table-msg.module';
 import { HnExportModule } from './hn-export/hn-export.module';
 import { HnFormModule } from './hn-form/hn-form.module';
 import { HnTreeModule } from './hn-tree/hn-tree.module';
-import { HnHighlightModule } from './core/highlight/highlight.module';
 
 export * from './core';
 export * from './hn-countup';
@@ -36,6 +36,7 @@ export * from './hn-tree';
 
 @NgModule({
   exports: [
+    HnHighlightModule,
     HnCountupModule,
     HnPreviewModule,
     HnScrollListModule,
@@ -50,7 +51,6 @@ export * from './hn-tree';
     HnTableMsgModule,
     HnExportModule,
     HnFormModule,
-    HnHighlightModule,
     HnTreeModule
   ]
 })
