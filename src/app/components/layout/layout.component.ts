@@ -15,5 +15,7 @@ export class LayoutComponent implements OnInit {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.menusList = menuList;
+  }
 }

@@ -1,6 +1,5 @@
+```JS
 import { Component, OnInit } from '@angular/core';
-
-declare const require: any;
 
 @Component({
   selector: 'app-tree',
@@ -16,13 +15,6 @@ export class TreeComponent implements OnInit {
   accordionList: any = [
     { label: '开启手风琴', value: true },
     { label: '关闭手风琴', value: false }
-  ];
-
-  apiMarkdown = require('raw-loader!./docs/api.md');
-
-  baseTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/js.md') }
   ];
 
   // 全部tree数据
@@ -85,3 +77,5 @@ export class TreeComponent implements OnInit {
     console.log(event);
   }
 }
+
+```
