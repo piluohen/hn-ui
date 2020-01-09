@@ -14,7 +14,7 @@ import { HnSingleSearchModule } from './hn-single-search/hn-single-search.module
 import { HnTableMsgModule } from './hn-table-msg/hn-table-msg.module';
 import { HnExportModule } from './hn-export/hn-export.module';
 import { HnFormModule } from './hn-form/hn-form.module';
-import { HnTreeModule } from './hn-tree';
+import { HnTreeModule } from './hn-tree/hn-tree.module';
 
 export * from './hn-countup';
 export * from './hn-preview';
