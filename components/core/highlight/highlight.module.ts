@@ -15,4 +15,4 @@ import { HnHighlightPipe } from './highlight.pipe';
   exports: [HnHighlightPipe],
   declarations: [HnHighlightPipe]
 })
-export class NzHighlightModule {}
+export class HnHighlightModule {}

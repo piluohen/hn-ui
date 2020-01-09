@@ -33,7 +33,7 @@ import {
 
 import { HnTreeService } from './hn-tree.service';
 
-export function NzTreeServiceFactory(
+export function HnTreeServiceFactory(
   higherOrderService: HnTreeBaseService,
   treeService: HnTreeService
 ): HnTreeBaseService {
@@ -51,7 +51,7 @@ const NZ_CONFIG_COMPONENT_NAME = 'tree';
     HnTreeService,
     {
       provide: HnTreeBaseService,
-      useFactory: NzTreeServiceFactory,
+      useFactory: HnTreeServiceFactory,
       deps: [[new SkipSelf(), new Optional(), HnTreeHigherOrderServiceToken], HnTreeService]
     },
     {
@@ -90,12 +90,12 @@ export class HnTreeComponent extends HnTreeBase implements OnInit, OnDestroy, Co
    */
   @Input()
   @InputBoolean()
-  set nzDefaultExpandAll(value: boolean) {
+  set hnDefaultExpandAll(value: boolean) {
     this.hnExpandAll = value;
     this._nzDefaultExpandAll = value;
   }
 
-  get nzDefaultExpandAll(): boolean {
+  get hnDefaultExpandAll(): boolean {
     return this._nzDefaultExpandAll;
   }
 
@@ -115,7 +115,7 @@ export class HnTreeComponent extends HnTreeBase implements OnInit, OnDestroy, Co
    * @deprecated 9.0.0 - use `nzExpandedKeys` instead.
    */
   @Input()
-  set nzDefaultExpandedKeys(value: string[]) {
+  set hnDefaultExpandedKeys(value: string[]) {
     this.nzDefaultSubject.next({ type: 'nzExpandedKeys', keys: value });
   }
 
@@ -123,7 +123,7 @@ export class HnTreeComponent extends HnTreeBase implements OnInit, OnDestroy, Co
    * @deprecated 9.0.0 - use `nzSelectedKeys` instead.
    */
   @Input()
-  set nzDefaultSelectedKeys(value: string[]) {
+  set hnDefaultSelectedKeys(value: string[]) {
     this.nzDefaultSubject.next({ type: 'nzSelectedKeys', keys: value });
   }
 
@@ -131,22 +131,22 @@ export class HnTreeComponent extends HnTreeBase implements OnInit, OnDestroy, Co
    * @deprecated 9.0.0 - use `nzCheckedKeys` instead.
    */
   @Input()
-  set nzDefaultCheckedKeys(value: string[]) {
+  set hnDefaultCheckedKeys(value: string[]) {
     this.nzDefaultSubject.next({ type: 'nzCheckedKeys', keys: value });
   }
 
   @Input()
-  set nzExpandedKeys(value: string[]) {
+  set hnExpandedKeys(value: string[]) {
     this.nzDefaultSubject.next({ type: 'nzExpandedKeys', keys: value });
   }
 
   @Input()
-  set nzSelectedKeys(value: string[]) {
+  set hnSelectedKeys(value: string[]) {
     this.nzDefaultSubject.next({ type: 'nzSelectedKeys', keys: value });
   }
 
   @Input()
-  set nzCheckedKeys(value: string[]) {
+  set hnCheckedKeys(value: string[]) {
     this.nzDefaultSubject.next({ type: 'nzCheckedKeys', keys: value });
   }
 
@@ -335,10 +335,10 @@ export class HnTreeComponent extends HnTreeBase implements OnInit, OnDestroy, Co
   }
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }): void {
-    if (changes.nzCheckStrictly) {
+    if (changes.hnCheckStrictly) {
       this.nzTreeService.isCheckStrictly = this.hnCheckStrictly;
     }
-    if (changes.nzMultiple) {
+    if (changes.hnMultiple) {
       this.nzTreeService.isMultiple = this.hnMultiple;
     }
   }
