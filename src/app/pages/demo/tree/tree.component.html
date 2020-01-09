@@ -24,6 +24,8 @@
         [nzHideUnMatched]="true"
         [nzAccordion]="true"
         [nzSearchValue]="searchValue"
+        nzNodeTitle="name"
+        nzNodeKey="id"
         (nzSearchValueChange)="handleSearchValue($event)"
         (nzClick)="handleClick($event)"
         (nzExpandChange)="handleExpandChange($event)">

@@ -84,6 +84,8 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
   @Input() @InputBoolean() nzBlockNode = false;
   @Input() @InputBoolean() nzExpandAll = false;
   @Input() @InputBoolean() nzAccordion = false;
+  @Input() nzNodeKey = 'key';
+  @Input() nzNodeTitle = 'title';
 
   @Input() nzTreeTemplate: TemplateRef<{ $implicit: NzTreeNode }>;
   @ContentChild('nzTreeTemplate') nzTreeTemplateChild: TemplateRef<{ $implicit: NzTreeNode }>;
@@ -240,9 +242,10 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
   // tslint:disable-next-line:no-any
   initNzData(value: any[]): void {
     if (Array.isArray(value)) {
+      const list = this.filterNodes(value);
       this.nzTreeService.isCheckStrictly = this.nzCheckStrictly;
       this.nzTreeService.isMultiple = this.nzMultiple;
-      this.nzTreeService.initTree(this.coerceTreeNodes(value));
+      this.nzTreeService.initTree(this.coerceTreeNodes(list));
     }
   }
 
@@ -317,6 +320,28 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
             break;
         }
       });
+  }
+
+  /**
+   * 处理nodes，设置title与key
+   * @param list 数组
+   */
+  filterNodes(list: any = []) {
+    return list.map(item => {
+      if (item.children) {
+        item.children = this.filterNodes(item.children);
+      } else {
+        item.children = null;
+      }
+      return {
+        ...item,
+        title: item[this.nzNodeTitle],
+        key: item[this.nzNodeKey],
+        level: item.level,
+        isLeaf: item.isLeaf,
+        children: item.children
+      };
+    });
   }
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }): void {

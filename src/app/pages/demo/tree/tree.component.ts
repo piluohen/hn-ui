@@ -24,7 +24,7 @@ export class TreeComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.nodes = this.filterNodes(this.treeList);
+    this.nodes = this.treeList;
   }
 
   /**
