@@ -1,11 +1,3 @@
-/**
- * @license
- * Copyright Alibaba.com All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
- */
-
 import {
   forwardRef,
   ChangeDetectionStrategy,
@@ -70,28 +62,27 @@ const NZ_CONFIG_COMPONENT_NAME = 'tree';
   ]
 })
 export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, ControlValueAccessor, OnChanges {
-  @Input() @InputBoolean() nzShowIcon = false;
-  @Input() @InputBoolean() nzShowExpand = true;
-  @Input() @InputBoolean() nzShowLine = false;
-  @Input() nzExpandedIcon: TemplateRef<{ $implicit: NzTreeNode }>;
-  @Input() @InputBoolean() nzCheckable = false;
-  @Input() @InputBoolean() nzAsyncData = false;
-  @Input() @InputBoolean() nzDraggable = false;
+  @Input() @InputBoolean() hnShowIcon = false;
+  @Input() @InputBoolean() hnShowExpand = true;
+  @Input() @InputBoolean() hnShowLine = false;
+  @Input() hnExpandedIcon: TemplateRef<{ $implicit: NzTreeNode }>;
+  @Input() @InputBoolean() hnCheckable = false;
+  @Input() @InputBoolean() hnAsyncData = false;
+  @Input() @InputBoolean() hnDraggable = false;
 
-  @Input() @InputBoolean() nzHideUnMatched = false;
-  @Input() @InputBoolean() nzSelectMode = false;
-  @Input() @InputBoolean() nzCheckStrictly = false;
-  @Input() @InputBoolean() nzBlockNode = false;
-  @Input() @InputBoolean() nzExpandAll = false;
-  @Input() @InputBoolean() nzAccordion = false;
-  @Input() nzNodeKey = 'key';
-  @Input() nzNodeTitle = 'title';
-  @Input() nzNodeChildren = 'children';
+  @Input() @InputBoolean() hnHideUnMatched = false;
+  @Input() @InputBoolean() hnSelectMode = false;
+  @Input() @InputBoolean() hnCheckStrictly = false;
+  @Input() @InputBoolean() hnBlockNode = false;
+  @Input() @InputBoolean() hnExpandAll = false;
+  @Input() @InputBoolean() hnAccordion = false;
+  @Input() hnNodeKey = 'key';
+  @Input() hnNodeTitle = 'title';
 
-  @Input() nzTreeTemplate: TemplateRef<{ $implicit: NzTreeNode }>;
-  @ContentChild('nzTreeTemplate') nzTreeTemplateChild: TemplateRef<{ $implicit: NzTreeNode }>;
+  @Input() hnTreeTemplate: TemplateRef<{ $implicit: NzTreeNode }>;
+  @ContentChild('nzTreeTemplate') hnTreeTemplateChild: TemplateRef<{ $implicit: NzTreeNode }>;
   get treeTemplate(): TemplateRef<{ $implicit: NzTreeNode }> {
-    return this.nzTreeTemplate || this.nzTreeTemplateChild;
+    return this.hnTreeTemplate || this.hnTreeTemplateChild;
   }
 
   /**
@@ -100,7 +91,7 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
   @Input()
   @InputBoolean()
   set nzDefaultExpandAll(value: boolean) {
-    this.nzExpandAll = value;
+    this.hnExpandAll = value;
     this._nzDefaultExpandAll = value;
   }
 
@@ -110,13 +101,13 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
 
   private _nzDefaultExpandAll = false;
 
-  @Input() nzBeforeDrop: (confirm: NzFormatBeforeDropEvent) => Observable<boolean>;
+  @Input() hnBeforeDrop: (confirm: NzFormatBeforeDropEvent) => Observable<boolean>;
 
-  @Input() @InputBoolean() nzMultiple = false;
+  @Input() @InputBoolean() hnMultiple = false;
 
   @Input()
   // tslint:disable-next-line:no-any
-  set nzData(value: any[]) {
+  set hnData(value: any[]) {
     this.initNzData(value);
   }
 
@@ -160,53 +151,53 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
   }
 
   @Input()
-  set nzSearchValue(value: string) {
+  set hnSearchValue(value: string) {
     this._searchValue = value;
     this.nzTreeService.searchExpand(value);
     if (isNotNil(value)) {
-      this.nzSearchValueChange.emit(this.nzTreeService.formatEvent('search', null, null) as any);
+      this.hnSearchValueChange.emit(this.nzTreeService.formatEvent('search', null, null) as any);
       /**
        * @deprecated 9.0.0 - use `nzOnSearchNode` instead.
        * Hide warning, need remove next version
        */
-      this.nzOnSearchNode.emit(this.nzTreeService.formatEvent('search', null, null) as any);
+      this.hnOnSearchNode.emit(this.nzTreeService.formatEvent('search', null, null) as any);
     }
   }
 
-  get nzSearchValue(): string {
+  get hnSearchValue(): string {
     return this._searchValue;
   }
 
   /**
    * To render nodes if root is changed.
    */
-  get nzNodes(): NzTreeNode[] {
+  get hnNodes(): NzTreeNode[] {
     return this.nzTreeService.rootNodes;
   }
 
-  @Output() readonly nzExpandedKeysChange: EventEmitter<string[]> = new EventEmitter<string[]>();
-  @Output() readonly nzSelectedKeysChange: EventEmitter<string[]> = new EventEmitter<string[]>();
-  @Output() readonly nzCheckedKeysChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+  @Output() readonly hnExpandedKeysChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+  @Output() readonly hnSelectedKeysChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+  @Output() readonly hnCheckedKeysChange: EventEmitter<string[]> = new EventEmitter<string[]>();
 
-  @Output() readonly nzSearchValueChange = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnSearchValueChange = new EventEmitter<NzFormatEmitEvent>();
 
   /**
    * @deprecated use `nzSearchValueChange` instead.
    */
-  @Output() readonly nzOnSearchNode = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnOnSearchNode = new EventEmitter<NzFormatEmitEvent>();
 
-  @Output() readonly nzClick = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly nzDblClick = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly nzContextMenu = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly nzCheckBoxChange = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly nzExpandChange = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnClick = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnDblClick = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnContextMenu = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnCheckBoxChange = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnExpandChange = new EventEmitter<NzFormatEmitEvent>();
 
-  @Output() readonly nzOnDragStart = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly nzOnDragEnter = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly nzOnDragOver = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly nzOnDragLeave = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly nzOnDrop = new EventEmitter<NzFormatEmitEvent>();
-  @Output() readonly nzOnDragEnd = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnOnDragStart = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnOnDragEnter = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnOnDragOver = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnOnDragLeave = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnOnDrop = new EventEmitter<NzFormatEmitEvent>();
+  @Output() readonly hnOnDragEnd = new EventEmitter<NzFormatEmitEvent>();
 
   _searchValue: string;
   nzDefaultSubject = new ReplaySubject<{ type: string; keys: string[] }>(6);
@@ -220,11 +211,11 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
   setClassMap(): void {
     this.classMap = {
       [this.prefixCls]: true,
-      [this.prefixCls + '-show-line']: this.nzShowLine,
-      [`${this.prefixCls}-icon-hide`]: !this.nzShowIcon,
-      [`${this.prefixCls}-block-node`]: this.nzBlockNode,
-      ['draggable-tree']: this.nzDraggable,
-      ['ant-select-tree']: this.nzSelectMode
+      [this.prefixCls + '-show-line']: this.hnShowLine,
+      [`${this.prefixCls}-icon-hide`]: !this.hnShowIcon,
+      [`${this.prefixCls}-block-node`]: this.hnBlockNode,
+      ['draggable-tree']: this.hnDraggable,
+      ['ant-select-tree']: this.hnSelectMode
     };
   }
 
@@ -244,8 +235,8 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
   initNzData(value: any[]): void {
     if (Array.isArray(value)) {
       const list = this.filterNodes(value);
-      this.nzTreeService.isCheckStrictly = this.nzCheckStrictly;
-      this.nzTreeService.isMultiple = this.nzMultiple;
+      this.nzTreeService.isCheckStrictly = this.hnCheckStrictly;
+      this.nzTreeService.isMultiple = this.hnMultiple;
       this.nzTreeService.initTree(this.coerceTreeNodes(list));
     }
   }
@@ -263,9 +254,9 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
       }
       return {
         ...item,
-        title: item[this.nzNodeTitle],
-        key: item[this.nzNodeKey],
-        children: item[item.nzNodeChildren]
+        title: item[this.hnNodeTitle],
+        key: item[this.hnNodeKey],
+        children: item.children
       };
     });
   }
@@ -286,16 +277,16 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
       }
       switch (data.type) {
         case 'nzExpandedKeys':
-          this.nzTreeService.calcExpandedKeys(data.keys, this.nzNodes);
-          this.nzExpandedKeysChange.emit(data.keys);
+          this.nzTreeService.calcExpandedKeys(data.keys, this.hnNodes);
+          this.hnExpandedKeysChange.emit(data.keys);
           break;
         case 'nzSelectedKeys':
-          this.nzTreeService.calcSelectedKeys(data.keys, this.nzNodes, this.nzMultiple);
-          this.nzSelectedKeysChange.emit(data.keys);
+          this.nzTreeService.calcSelectedKeys(data.keys, this.hnNodes, this.hnMultiple);
+          this.hnSelectedKeysChange.emit(data.keys);
           break;
         case 'nzCheckedKeys':
-          this.nzTreeService.calcCheckedKeys(data.keys, this.nzNodes, this.nzCheckStrictly);
-          this.nzCheckedKeysChange.emit(data.keys);
+          this.nzTreeService.calcCheckedKeys(data.keys, this.hnNodes, this.hnCheckStrictly);
+          this.hnCheckedKeysChange.emit(data.keys);
           break;
       }
       this.cdr.markForCheck();
@@ -306,38 +297,38 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
       .subscribe(data => {
         switch (data.eventName) {
           case 'expand':
-            this.nzExpandChange.emit(data as any);
+            this.hnExpandChange.emit(data as any);
             break;
           case 'click':
-            this.nzClick.emit(data as any);
+            this.hnClick.emit(data as any);
             break;
           case 'check':
-            this.nzCheckBoxChange.emit(data as any);
+            this.hnCheckBoxChange.emit(data as any);
             break;
           case 'dblclick':
-            this.nzDblClick.emit(data as any);
+            this.hnDblClick.emit(data as any);
             break;
           case 'contextmenu':
-            this.nzContextMenu.emit(data as any);
+            this.hnContextMenu.emit(data as any);
             break;
           // drag drop
           case 'dragstart':
-            this.nzOnDragStart.emit(data as any);
+            this.hnOnDragStart.emit(data as any);
             break;
           case 'dragenter':
-            this.nzOnDragEnter.emit(data as any);
+            this.hnOnDragEnter.emit(data as any);
             break;
           case 'dragover':
-            this.nzOnDragOver.emit(data as any);
+            this.hnOnDragOver.emit(data as any);
             break;
           case 'dragleave':
-            this.nzOnDragLeave.emit(data as any);
+            this.hnOnDragLeave.emit(data as any);
             break;
           case 'drop':
-            this.nzOnDrop.emit(data as any);
+            this.hnOnDrop.emit(data as any);
             break;
           case 'dragend':
-            this.nzOnDragEnd.emit(data as any);
+            this.hnOnDragEnd.emit(data as any);
             break;
         }
       });
@@ -345,10 +336,10 @@ export class HnTreeComponent extends NzTreeBase implements OnInit, OnDestroy, Co
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }): void {
     if (changes.nzCheckStrictly) {
-      this.nzTreeService.isCheckStrictly = this.nzCheckStrictly;
+      this.nzTreeService.isCheckStrictly = this.hnCheckStrictly;
     }
     if (changes.nzMultiple) {
-      this.nzTreeService.isMultiple = this.nzMultiple;
+      this.nzTreeService.isMultiple = this.hnMultiple;
     }
   }
 

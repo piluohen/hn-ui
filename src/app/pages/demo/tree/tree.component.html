@@ -19,16 +19,16 @@
 
       <hn-tree
         nzNoAnimation
-        #nzTreeComponent
-        [nzData]="nodes"
-        [nzHideUnMatched]="true"
-        [nzAccordion]="true"
-        [nzSearchValue]="searchValue"
-        nzNodeTitle="name"
-        nzNodeKey="id"
-        (nzSearchValueChange)="handleSearchValue($event)"
-        (nzClick)="handleClick($event)"
-        (nzExpandChange)="handleExpandChange($event)">
+        #hnTreeComponent
+        [hnData]="nodes"
+        [hnHideUnMatched]="true"
+        [hnAccordion]="true"
+        [hnSearchValue]="searchValue"
+        hnNodeTitle="name"
+        hnNodeKey="id"
+        (hnSearchValueChange)="handleSearchValue($event)"
+        (hnClick)="handleClick($event)"
+        (hnExpandChange)="handleExpandChange($event)">
       </hn-tree>
     </div>
   </div>

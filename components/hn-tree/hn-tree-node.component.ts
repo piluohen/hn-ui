@@ -1,11 +1,3 @@
-/**
- * @license
- * Copyright Alibaba.com All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/LICENSE
- */
-
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -44,56 +36,56 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * for global property
    */
-  @Input() nzTreeNode: NzTreeNode;
-  @Input() @InputBoolean() nzShowLine: boolean;
-  @Input() @InputBoolean() nzShowExpand: boolean;
-  @Input() @InputBoolean() nzCheckable: boolean;
-  @Input() @InputBoolean() nzAsyncData: boolean;
-  @Input() @InputBoolean() nzHideUnMatched = false;
-  @Input() @InputBoolean() nzNoAnimation = false;
-  @Input() @InputBoolean() nzSelectMode = false;
-  @Input() @InputBoolean() nzShowIcon = false;
-  @Input() nzExpandedIcon: TemplateRef<{ $implicit: NzTreeNode }>;
-  @Input() nzTreeTemplate: TemplateRef<{ $implicit: NzTreeNode }>;
-  @Input() nzBeforeDrop: (confirm: NzFormatBeforeDropEvent) => Observable<boolean>;
-  @Input() nzSearchValue = '';
-  @Input() @InputBoolean() nzAccordion = false;
+  @Input() hnTreeNode: NzTreeNode;
+  @Input() @InputBoolean() hnShowLine: boolean;
+  @Input() @InputBoolean() hnShowExpand: boolean;
+  @Input() @InputBoolean() hnCheckable: boolean;
+  @Input() @InputBoolean() hnAsyncData: boolean;
+  @Input() @InputBoolean() hnHideUnMatched = false;
+  @Input() @InputBoolean() hnNoAnimation = false;
+  @Input() @InputBoolean() hnSelectMode = false;
+  @Input() @InputBoolean() hnShowIcon = false;
+  @Input() hnExpandedIcon: TemplateRef<{ $implicit: NzTreeNode }>;
+  @Input() hnTreeTemplate: TemplateRef<{ $implicit: NzTreeNode }>;
+  @Input() hnBeforeDrop: (confirm: NzFormatBeforeDropEvent) => Observable<boolean>;
+  @Input() hnSearchValue = '';
+  @Input() @InputBoolean() hnAccordion = false;
 
   @Input()
-  set nzDraggable(value: boolean) {
+  set hnDraggable(value: boolean) {
     this._nzDraggable = value;
     this.handDragEvent();
   }
 
-  get nzDraggable(): boolean {
+  get hnDraggable(): boolean {
     return this._nzDraggable;
   }
 
   /**
-   * @deprecated use `nzExpandAll` instead.
+   * @deprecated use `hnExpandAll` instead.
    */
   @Input()
-  set nzDefaultExpandAll(value: boolean) {
+  set hnDefaultExpandAll(value: boolean) {
     this._nzExpandAll = value;
-    if (value && this.nzTreeNode && !this.nzTreeNode.isLeaf) {
-      this.nzTreeNode.isExpanded = true;
+    if (value && this.hnTreeNode && !this.hnTreeNode.isLeaf) {
+      this.hnTreeNode.isExpanded = true;
     }
   }
 
-  get nzDefaultExpandAll(): boolean {
+  get hnDefaultExpandAll(): boolean {
     return this._nzExpandAll;
   }
 
   // default set
   @Input()
-  set nzExpandAll(value: boolean) {
+  set hnExpandAll(value: boolean) {
     this._nzExpandAll = value;
-    if (value && this.nzTreeNode && !this.nzTreeNode.isLeaf) {
-      this.nzTreeNode.isExpanded = true;
+    if (value && this.hnTreeNode && !this.hnTreeNode.isLeaf) {
+      this.hnTreeNode.isExpanded = true;
     }
   }
 
-  get nzExpandAll(): boolean {
+  get hnExpandAll(): boolean {
     return this._nzExpandAll;
   }
 
@@ -124,36 +116,36 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
   _nzExpandAll = false;
 
   get nzIcon(): string {
-    return this.nzTreeNode.icon;
+    return this.hnTreeNode.icon;
   }
 
   get canDraggable(): boolean | null {
-    return this.nzDraggable && !this.nzTreeNode.isDisabled ? true : null;
+    return this.hnDraggable && !this.hnTreeNode.isDisabled ? true : null;
   }
 
   get isShowLineIcon(): boolean {
-    return !this.nzTreeNode.isLeaf && this.nzShowLine;
+    return !this.hnTreeNode.isLeaf && this.hnShowLine;
   }
 
   get isShowSwitchIcon(): boolean {
-    return !this.nzTreeNode.isLeaf && !this.nzShowLine;
+    return !this.hnTreeNode.isLeaf && !this.hnShowLine;
   }
 
   get isSwitcherOpen(): boolean {
-    return this.nzTreeNode.isExpanded && !this.nzTreeNode.isLeaf;
+    return this.hnTreeNode.isExpanded && !this.hnTreeNode.isLeaf;
   }
 
   get isSwitcherClose(): boolean {
-    return !this.nzTreeNode.isExpanded && !this.nzTreeNode.isLeaf;
+    return !this.hnTreeNode.isExpanded && !this.hnTreeNode.isLeaf;
   }
 
   get displayStyle(): string {
     // to hide unmatched nodes
-    return this.nzSearchValue &&
-      this.nzHideUnMatched &&
-      !this.nzTreeNode.isMatched &&
-      !this.nzTreeNode.isExpanded &&
-      this.nzTreeNode.canHide
+    return this.hnSearchValue &&
+      this.hnHideUnMatched &&
+      !this.hnTreeNode.isMatched &&
+      !this.hnTreeNode.isExpanded &&
+      this.hnTreeNode.canHide
       ? 'none'
       : '';
   }
@@ -162,35 +154,35 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
    * reset node class
    */
   setClassMap(): void {
-    this.prefixCls = this.nzSelectMode ? 'ant-select-tree' : 'ant-tree';
+    this.prefixCls = this.hnSelectMode ? 'ant-select-tree' : 'ant-tree';
     this.nzNodeClass = {
-      [`${this.prefixCls}-treenode-disabled`]: this.nzTreeNode.isDisabled,
+      [`${this.prefixCls}-treenode-disabled`]: this.hnTreeNode.isDisabled,
       [`${this.prefixCls}-treenode-switcher-open`]: this.isSwitcherOpen,
       [`${this.prefixCls}-treenode-switcher-close`]: this.isSwitcherClose,
-      [`${this.prefixCls}-treenode-checkbox-checked`]: this.nzTreeNode.isChecked,
-      [`${this.prefixCls}-treenode-checkbox-indeterminate`]: this.nzTreeNode.isHalfChecked,
-      [`${this.prefixCls}-treenode-selected`]: this.nzTreeNode.isSelected,
-      [`${this.prefixCls}-treenode-loading`]: this.nzTreeNode.isLoading
+      [`${this.prefixCls}-treenode-checkbox-checked`]: this.hnTreeNode.isChecked,
+      [`${this.prefixCls}-treenode-checkbox-indeterminate`]: this.hnTreeNode.isHalfChecked,
+      [`${this.prefixCls}-treenode-selected`]: this.hnTreeNode.isSelected,
+      [`${this.prefixCls}-treenode-loading`]: this.hnTreeNode.isLoading
     };
     this.nzNodeSwitcherClass = {
       [`${this.prefixCls}-switcher`]: true,
-      [`${this.prefixCls}-switcher-noop`]: this.nzTreeNode.isLeaf,
+      [`${this.prefixCls}-switcher-noop`]: this.hnTreeNode.isLeaf,
       [`${this.prefixCls}-switcher_open`]: this.isSwitcherOpen,
       [`${this.prefixCls}-switcher_close`]: this.isSwitcherClose
     };
 
     this.nzNodeCheckboxClass = {
       [`${this.prefixCls}-checkbox`]: true,
-      [`${this.prefixCls}-checkbox-checked`]: this.nzTreeNode.isChecked,
-      [`${this.prefixCls}-checkbox-indeterminate`]: this.nzTreeNode.isHalfChecked,
-      [`${this.prefixCls}-checkbox-disabled`]: this.nzTreeNode.isDisabled || this.nzTreeNode.isDisableCheckbox
+      [`${this.prefixCls}-checkbox-checked`]: this.hnTreeNode.isChecked,
+      [`${this.prefixCls}-checkbox-indeterminate`]: this.hnTreeNode.isHalfChecked,
+      [`${this.prefixCls}-checkbox-disabled`]: this.hnTreeNode.isDisabled || this.hnTreeNode.isDisableCheckbox
     };
 
     this.nzNodeContentClass = {
       [`${this.prefixCls}-node-content-wrapper`]: true,
       [`${this.prefixCls}-node-content-wrapper-open`]: this.isSwitcherOpen,
       [`${this.prefixCls}-node-content-wrapper-close`]: this.isSwitcherClose,
-      [`${this.prefixCls}-node-selected`]: this.nzTreeNode.isSelected
+      [`${this.prefixCls}-node-selected`]: this.hnTreeNode.isSelected
     };
     this.nzNodeContentIconClass = {
       [`${this.prefixCls}-iconEle`]: true,
@@ -203,7 +195,7 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
 
   @HostListener('mousedown', ['$event'])
   onMousedown(event: MouseEvent): void {
-    if (this.nzSelectMode) {
+    if (this.hnSelectMode) {
       event.preventDefault();
     }
   }
@@ -215,10 +207,10 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
   nzClick(event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
-    if (this.nzTreeNode.isSelectable && !this.nzTreeNode.isDisabled) {
-      this.nzTreeNode.isSelected = !this.nzTreeNode.isSelected;
+    if (this.hnTreeNode.isSelectable && !this.hnTreeNode.isDisabled) {
+      this.hnTreeNode.isSelected = !this.hnTreeNode.isSelected;
     }
-    const eventNext = this.nzTreeService.formatEvent('click', this.nzTreeNode, event);
+    const eventNext = this.nzTreeService.formatEvent('click', this.hnTreeNode, event);
     this.nzTreeService!.triggerEventChange$!.next(eventNext);
   }
 
@@ -226,7 +218,7 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
   nzDblClick(event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
-    const eventNext = this.nzTreeService.formatEvent('dblclick', this.nzTreeNode, event);
+    const eventNext = this.nzTreeService.formatEvent('dblclick', this.hnTreeNode, event);
     this.nzTreeService!.triggerEventChange$!.next(eventNext);
   }
 
@@ -237,7 +229,7 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
   nzContextMenu(event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
-    const eventNext = this.nzTreeService.formatEvent('contextmenu', this.nzTreeNode, event);
+    const eventNext = this.nzTreeService.formatEvent('contextmenu', this.hnTreeNode, event);
     this.nzTreeService!.triggerEventChange$!.next(eventNext);
   }
 
@@ -248,31 +240,31 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
   _clickExpand(event: MouseEvent): void {
     event.preventDefault();
     event.stopPropagation();
-    if (!this.nzTreeNode.isLoading && !this.nzTreeNode.isLeaf) {
+    if (!this.hnTreeNode.isLoading && !this.hnTreeNode.isLeaf) {
       // set async state
-      if (this.nzAsyncData && this.nzTreeNode.children.length === 0 && !this.nzTreeNode.isExpanded) {
-        this.nzTreeNode.isLoading = true;
+      if (this.hnAsyncData && this.hnTreeNode.children.length === 0 && !this.hnTreeNode.isExpanded) {
+        this.hnTreeNode.isLoading = true;
       }
       // 手风琴模式
-      if (this.nzAccordion) {
+      if (this.hnAccordion) {
         let clearNodes = [];
-        if (this.nzTreeNode.parentNode) {
-          clearNodes = this.nzTreeNode.parentNode.children;
+        if (this.hnTreeNode.parentNode) {
+          clearNodes = this.hnTreeNode.parentNode.children;
         } else {
-          clearNodes = this.nzTreeNode.treeService.rootNodes;
+          clearNodes = this.hnTreeNode.treeService.rootNodes;
         }
         clearNodes.forEach(child => {
-          if (child.key !== this.nzTreeNode.key && child.isExpanded === true) {
+          if (child.key !== this.hnTreeNode.key && child.isExpanded === true) {
             child.setExpanded(false);
           }
         });
       }
-      this.nzTreeNode.isExpanded = !this.nzTreeNode.isExpanded;
-      if (this.nzTreeNode.isMatched) {
-        this.setDisplayForParentNodes(this.nzTreeNode);
+      this.hnTreeNode.isExpanded = !this.hnTreeNode.isExpanded;
+      if (this.hnTreeNode.isMatched) {
+        this.setDisplayForParentNodes(this.hnTreeNode);
       }
-      this.setDisplayForChildNodes(this.nzTreeNode);
-      const eventNext = this.nzTreeService.formatEvent('expand', this.nzTreeNode, event);
+      this.setDisplayForChildNodes(this.hnTreeNode);
+      const eventNext = this.nzTreeService.formatEvent('expand', this.hnTreeNode, event);
       this.nzTreeService!.triggerEventChange$!.next(eventNext);
     }
   }
@@ -307,15 +299,15 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
     event.preventDefault();
     event.stopPropagation();
     // return if node is disabled
-    if (this.nzTreeNode.isDisabled || this.nzTreeNode.isDisableCheckbox) {
+    if (this.hnTreeNode.isDisabled || this.hnTreeNode.isDisableCheckbox) {
       return;
     }
-    this.nzTreeNode.isChecked = !this.nzTreeNode.isChecked;
-    this.nzTreeNode.isHalfChecked = false;
+    this.hnTreeNode.isChecked = !this.hnTreeNode.isChecked;
+    this.hnTreeNode.isHalfChecked = false;
     if (!this.nzTreeService.isCheckStrictly) {
-      this.nzTreeService.conduct(this.nzTreeNode);
+      this.nzTreeService.conduct(this.hnTreeNode);
     }
-    const eventNext = this.nzTreeService.formatEvent('check', this.nzTreeNode, event);
+    const eventNext = this.nzTreeService.formatEvent('check', this.hnTreeNode, event);
     this.nzTreeService!.triggerEventChange$!.next(eventNext);
   }
 
@@ -335,13 +327,13 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
     try {
       // ie throw error
       // firefox-need-it
-      e.dataTransfer!.setData('text/plain', this.nzTreeNode.key!);
+      e.dataTransfer!.setData('text/plain', this.hnTreeNode.key!);
     } catch (error) {
       // empty
     }
-    this.nzTreeService.setSelectedNode(this.nzTreeNode);
-    this.nzTreeNode.isExpanded = false;
-    const eventNext = this.nzTreeService.formatEvent('dragstart', this.nzTreeNode, e);
+    this.nzTreeService.setSelectedNode(this.hnTreeNode);
+    this.hnTreeNode.isExpanded = false;
+    const eventNext = this.nzTreeService.formatEvent('dragstart', this.hnTreeNode, e);
     this.nzTreeService!.triggerEventChange$!.next(eventNext);
   }
 
@@ -352,10 +344,10 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
     this.dragPos = 2;
     this.ngZone.run(() => {
       const node = this.nzTreeService.getSelectedNode();
-      if (node && node.key !== this.nzTreeNode.key && !this.nzTreeNode.isExpanded && !this.nzTreeNode.isLeaf) {
-        this.nzTreeNode.isExpanded = true;
+      if (node && node.key !== this.hnTreeNode.key && !this.hnTreeNode.isExpanded && !this.hnTreeNode.isLeaf) {
+        this.hnTreeNode.isExpanded = true;
       }
-      const eventNext = this.nzTreeService.formatEvent('dragenter', this.nzTreeNode, e);
+      const eventNext = this.nzTreeService.formatEvent('dragenter', this.hnTreeNode, e);
       this.nzTreeService!.triggerEventChange$!.next(eventNext);
     });
   }
@@ -368,11 +360,11 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
       this.clearDragClass();
       this.dragPos = dropPosition;
       // leaf node will pass
-      if (!(this.dragPos === 0 && this.nzTreeNode.isLeaf)) {
+      if (!(this.dragPos === 0 && this.hnTreeNode.isLeaf)) {
         this.renderer.addClass(this.dragElement.nativeElement, this.dragPosClass[this.dragPos]);
       }
     }
-    const eventNext = this.nzTreeService.formatEvent('dragover', this.nzTreeNode, e);
+    const eventNext = this.nzTreeService.formatEvent('dragover', this.hnTreeNode, e);
     this.nzTreeService!.triggerEventChange$!.next(eventNext);
   }
 
@@ -381,7 +373,7 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
     this.ngZone.run(() => {
       this.clearDragClass();
     });
-    const eventNext = this.nzTreeService.formatEvent('dragleave', this.nzTreeNode, e);
+    const eventNext = this.nzTreeService.formatEvent('dragleave', this.hnTreeNode, e);
     this.nzTreeService!.triggerEventChange$!.next(eventNext);
   }
 
@@ -391,26 +383,26 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
     this.ngZone.run(() => {
       this.clearDragClass();
       const node = this.nzTreeService.getSelectedNode();
-      if (!node || (node && node.key === this.nzTreeNode.key) || (this.dragPos === 0 && this.nzTreeNode.isLeaf)) {
+      if (!node || (node && node.key === this.hnTreeNode.key) || (this.dragPos === 0 && this.hnTreeNode.isLeaf)) {
         return;
       }
       // pass if node is leafNo
-      const dropEvent = this.nzTreeService.formatEvent('drop', this.nzTreeNode, e);
-      const dragEndEvent = this.nzTreeService.formatEvent('dragend', this.nzTreeNode, e);
-      if (this.nzBeforeDrop) {
-        this.nzBeforeDrop({
+      const dropEvent = this.nzTreeService.formatEvent('drop', this.hnTreeNode, e);
+      const dragEndEvent = this.nzTreeService.formatEvent('dragend', this.hnTreeNode, e);
+      if (this.hnBeforeDrop) {
+        this.hnBeforeDrop({
           dragNode: this.nzTreeService.getSelectedNode()! as any,
-          node: this.nzTreeNode as any,
+          node: this.hnTreeNode as any,
           pos: this.dragPos
         }).subscribe((canDrop: boolean) => {
           if (canDrop) {
-            this.nzTreeService.dropAndApply(this.nzTreeNode, this.dragPos);
+            this.nzTreeService.dropAndApply(this.hnTreeNode, this.dragPos);
           }
           this.nzTreeService!.triggerEventChange$!.next(dropEvent);
           this.nzTreeService!.triggerEventChange$!.next(dragEndEvent);
         });
-      } else if (this.nzTreeNode) {
-        this.nzTreeService.dropAndApply(this.nzTreeNode, this.dragPos);
+      } else if (this.hnTreeNode) {
+        this.nzTreeService.dropAndApply(this.hnTreeNode, this.dragPos);
         this.nzTreeService!.triggerEventChange$!.next(dropEvent);
       }
     });
@@ -420,8 +412,8 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
     e.stopPropagation();
     this.ngZone.run(() => {
       // if user do not custom beforeDrop
-      if (!this.nzBeforeDrop) {
-        const eventNext = this.nzTreeService.formatEvent('dragend', this.nzTreeNode, e);
+      if (!this.hnBeforeDrop) {
+        const eventNext = this.nzTreeService.formatEvent('dragend', this.hnTreeNode, e);
         this.nzTreeService!.triggerEventChange$!.next(eventNext);
       }
     });
@@ -432,7 +424,7 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
    */
   handDragEvent(): void {
     this.ngZone.runOutsideAngular(() => {
-      if (this.nzDraggable) {
+      if (this.hnDraggable) {
         this.destroy$ = new Subject();
         fromEvent<DragEvent>(this.elRef.nativeElement, 'dragstart')
           .pipe(takeUntil(this.destroy$))
@@ -478,21 +470,21 @@ export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
     // init expanded / selected / checked list
-    if (this.nzTreeNode.isSelected) {
-      this.nzTreeService.setNodeActive(this.nzTreeNode);
+    if (this.hnTreeNode.isSelected) {
+      this.nzTreeService.setNodeActive(this.hnTreeNode);
     }
-    if (this.nzTreeNode.isExpanded) {
-      this.nzTreeService.setExpandedNodeList(this.nzTreeNode);
+    if (this.hnTreeNode.isExpanded) {
+      this.nzTreeService.setExpandedNodeList(this.hnTreeNode);
     }
-    if (this.nzTreeNode.isChecked) {
-      this.nzTreeService.setCheckedNodeList(this.nzTreeNode);
+    if (this.hnTreeNode.isChecked) {
+      this.nzTreeService.setCheckedNodeList(this.hnTreeNode);
     }
     // TODO
-    this.nzTreeNode.component = this;
+    this.hnTreeNode.component = this;
     this.nzTreeService
       .eventTriggerChanged()
       .pipe(
-        filter(data => data.node!.key === this.nzTreeNode.key),
+        filter(data => data.node!.key === this.hnTreeNode.key),
         takeUntil(this.destroy$)
       )
       .subscribe(() => {

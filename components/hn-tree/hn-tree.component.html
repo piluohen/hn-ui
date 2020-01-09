@@ -2,25 +2,25 @@
   role="tree"
   unselectable="on"
   [ngClass]="classMap">
-  <ng-container *ngFor="let node of nzNodes">
+  <ng-container *ngFor="let node of hnNodes">
     <hn-tree-node
-      [nzTreeNode]="node"
-      [nzSelectMode]="nzSelectMode"
-      [nzShowLine]="nzShowLine"
-      [nzExpandedIcon]="nzExpandedIcon"
-      [nzDraggable]="nzDraggable"
-      [nzCheckable]="nzCheckable"
-      [nzShowExpand]="nzShowExpand"
-      [nzAsyncData]="nzAsyncData"
-      [nzSearchValue]="nzSearchValue"
-      [nzHideUnMatched]="nzHideUnMatched"
-      [nzBeforeDrop]="nzBeforeDrop"
-      [nzExpandAll]="nzExpandAll"
-      [nzShowIcon]="nzShowIcon"
-      [nzTreeTemplate]="treeTemplate"
+      [hnTreeNode]="node"
+      [hnSelectMode]="hnSelectMode"
+      [hnShowLine]="hnShowLine"
+      [hnExpandedIcon]="hnExpandedIcon"
+      [hnDraggable]="hnDraggable"
+      [hnCheckable]="hnCheckable"
+      [hnShowExpand]="hnShowExpand"
+      [hnAsyncData]="hnAsyncData"
+      [hnSearchValue]="hnSearchValue"
+      [hnHideUnMatched]="hnHideUnMatched"
+      [hnBeforeDrop]="hnBeforeDrop"
+      [hnExpandAll]="hnExpandAll"
+      [hnShowIcon]="hnShowIcon"
+      [hnTreeTemplate]="treeTemplate"
       [@.disabled]="noAnimation?.nzNoAnimation"
-      [nzNoAnimation]="noAnimation?.nzNoAnimation"
-      [nzAccordion]="nzAccordion">
+      [hnNoAnimation]="noAnimation?.nzNoAnimation"
+      [hnAccordion]="hnAccordion">
     </hn-tree-node>
   </ng-container>
 </ul>
