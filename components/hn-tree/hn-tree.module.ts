@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { NgZorroModule } from '../ng-zorro.module';
 
-import { HnHighlightModule } from '../core/highlight/highlight.module';
+import { HnHighlightModule } from 'hn-ui/core';
 
 import { HnTreeComponent } from './hn-tree.component';
 import { HnTreeNodeComponent } from './hn-tree-node.component';

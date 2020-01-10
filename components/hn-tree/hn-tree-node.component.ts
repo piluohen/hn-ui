@@ -20,7 +20,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 
 import { InputBoolean, NzNoAnimationDirective } from 'ng-zorro-antd/core';
 
-import { HnTreeBaseService, HnTreeNode, treeCollapseMotion, HnFormatBeforeDropEvent } from '../core';
+import { HnTreeBaseService, HnTreeNode, treeCollapseMotion, HnFormatBeforeDropEvent } from 'hn-ui/core';
 
 @Component({
   selector: 'hn-tree-node',

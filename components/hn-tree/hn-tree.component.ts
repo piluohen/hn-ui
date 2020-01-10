@@ -29,14 +29,11 @@ import {
   HnFormatBeforeDropEvent,
   HnFormatEmitEvent,
   HnTreeHigherOrderServiceToken
-} from '../core';
+} from 'hn-ui/core';
 
 import { HnTreeService } from './hn-tree.service';
 
-export function HnTreeServiceFactory(
-  higherOrderService: HnTreeBaseService,
-  treeService: HnTreeService
-): HnTreeBaseService {
+export function HnTreeServiceFactory(higherOrderService: HnTreeBaseService, treeService: HnTreeService) {
   return higherOrderService ? higherOrderService : treeService;
 }
 

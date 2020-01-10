@@ -12,8 +12,8 @@ import { WebcamModule } from 'ngx-webcam';
 
 import { MarkdownModule, MarkedOptions, MarkedRenderer } from 'ngx-markdown';
 
-// import { HnUiModule } from 'components/hn-ui.module';
-import { HnUiModule } from 'publish';
+import { HnUiModule } from 'components/hn-ui.module';
+// import { HnUiModule } from 'publish';
 
 import { HttpService } from '../service/http/http.service';
 import { AuthService } from '../auth.service';
