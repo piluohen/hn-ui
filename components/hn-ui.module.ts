@@ -1,6 +1,6 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
-import { HnHighlightModule } from './core/highlight/highlight.module';
+import { HnHighlightModule } from './hn-highlight/highlight.module';
 import { HnCountupModule } from './hn-countup/hn-countup.module';
 import { HnPreviewModule } from './hn-preview/hn-preview.module';
 import { HnScrollListModule } from './hn-scroll-list/hn-scroll-list.module';
