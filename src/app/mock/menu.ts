@@ -12,7 +12,7 @@ export const menuList = [
   {
     title: '组件',
     icon: 'dashboard',
-    open: false,
+    open: true,
     children: [
       { title: 'color', path: '/demo/color' },
       { title: 'hn-button', path: '/demo/hn-button' },
