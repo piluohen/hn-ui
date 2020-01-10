@@ -5,7 +5,7 @@
 | hnData          | 传入数据                                                     | Array                                                     |        | 是   | []     |
 | hnBlockNode     | 是否节点占据一行                                             | Boolean                                                   |        | 否   | false  |
 | hnCheckable     | 节点前添加 Checkbox 复选框                                   | Boolean                                                   |        | 否   | false  |
-| h'nShowExpand   | 节点前添加展开图标                                           | Boolean                                                   |        | 否   | true   |
+| hnShowExpand    | 节点前添加展开图标                                           | Boolean                                                   |        | 否   | true   |
 | hnShowLine      | 是否展示连接线                                               | Boolean                                                   |        | 否   | false  |
 | hnExpandedIcon  | 自定义展开图标                                               | Boolean                                                   |        | 否   | false  |
 | hnShowIcon      | 是否展示 TreeNode title 前的图标，没有默认样式               | Boolean                                                   |        | 否   | false  |
