@@ -3,11 +3,7 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "module": "es2015",
-    "types": [],
-    "paths": {
-      "hn-ui": ["../components/hn-ui.module.ts"],
-      "hn-ui/*": ["../components/*"],
-    }
+    "types": []
   },
   "exclude": [
     "src/test.ts",
