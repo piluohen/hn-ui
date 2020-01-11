@@ -1,6 +1,6 @@
 {
   "name": "hn-ui",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "author": {
     "name": "piluohen<1012106967@qq.com>"
   },
@@ -9,8 +9,6 @@
   "description": "An Components for Angular",
   "dependencies": {
     "countup.js": "^2.0.4",
-    "echarts": "^4.2.1",
-    "ng-zorro-antd": "^7.5.1",
-    "ngx-echarts": "^4.2.1"
+    "ng-zorro-antd": "~7.5.0"
   }
 }

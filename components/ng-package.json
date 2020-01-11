@@ -5,5 +5,5 @@
   "lib": {
     "entryFile": "./hn-ui.module.ts"
   },
-  "whitelistedNonPeerDependencies": ["tslib", "angular", "countup.js", "ng-zorro-antd", "echarts", "ngx-echarts"]
+  "whitelistedNonPeerDependencies": ["tslib", "angular", "countup.js", "ng-zorro-antd"]
 }
