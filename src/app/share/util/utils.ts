@@ -290,7 +290,7 @@ export class Utils {
    * @param value 值
    */
   static notEmpty(value: any): boolean {
-    return value !== null && value !== '';
+    return value !== null && value !== '' && value !== undefined;
   }
 
   /**
