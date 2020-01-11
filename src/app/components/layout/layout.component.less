@@ -14,7 +14,7 @@
   position: relative;
   z-index: 10;
   min-height: 100vh;
-  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+  // box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
 }
 
 .header-trigger {
@@ -22,6 +22,25 @@
   font-size: 20px;
   cursor: pointer;
   transition: all 0.3s, padding 0s;
+}
+
+::ng-deep {
+  .ant-layout-sider {
+    background-color: #fff;
+    overflow: hidden;
+    border-right: 1px solid #e8e8ee;
+  }
+
+  .ant-menu-inline.hn-menu {
+    padding: 10px 20px 20px 0;
+    width: calc(100% + 20px);
+    height: calc(100% - 64px);
+    overflow-y: auto;
+
+    .ant-menu-item {
+      margin: 0;
+    }
+  }
 }
 
 .trigger:hover {
@@ -34,8 +53,11 @@
   padding-left: 24px;
   overflow: hidden;
   line-height: 64px;
-  background: #001529;
+  // background: #001529;
+  background: #fff;
   transition: all 0.3s;
+  // border-right: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .sidebar-logo img {
@@ -47,8 +69,9 @@
 
 .sidebar-logo .title {
   display: inline-block;
+  margin-left: 10px;
   // margin: 0 0 0 20px;
-  color: #fff;
+  // color: #fff;
   font-weight: 600;
   font-size: 14px;
   font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
@@ -66,8 +89,28 @@ nz-header {
   height: 64px;
   padding: 0 20px;
   background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  // box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  border-bottom: 1px solid #e8e8e8;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  .header-item {
+    position: relative;
+
+    &+.header-item {
+      margin-left: 20px;
+
+      &::before {
+        display: block;
+        content: '';
+        width: 1px;
+        height: 14px;
+        background-color: #e8e8e8;
+        position: absolute;
+        left: -10px;
+        top: 2px;
+      }
+    }
+  }
 }

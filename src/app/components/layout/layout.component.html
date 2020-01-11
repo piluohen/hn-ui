@@ -9,7 +9,7 @@
       <img src="assets/img/icon.png" alt="logo">
       <span class="title">Hn-ui</span>
     </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+    <ul class="hn-menu" nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <ng-container *ngFor="let menu of menusList;index as index">
         <li nz-submenu *ngIf="menu.children" [nzOpen]="menu.open" [nzOpen]="menu.selected"
           [ngClass]="menu.selected? 'ant-menu-submenu-selected':''">
@@ -44,8 +44,11 @@
             nz-icon
             [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
         </span>
-        <div class="user-info">
-          <a href="https://github.com/piluohen/hn-ui" target="_blank">GitHub</a>
+        <div class="header-right">
+          <a class="header-item" href="https://github.com/piluohen/hn-ui" target="_blank">GitHub</a>
+          <a class="header-item" href="https://marketplace.visualstudio.com/items?itemName=piluohen.hn-ui-snippets"
+            target="_blank">Hn-ui
+            Snippets</a>
         </div>
       </div>
     </nz-header>
