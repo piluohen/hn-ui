@@ -74,6 +74,10 @@ export class FormComponent implements OnInit {
     this.form.resetForm();
   }
 
+  handleClear(): void {
+    this.form.clearForm();
+  }
+
   handleSubmit(event: any) {
     this.params = { ...this.params, ...event };
     this.jsonParams = JSON.stringify(this.params);

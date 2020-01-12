@@ -5,7 +5,10 @@
   border-color: @color;
   background-color: @color;
 
-  &:hover {
+  &:hover,
+  &:active,
+  &:focus,
+  &:visited {
     color: #ffffff;
     border-color: rgba(@color, 0.8);
     background-color: rgba(@color, 0.8);
@@ -23,6 +26,7 @@
 
       &:hover {
         color: rgba(@color, 0.6);
+        border-color: rgba(@color, 0.6);
       }
     }
   }

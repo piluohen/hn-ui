@@ -112,7 +112,6 @@ export class TableComponent implements OnInit {
    */
   handleSearch(data: any): void {
     this.params = Utils.filterEmptyObj({ ...this.params, ...data });
-    console.log(this.params);
     this.getData();
   }
 }
