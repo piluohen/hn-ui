@@ -14,7 +14,7 @@ export class HnDetailListComponent implements OnInit, OnChanges {
   @Input() mode = 'horizontal'; // 'horizontal'｜'vertical'
   @Input() colon = '：';
   @Input() render: any = {};
-  @Input() columns: any[] = [];
+  @Input() list: any[] = [];
   @Input() data: any = {};
 
   constructor() {}
@@ -44,7 +44,7 @@ export class HnDetailListComponent implements OnInit, OnChanges {
    * 设置数据方法
    */
   setDataMethod() {
-    this.detailList = this.columns.map(item => {
+    this.detailList = this.list.map(item => {
       if (item.renderKey) {
         item.render = this.render[item.renderKey];
       }

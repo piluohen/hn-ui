@@ -1,10 +1,10 @@
 {
   "name": "hn-ui",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": {
     "name": "piluohen<1012106967@qq.com>"
   },
-  "homepage": "https://github.com/piluohen/hn-ui",
+  "homepage": "https://piluohen.github.io/hn-ui/",
   "repository": "https://github.com/piluohen/hn-ui",
   "description": "An Components for Angular",
   "dependencies": {
