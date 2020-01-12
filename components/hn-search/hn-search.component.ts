@@ -64,7 +64,7 @@ export class HnSearchComponent implements OnInit {
    * 重置表单
    */
   handleReset(): void {
-    this.form.resetForm();
+    this.form.clearForm();
   }
 
   /**

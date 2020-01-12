@@ -55,7 +55,8 @@ export class FormComponent implements OnInit {
       this.params = {
         input: '1245',
         inputNumber: 45,
-        year: new Date()
+        year: new Date(),
+        checkbox: ['1']
       };
       this.jsonParams = JSON.stringify(this.params);
     }, 1000);

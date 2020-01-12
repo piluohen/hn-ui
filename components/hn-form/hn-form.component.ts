@@ -37,6 +37,8 @@ export class HnFormComponent implements OnInit, OnChanges {
 
   modeVisible: any = true;
 
+  oldParams: any = {};
+
   validateForm: FormGroup;
 
   constructor(private fb: FormBuilder) {}
@@ -102,6 +104,7 @@ export class HnFormComponent implements OnInit, OnChanges {
    * 设置form默认值
    */
   initFormParams(): void {
+    this.oldParams = JSON.stringify(this.params);
     Object.keys(this.validateForm.controls).forEach(key => {
       const value = this.params[key];
       this.validateForm.controls[key].setValue(value);
@@ -159,10 +162,20 @@ export class HnFormComponent implements OnInit, OnChanges {
   }
 
   /**
-   * 重置表单
+   * 重置表单，恢复至初始状态
    */
   resetForm(): void {
     this.validateForm.reset();
+    this.params = JSON.parse(this.oldParams);
+    this.initFormParams();
+  }
+
+  /**
+   * 清空表单
+   */
+  clearForm(): void {
+    this.validateForm.reset();
+    this.params = {};
     this.initFormParams();
   }
 }

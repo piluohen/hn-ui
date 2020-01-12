@@ -90,9 +90,10 @@ export class HnCheckboxGroupComponent implements ControlValueAccessor, OnInit, O
    * @param value 值
    */
   writeValue(value: any): void {
-    if (!value) {
-      return;
+    if (!value || value.length === 0) {
+      value = [];
     }
+
     this.options.forEach(item => {
       item.checked = value.includes(item.value);
     });
