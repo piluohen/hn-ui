@@ -1,5 +1,9 @@
 <div class="hn-detail-list">
-  <nz-col *ngFor="let item of detailList; index as index" [nzSpan]="item.col || 8" class="hn-detail-item">
+  <nz-col
+    *ngFor="let item of detailList; index as index"
+    [nzSpan]="item.col || 8"
+    class="hn-detail-item"
+    [ngClass]="getClass(item)">
     <div class="hn-detail-label">{{item.label}} <span *ngIf="colon">{{colon}}</span></div>
     <div class="hn-detail-value">
       <ng-template [ngIf]="item.render" [ngTemplateOutlet]="item.render"

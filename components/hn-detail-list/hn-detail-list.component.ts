@@ -11,12 +11,10 @@ import { Component, OnInit, Input, OnChanges, ChangeDetectionStrategy, ViewEncap
 export class HnDetailListComponent implements OnInit, OnChanges {
   detailList: any[] = [];
 
+  @Input() mode = 'horizontal'; // 'horizontal'｜'vertical'
   @Input() colon = '：';
-
   @Input() render: any = {};
-
   @Input() columns: any[] = [];
-
   @Input() data: any = {};
 
   constructor() {}
@@ -33,6 +31,13 @@ export class HnDetailListComponent implements OnInit, OnChanges {
         this.setDataMethod();
       }
     }
+  }
+
+  getClass(item: any) {
+    const className = `hn-detail-${this.mode}`;
+    const obj = {};
+    obj[className] = true;
+    return obj;
   }
 
   /**

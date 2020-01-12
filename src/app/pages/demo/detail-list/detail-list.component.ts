@@ -15,6 +15,10 @@ export class DetailListComponent implements OnInit {
     { title: 'JS', markdown: require('raw-loader!./docs/js.md') }
   ];
 
+  mode = 'horizontal';
+
+  colon = ':';
+
   data = {
     name: '刘备',
     age: '48',

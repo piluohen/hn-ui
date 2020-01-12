@@ -8,16 +8,38 @@
     margin-top: 20px;
 
     .hn-detail-label {
-      font-size: 12px;
+      font-size: 14px;
       color: @text-color-secondary;
+      white-space: nowrap;
     }
 
     .hn-detail-value {
       color: @text-color;
       display: flex;
-      font-size: 16px;
-      margin-top: 5px;
+      font-size: 14px;
       word-break: break-all;
+    }
+
+    &.hn-detail-horizontal {
+      display: flex;
+      align-items: flex-start;
+
+      .hn-detail-value {
+        margin-left: 5px;
+      }
+    }
+
+    &.hn-detail-vertical {
+      display: block;
+
+      .hn-detail-label {
+        font-size: 12px;
+      }
+
+      .hn-detail-value {
+        font-size: 16px;
+        margin-top: 5px;
+      }
     }
   }
 }
