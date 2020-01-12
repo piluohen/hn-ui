@@ -44,6 +44,7 @@ export class HnFormComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.formList = this.initFormList([...this.formList]);
     this.initForm();
+    this.initFormParams();
   }
 
   ngOnChanges(changes: any) {

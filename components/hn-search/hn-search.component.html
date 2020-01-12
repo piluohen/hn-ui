@@ -26,14 +26,14 @@
       <i nz-icon [nzType]="modeVisible ? 'up' : 'down'" nzTheme="outline"></i>
     </button>
   </div>
-  <div class="search-popover" *ngIf="modeVisible">
+  <div class="search-popover" *ngIf="modeVisible" [@slideMotion]="'bottom'">
     <hn-form
       #form
       class="search-popover-form"
       mode="grid"
       [hasValidator]="false"
       [formList]="formList"
-      [params]="{}"
+      [params]="params"
       [render]="itemRender"
       (submit)="handleSubmit($event)">
     </hn-form>

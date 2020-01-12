@@ -10,6 +10,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { slideMotion } from 'ng-zorro-antd';
 
 @Component({
   selector: 'hn-search',
@@ -17,7 +18,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   preserveWhitespaces: false,
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './hn-search.component.html'
+  templateUrl: './hn-search.component.html',
+  animations: [slideMotion]
 })
 export class HnSearchComponent implements OnInit {
   @ViewChild('form') form: any;
@@ -76,11 +78,15 @@ export class HnSearchComponent implements OnInit {
    * 键盘enter事件
    */
   handleKeyupEnter(): void {
-    this.form.submitForm();
+    if (this.modeVisible) {
+      this.form.submitForm();
+    } else {
+      this.search.emit(this.params);
+    }
   }
 
   handleSubmit(event: any): void {
-    const params = { ...this.params, ...event };
-    this.search.emit(params);
+    this.params = { ...this.params, ...event };
+    this.search.emit(this.params);
   }
 }
