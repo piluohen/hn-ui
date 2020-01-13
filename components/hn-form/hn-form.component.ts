@@ -46,6 +46,7 @@ export class HnFormComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.formList = this.initFormList([...this.formList]);
     this.initForm();
+    this.oldParams = JSON.stringify(this.params);
     this.initFormParams();
   }
 
@@ -54,6 +55,7 @@ export class HnFormComponent implements OnInit, OnChanges {
       const { currentValue, firstChange } = changes.params;
       if (!firstChange) {
         this.params = currentValue;
+        this.oldParams = JSON.stringify(this.params);
         this.initFormParams();
       }
     }
@@ -104,7 +106,6 @@ export class HnFormComponent implements OnInit, OnChanges {
    * 设置form默认值
    */
   initFormParams(): void {
-    this.oldParams = JSON.stringify(this.params);
     Object.keys(this.validateForm.controls).forEach(key => {
       const value = this.params[key];
       this.validateForm.controls[key].setValue(value);
@@ -129,6 +130,7 @@ export class HnFormComponent implements OnInit, OnChanges {
    */
   submitForm(): void {
     if (this.hasValidator) {
+      console.log(this.validateForm.get('input'));
       if (this.validateForm.controls) {
         for (const key in this.validateForm.controls) {
           if (key) {
