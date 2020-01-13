@@ -19,7 +19,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './hn-form.component.html'
 })
 export class HnFormComponent implements OnInit, OnChanges {
-  @Input() mode = 'grid'; // 'horizontal'｜'vertical'｜'inline' | 'grid'
+  @Input() mode = 'grid'; // 'horizontal'｜'vertical'｜'inline' | 'grid' | 'grid-vertical'
 
   @Input() labelWidth = '100px';
 
@@ -130,7 +130,6 @@ export class HnFormComponent implements OnInit, OnChanges {
    */
   submitForm(): void {
     if (this.hasValidator) {
-      console.log(this.validateForm.get('input'));
       if (this.validateForm.controls) {
         for (const key in this.validateForm.controls) {
           if (key) {

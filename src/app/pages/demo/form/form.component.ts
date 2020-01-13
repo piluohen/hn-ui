@@ -34,7 +34,7 @@ export class FormComponent implements OnInit {
     { title: 'JS', markdown: require('raw-loader!./docs/js.md') }
   ];
 
-  btnList: any[] = ['horizontal', 'vertical', 'inline', 'grid'];
+  btnList: any[] = ['horizontal', 'vertical', 'inline', 'grid', 'grid-vertical'];
 
   hasExplainList: any[] = [
     { label: '开启文字错误提示', value: true },

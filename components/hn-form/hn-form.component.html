@@ -14,10 +14,10 @@
       </ng-template>
     </nz-form-item>
   </ng-container>
-  <ng-container *ngIf="mode === 'grid'">
+  <ng-container *ngIf="mode === 'grid' || mode === 'grid-vertical'">
     <div nz-row [nzGutter]="20">
       <div nz-col *ngFor="let data of formList" [nzSpan]="data.col || 6">
-        <nz-form-item nzFlex>
+        <nz-form-item [nzFlex]="mode === 'grid'">
           <ng-template [ngTemplateOutlet]="itemTemp"
             [ngTemplateOutletContext]="{ $implicit: data, index: index }">
           </ng-template>
