@@ -34,6 +34,7 @@ export class HnImageComponent implements OnInit, OnDestroy {
   @Input() alt: string;
   @Input() fit: string;
   @Input() lazy = false;
+  @Input() noData: string | HTMLElement = '加载失败';
 
   @Input()
   set hnTarget(el: string | HTMLElement) {
@@ -53,6 +54,8 @@ export class HnImageComponent implements OnInit, OnDestroy {
   imageHeight = 0;
   showViewer = false;
 
+  showEmpty = true;
+
   dataSrc = '';
 
   private scroll$: Subscription | null = null;
@@ -66,6 +69,7 @@ export class HnImageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.getNoData();
     if (this.lazy) {
       this.registerScrollEvent();
     } else {
@@ -77,6 +81,20 @@ export class HnImageComponent implements OnInit, OnDestroy {
     this.removeScrollListen();
   }
 
+  /**
+   * 获取无数据状态配置
+   */
+  getNoData() {
+    if (this.noData instanceof TemplateRef) {
+      this.showEmpty = false;
+    } else {
+      this.showEmpty = true;
+    }
+  }
+
+  /**
+   * 获取样式配置
+   */
   getStyle() {
     return {
       'object-fit': this.fit
@@ -89,7 +107,6 @@ export class HnImageComponent implements OnInit, OnDestroy {
   private loadImage() {
     this.loading = true;
     this.isError = false;
-
     const img = new Image();
     img.onload = e => this.handleLoad(e, img);
     img.onerror = this.handleError.bind(this);
@@ -97,7 +114,6 @@ export class HnImageComponent implements OnInit, OnDestroy {
       img.setAttribute(item, this[item]);
     });
     img.src = this.src;
-    this.dataSrc = img.src;
   }
 
   /**
@@ -109,6 +125,8 @@ export class HnImageComponent implements OnInit, OnDestroy {
     this.imageWidth = img.width;
     this.imageHeight = img.height;
     this.loading = false;
+    this.dataSrc = img.src;
+    this.cd.markForCheck();
   }
 
   /**
@@ -118,6 +136,7 @@ export class HnImageComponent implements OnInit, OnDestroy {
   private handleError(e: any) {
     this.loading = false;
     this.isError = true;
+    this.cd.markForCheck();
     this.error.emit(e);
   }
 
@@ -136,7 +155,6 @@ export class HnImageComponent implements OnInit, OnDestroy {
     const show = isInContainer(el, this.getTarget());
     if (show) {
       this.loadImage();
-      this.cd.markForCheck();
       this.removeScrollListen();
     }
   }

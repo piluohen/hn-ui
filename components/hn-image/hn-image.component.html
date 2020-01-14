@@ -1,3 +1,14 @@
 <div #hnImage class="hn-image">
-  <img class="hn-image-inner" [src]="dataSrc" [alt]="alt" [ngStyle]="getStyle()">
+  <ng-container *ngIf="!loading && !isError && dataSrc">
+    <img
+      class="hn-image-inner"
+      [src]="dataSrc"
+      [alt]="alt"
+      [ngStyle]="getStyle()">
+  </ng-container>
+  <ng-container *ngIf="loading || isError || !dataSrc">
+    <nz-empty *ngIf="showEmpty" [nzNotFoundContent]="noData"></nz-empty>
+    <ng-template [ngIf]="!showEmpty" [ngTemplateOutlet]="noData">
+    </ng-template>
+  </ng-container>
 </div>
