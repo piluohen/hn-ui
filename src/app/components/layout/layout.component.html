@@ -20,6 +20,7 @@
           <ul>
             <li nz-menu-item *ngFor="let li of menu.children"
               nzMatchRouter
+              [nzSelected]="li.selected"
               [ngClass]="li.selected? 'ant-menu-item-selected':''">
               <a [routerLink]="li.path">{{li.title}}</a>
             </li>
@@ -27,6 +28,7 @@
         </li>
         <li nz-menu-item *ngIf="!menu.children"
           nzMatchRouter
+          [nzSelected]="menu.selected"
           [ngClass]="menu.selected? 'ant-menu-item-selected':''">
           <a [routerLink]="menu.path">
             <i nz-icon [type]="menu.icon" *ngIf="menu.icon"></i>

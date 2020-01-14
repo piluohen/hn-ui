@@ -2,17 +2,20 @@ export const menuList = [
   {
     title: '如何使用',
     icon: 'question-circle',
-    path: '/usage'
+    path: '/usage',
+    selected: true
   },
   {
     title: '定制主题',
     icon: 'meh',
-    path: '/theme'
+    path: '/theme',
+    selected: false
   },
   {
     title: '组件',
     icon: 'dashboard',
     open: true,
+    selected: false,
     children: [
       { title: 'color', path: '/demo/color' },
       { title: 'hn-button', path: '/demo/hn-button' },
