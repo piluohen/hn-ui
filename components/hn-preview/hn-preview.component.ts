@@ -4,9 +4,9 @@ import {
   Input,
   Output,
   EventEmitter,
-  ViewChild,
   ChangeDetectionStrategy,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectorRef
 } from '@angular/core';
 
 @Component({
@@ -20,7 +20,6 @@ import {
 export class HnPreviewComponent implements OnInit {
   modeVisible = false;
 
-  @ViewChild('carousel') carousel: any;
   // 展示数据list
   @Input() list: any = [];
   // 展示图片索引
@@ -41,7 +40,11 @@ export class HnPreviewComponent implements OnInit {
 
   imgList: any[] = [];
 
-  constructor() {}
+  imgSrc = '';
+
+  activeIndex = 0;
+
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit() {}
 
@@ -50,16 +53,20 @@ export class HnPreviewComponent implements OnInit {
    */
   handleAfterOpen() {
     this.imgList = this.list;
+
     setTimeout(() => {
-      this.handleGoToIndex(this.index);
+      this.activeIndex = this.index;
+      this.change();
     }, 0);
   }
 
   /**
    * 关闭弹框
    */
-  handleCancel() {
+  cancel() {
     this.imgList = [];
+    this.imgSrc = '';
+    this.activeIndex = 0;
     this.modeVisible = false;
     this.visibleChange.emit(false);
   }
@@ -67,22 +74,26 @@ export class HnPreviewComponent implements OnInit {
   /**
    * 上一张操作
    */
-  handlePrev(): void {
-    this.carousel.pre();
+  prev(): void {
+    const len = this.imgList.length;
+    this.activeIndex = (this.activeIndex - 1 + len) % len;
+    this.change();
   }
 
   /**
    * 下一张操作
    */
-  handleNext(): void {
-    this.carousel.next();
+  next(): void {
+    const len = this.imgList.length;
+    this.activeIndex = (this.activeIndex + 1) % len;
+    this.change();
   }
 
   /**
-   * 跳转到第index张
-   * @param index 索引值
+   * 改变imgSrc
    */
-  handleGoToIndex(index: number): void {
-    this.carousel.goTo(index);
+  change(): void {
+    this.imgSrc = this.imgList[this.activeIndex].url;
+    this.cd.markForCheck();
   }
 }

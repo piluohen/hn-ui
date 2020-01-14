@@ -3,9 +3,10 @@ import { NgZorroModule } from '../ng-zorro.module';
 
 import { HnImgListComponent } from './hn-img-list.component';
 import { HnPreviewModule } from '../hn-preview/hn-preview.module';
+import { HnImageModule } from 'hn-ui/hn-image';
 
 @NgModule({
-  imports: [NgZorroModule, HnPreviewModule],
+  imports: [NgZorroModule, HnPreviewModule, HnImageModule],
   declarations: [HnImgListComponent],
   exports: [HnImgListComponent]
 })

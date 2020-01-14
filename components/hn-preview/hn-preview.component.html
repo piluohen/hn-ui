@@ -6,20 +6,22 @@
   [nzFooter]="null"
   nzWidth="100%"
   (nzAfterOpen)="handleAfterOpen()"
-  (nzOnCancel)="handleCancel()">
+  (nzOnCancel)="cancel()">
   <ng-template #modalContent>
-    <div *ngIf="imgList && imgList.length > 1" class="hn-preview-btn hn-preview-btn-prev" (click)="handlePrev()">
-      <i nz-icon nzType="left" nzTheme="outline"></i>
-    </div>
-
-    <nz-carousel #carousel [nzDots]="false" nzEffect="scrollx">
-      <div nz-carousel-content *ngFor="let item of imgList">
-        <img [src]="item.url">
+    <div class="hn-preview-container">
+      <div *ngIf="imgList && imgList.length > 1" class="hn-preview-btn hn-preview-btn-prev"
+        (click)="prev()">
+        <i nz-icon nzType="left" nzTheme="outline"></i>
       </div>
-    </nz-carousel>
 
-    <div *ngIf="imgList && imgList.length > 1" class="hn-preview-btn hn-preview-btn-next" (click)="handleNext()">
-      <i nz-icon nzType="right" nzTheme="outline"></i>
+      <div class="hn-preview-image">
+        <img *ngIf="imgSrc" [src]="imgSrc">
+      </div>
+
+      <div *ngIf="imgList && imgList.length > 1" class="hn-preview-btn hn-preview-btn-next"
+        (click)="next()">
+        <i nz-icon nzType="right" nzTheme="outline"></i>
+      </div>
     </div>
   </ng-template>
 </nz-modal>

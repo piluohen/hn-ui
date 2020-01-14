@@ -1,6 +1,6 @@
 <div class="hn-img-list">
   <div class="hn-img-list-item" *ngFor="let item of list; index as i" (click)="handleClick(item, i)">
-    <img [src]="item.url">
+    <hn-image [src]="item.url" fit="cover"></hn-image>
   </div>
 </div>
 
