@@ -16,6 +16,7 @@ import { HnTableMsgModule } from './hn-table-msg/hn-table-msg.module';
 import { HnExportModule } from './hn-export/hn-export.module';
 import { HnFormModule } from './hn-form/hn-form.module';
 import { HnTreeModule } from './hn-tree/hn-tree.module';
+import { HnImageModule } from './hn-image/hn-image.module';
 
 export * from './core';
 export * from './hn-countup';
@@ -33,6 +34,7 @@ export * from './hn-table-msg';
 export * from './hn-export';
 export * from './hn-form';
 export * from './hn-tree';
+export * from './hn-image';
 
 @NgModule({
   exports: [
@@ -51,7 +53,8 @@ export * from './hn-tree';
     HnTableMsgModule,
     HnExportModule,
     HnFormModule,
-    HnTreeModule
+    HnTreeModule,
+    HnImageModule
   ]
 })
 export class HnUiModule {

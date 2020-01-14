@@ -13,6 +13,7 @@ import { ExportComponent } from './export/export.component';
 import { SearchComponent } from './search/search.component';
 import { FormComponent } from './form/form.component';
 import { TreeComponent } from './tree/tree.component';
+import { ImageComponent } from './image/image.component';
 
 const routes: Routes = [
   {
@@ -102,6 +103,13 @@ const routes: Routes = [
     component: TreeComponent,
     data: {
       breadcrumb: 'hn-tree 组件'
+    }
+  },
+  {
+    path: 'hn-image',
+    component: ImageComponent,
+    data: {
+      breadcrumb: 'hn-image 组件'
     }
   }
 ];

@@ -16,6 +16,7 @@ import { ExportComponent } from './export/export.component';
 import { SearchComponent } from './search/search.component';
 import { FormComponent } from './form/form.component';
 import { TreeComponent } from './tree/tree.component';
+import { ImageComponent } from './image/image.component';
 
 @NgModule({
   imports: [ShareModule, DemoRoutingModule],
@@ -33,7 +34,8 @@ import { TreeComponent } from './tree/tree.component';
     ExportComponent,
     SearchComponent,
     FormComponent,
-    TreeComponent
+    TreeComponent,
+    ImageComponent
   ],
   entryComponents: [DemoComponent]
 })

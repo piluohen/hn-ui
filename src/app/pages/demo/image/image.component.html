@@ -1,0 +1,36 @@
+<div class="breadcrumb">
+  <nz-breadcrumb [nzAutoGenerate]="true">
+  </nz-breadcrumb>
+</div>
+
+<div class="layout-content">
+  <h2>示例</h2>
+  <div class="form-tab">
+    <nz-radio-group class="form-tab-item" [(ngModel)]="fit">
+      <label
+        *ngFor="let item of fitTabs"
+        nz-radio-button
+        [nzValue]="item">{{item}}</label>
+    </nz-radio-group>
+  </div>
+  <div class="image-list">
+    <div class="image-list-item">
+      <hn-image [src]="singleImg" [fit]="fit"></hn-image>
+    </div>
+  </div>
+
+  <app-markdown-tab [list]="markdownTabs"></app-markdown-tab>
+
+  <h2>懒加载</h2>
+  <div class="image-lazy-container" #divTarget>
+    <div class="image-lazy-list">
+      <div class="image-lazy-item" *ngFor="let item of imgList; index as index">
+        <hn-image [src]="item.url" [fit]="fit" [alt]="item.alt" [lazy]="item.lazy" [hnTarget]="divTarget">
+        </hn-image>
+      </div>
+    </div>
+  </div>
+
+  <markdown>{{apiMarkdown}}</markdown>
+
+</div>
