@@ -8,7 +8,9 @@
   </ng-container>
   <ng-container *ngIf="loading || isError || !dataSrc">
     <nz-empty *ngIf="showEmpty" [nzNotFoundContent]="noData"></nz-empty>
-    <ng-template [ngIf]="!showEmpty" [ngTemplateOutlet]="noData">
-    </ng-template>
+    <ng-container *ngIf="!showEmpty">
+      <ng-template [ngTemplateOutlet]="noData">
+      </ng-template>
+    </ng-container>
   </ng-container>
 </div>

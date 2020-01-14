@@ -4,7 +4,7 @@
 </div>
 
 <div class="layout-content">
-  <h2>示例</h2>
+  <h2>fit示例</h2>
   <div class="form-tab">
     <nz-radio-group class="form-tab-item" [(ngModel)]="fit">
       <label
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <app-markdown-tab [list]="markdownTabs"></app-markdown-tab>
+  <app-markdown-tab [list]="baseTabs"></app-markdown-tab>
 
   <h2>懒加载</h2>
   <div class="image-lazy-container" #divTarget>
@@ -27,7 +27,6 @@
       <div class="image-lazy-item" *ngFor="let item of imgList; index as index">
         <hn-image
           [src]="item.url"
-          [fit]="fit"
           [alt]="item.alt"
           [lazy]="item.lazy"
           [hnTarget]="divTarget">
@@ -35,6 +34,8 @@
       </div>
     </div>
   </div>
+
+  <app-markdown-tab [list]="lazyTabs"></app-markdown-tab>
 
   <markdown>{{apiMarkdown}}</markdown>
 

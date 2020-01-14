@@ -1,6 +1,5 @@
+```JS
 import { Component, OnInit } from '@angular/core';
-
-declare const require: any;
 
 @Component({
   selector: 'app-image',
@@ -8,12 +7,6 @@ declare const require: any;
   styleUrls: ['./image.component.less']
 })
 export class ImageComponent implements OnInit {
-  fit = 'fill';
-
-  fitTabs: string[] = ['fill', 'contain', 'cover', 'none', 'scale-down'];
-
-  singleImg = 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg';
-
   imgList: any = [
     { url: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', lazy: false },
     { url: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', lazy: true },
@@ -24,21 +17,9 @@ export class ImageComponent implements OnInit {
     { url: 'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg', lazy: true }
   ];
 
-  baseTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/base/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/base/js.md') },
-    { title: 'CSS', markdown: require('raw-loader!./docs/base/css.md') }
-  ];
-
-  lazyTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/lazy/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/lazy/js.md') },
-    { title: 'CSS', markdown: require('raw-loader!./docs/lazy/css.md') }
-  ];
-
-  apiMarkdown = require('raw-loader!./docs/api.md');
-
   constructor() {}
 
   ngOnInit() {}
 }
+
+```
