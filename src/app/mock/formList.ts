@@ -48,8 +48,8 @@ export const formList = [
     key: 'input',
     type: 'input',
     required: true,
-    validators: [Validators.required],
-    errorMsg: '请输入'
+    validators: [Validators.required, Validators.maxLength(5)],
+    errorMsg: '请输入不超过5个字符'
   },
   {
     label: '数字输入框',
