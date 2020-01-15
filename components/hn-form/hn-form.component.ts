@@ -33,7 +33,7 @@ export class HnFormComponent implements OnInit, OnChanges {
 
   @Input() render: any;
 
-  @Output() submit: EventEmitter<any> = new EventEmitter();
+  @Output() hnSubmit: EventEmitter<any> = new EventEmitter();
 
   modeVisible: any = true;
 
@@ -152,7 +152,7 @@ export class HnFormComponent implements OnInit, OnChanges {
   submitData(): void {
     const value = this.validateForm.value;
     const params: any = { ...this.params, ...value };
-    this.submit.emit(params);
+    this.hnSubmit.emit(params);
   }
 
   /**

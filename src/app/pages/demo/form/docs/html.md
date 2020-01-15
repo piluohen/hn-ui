@@ -4,7 +4,7 @@
   [formList]="formList"
   [(params)]="params"
   [render]="{inputTemp: inputTemp}"
-  (submit)="handleSubmit($event)">
+  (hnSubmit)="handleSubmit($event)">
   <ng-template #inputTemp>
     <input nz-input [(ngModel)]="params.input1" placeholder="render input">
   </ng-template>
