@@ -8,7 +8,7 @@
     [nzBordered]="bordered"
     [nzScroll]="scroll"
     [nzShowTotal]="totalTemp"
-    [nzTotal]="pagination.total"
+    [nzTotal]="total"
     [(nzPageIndex)]="pagination.pageIndex"
     [(nzPageSize)]="pagination.pageSize"
     (nzPageIndexChange)="getList()"
@@ -55,7 +55,7 @@
       </tr>
     </tbody>
     <ng-template #totalTemp>
-      <span>总计{{pagination.total}}条</span>
+      <span>总计{{total}}条</span>
     </ng-template>
   </nz-table>
 </div>

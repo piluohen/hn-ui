@@ -58,11 +58,10 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.columns = this.columns.map(item => {
-      if (item.renderkey) {
+    this.columns.forEach(item => {
+      if (item.renderKey) {
         item.render = this[item.renderKey];
       }
-      return item;
     });
     this.getData();
   }

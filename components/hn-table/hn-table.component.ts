@@ -1,3 +1,9 @@
+/**
+ * @name hn-table
+ * @author 皮落痕<1012106967@qq.com>
+ * @date: 2020-01-16 15:13:40
+ */
+
 import {
   Component,
   OnInit,
@@ -6,7 +12,8 @@ import {
   EventEmitter,
   OnChanges,
   ChangeDetectionStrategy,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectorRef
 } from '@angular/core';
 
 @Component({
@@ -18,62 +25,70 @@ import {
   templateUrl: './hn-table.component.html'
 })
 export class HnTableComponent implements OnInit, OnChanges {
+  // 静态数据数组
   @Input() data: any[] = [];
-
+  // 接口请求api
   @Input() api: any;
-
+  // 请求参数
   @Input() params: any = {};
-
+  // 表格列数据
   @Input() columns: any[] = [];
-
+  // 总计
   @Input() totalKey: any = 'total';
-
+  // 内容列表字段
   @Input() contentKey: any = 'list';
-
+  // 是否显示选择框
   @Input() showSelect = true;
-
+  // 是否展示分页
   @Input() showPagination = true;
-
+  // 配置分页
+  @Input() pagination = {
+    pageSize: 10,
+    pageIndex: 1
+  };
+  // 滚动区域配置
   @Input() scroll: any = {};
-
+  // 底部
   @Input() footer: any;
-
+  // 是否border
   @Input() bordered = false;
-
+  // render函数
   @Input() render: any = {};
 
+  // 多选选中事件
   @Output() checkChange: EventEmitter<any> = new EventEmitter();
 
+  // 多选相关变量start
   isAllDisplayDataChecked = false;
   isOperating = false;
   isIndeterminate = false;
   checkedData = [];
   mapOfCheckedId: { [key: string]: boolean } = {};
   numberOfChecked = 0;
+  // 多选相关变量end
 
+  // 表格数据数组
   tableData: any[] = [];
-
+  // 表格列
   tableColumns: any[] = [];
-
+  // 加载中
   loading = true;
+  // 总条数
+  total = 0;
 
-  pagination = {
-    total: 0,
-    pageSize: 10,
-    pageIndex: 1
-  };
-
-  constructor() {}
+  constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
     const length = Object.keys(this.render).length;
     if (length > 0) {
-      this.tableColumns = this.columns.map(item => {
+      this.tableColumns = [...this.columns].map(item => {
         if (item.renderKey) {
           item.render = this.render[item.renderKey];
         }
         return item;
       });
+    } else {
+      this.tableColumns = this.columns;
     }
     this.getList();
   }
@@ -88,8 +103,10 @@ export class HnTableComponent implements OnInit, OnChanges {
     }
     if (changes.columns) {
       const { currentValue, firstChange } = changes.columns;
-      this.tableColumns = currentValue;
-      this.getList(true);
+      if (!firstChange) {
+        this.tableColumns = currentValue;
+        this.getList(true);
+      }
     }
     if (changes.api) {
       const { currentValue, firstChange } = changes.api;
@@ -133,7 +150,7 @@ export class HnTableComponent implements OnInit, OnChanges {
       const first = pageSize * (pageIndex - 1);
       const end = pageSize * pageIndex;
       this.tableData = data.slice(first, end);
-      this.pagination.total = data.length;
+      this.total = data.length;
     } else {
       this.tableData = this.data || [];
     }
@@ -156,7 +173,7 @@ export class HnTableComponent implements OnInit, OnChanges {
       if (res.success) {
         const data = res.data;
         if (data) {
-          this.pagination.total = data[this.totalKey];
+          this.total = data[this.totalKey];
           this.tableData = [...data[this.contentKey]].map((item, i) => {
             return {
               ...item,
@@ -192,6 +209,7 @@ export class HnTableComponent implements OnInit, OnChanges {
     const checked = this.tableData.filter(item => this.mapOfCheckedId[item.id]);
     this.numberOfChecked = checked.length;
     this.checkChange.emit(checked);
+    this.cd.markForCheck();
   }
 
   /**

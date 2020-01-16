@@ -24,6 +24,7 @@
     [scroll]="{x: '600px'}"
     [showPagination]="true"
     [showSelect]="true"
+    [pagination]="{pageSize: 3, pageIndex: 2}"
     [render]="{linkTemp: linkTemp, operateTemp: operateTemp}"
     (checkChange)="handleCheckChange($event)">
     <ng-template #linkTemp let-scope>
