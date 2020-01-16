@@ -1,6 +1,6 @@
 /**
  * @name hn-table
- * @author 皮落痕<1012106967@qq.com>
+ * @author piluohen<1012106967@qq.com>
  * @date: 2020-01-16 15:13:40
  */
 
@@ -39,13 +39,15 @@ export class HnTableComponent implements OnInit, OnChanges {
   @Input() contentKey: any = 'list';
   // 是否显示选择框
   @Input() showSelect = true;
-  // 是否展示分页
+  // 是否显示分页
   @Input() showPagination = true;
   // 配置分页
   @Input() pagination = {
     pageSize: 10,
     pageIndex: 1
   };
+  // 分页数量菜单
+  @Input() pageSizeOptions = [10, 20, 30, 40, 50];
   // 滚动区域配置
   @Input() scroll: any = {};
   // 底部
@@ -79,17 +81,8 @@ export class HnTableComponent implements OnInit, OnChanges {
   constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
-    const length = Object.keys(this.render).length;
-    if (length > 0) {
-      this.tableColumns = [...this.columns].map(item => {
-        if (item.renderKey) {
-          item.render = this.render[item.renderKey];
-        }
-        return item;
-      });
-    } else {
-      this.tableColumns = this.columns;
-    }
+    this.setPageSizeOptions();
+    this.setTableColumns();
     this.getList();
   }
 
@@ -125,6 +118,32 @@ export class HnTableComponent implements OnInit, OnChanges {
   }
 
   /**
+   * 设置分页数量配置
+   */
+  private setPageSizeOptions(): void {
+    this.pageSizeOptions = [...this.pageSizeOptions, this.pagination.pageSize].sort((a, b) => {
+      return a - b;
+    });
+  }
+
+  /**
+   * 设置表格columns
+   */
+  private setTableColumns() {
+    const length = Object.keys(this.render).length;
+    if (length > 0) {
+      this.tableColumns = [...this.columns].map(item => {
+        if (item.renderKey) {
+          item.render = this.render[item.renderKey];
+        }
+        return item;
+      });
+    } else {
+      this.tableColumns = this.columns;
+    }
+  }
+
+  /**
    * 获取数据
    * @param reset 是否重置列表
    */
@@ -144,13 +163,13 @@ export class HnTableComponent implements OnInit, OnChanges {
    * @param data 本地数据
    */
   getLocalData(): void {
+    this.total = this.data.length;
     if (this.showPagination) {
       const { pageSize, pageIndex } = this.pagination;
       const data = [...this.data];
       const first = pageSize * (pageIndex - 1);
       const end = pageSize * pageIndex;
       this.tableData = data.slice(first, end);
-      this.total = data.length;
     } else {
       this.tableData = this.data || [];
     }

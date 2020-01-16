@@ -11,6 +11,7 @@
     [nzTotal]="total"
     [(nzPageIndex)]="pagination.pageIndex"
     [(nzPageSize)]="pagination.pageSize"
+    [nzPageSizeOptions]="pageSizeOptions"
     (nzPageIndexChange)="getList()"
     (nzPageSizeChange)="getList(true)"
     [nzFooter]="footer">
