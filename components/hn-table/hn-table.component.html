@@ -1,10 +1,17 @@
 <div class="hn-table">
+  <!-- [nzVirtualScroll]="virtualScroll"
+    [nzVirtualItemSize]="virtualItemSize"
+    [nzVirtualMaxBufferPx]="virtualMaxBufferPx"
+    [nzVirtualMinBufferPx]="virtualMinBufferPx" -->
   <nz-table
     #basicTable
     [nzData]="tableData"
+    [nzSize]="size"
     [nzShowPagination]="showPagination"
+    [nzPaginationPosition]="paginationPosition"
     [nzFrontPagination]="false"
-    nzShowSizeChanger
+    [nzShowSizeChanger]="showSizeChanger"
+    [nzShowQuickJumper]="showQuickJumper"
     [nzBordered]="bordered"
     [nzScroll]="scroll"
     [nzShowTotal]="totalTemp"
@@ -12,6 +19,8 @@
     [(nzPageIndex)]="pagination.pageIndex"
     [(nzPageSize)]="pagination.pageSize"
     [nzPageSizeOptions]="pageSizeOptions"
+    [nzHideOnSinglePage]="hideOnSinglePage"
+    [nzSimple]="simplePage"
     (nzPageIndexChange)="getList()"
     (nzPageSizeChange)="getList(true)"
     [nzFooter]="footer">
@@ -35,6 +44,7 @@
       </tr>
     </thead>
     <tbody>
+      <!-- <ng-template nz-virtual-scroll [ngfor]=""></ng-template> -->
       <tr *ngFor="let data of basicTable.data">
         <td
           *ngIf="showSelect"

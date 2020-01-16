@@ -29,6 +29,8 @@ export class HnTableComponent implements OnInit, OnChanges {
   @Input() data: any[] = [];
   // 接口请求api
   @Input() api: any;
+  // 尺寸 'middle'｜'small'｜'default'
+  @Input() size = 'default';
   // 请求参数
   @Input() params: any = {};
   // 表格列数据
@@ -39,8 +41,11 @@ export class HnTableComponent implements OnInit, OnChanges {
   @Input() contentKey: any = 'list';
   // 是否显示选择框
   @Input() showSelect = true;
+
   // 是否显示分页
   @Input() showPagination = true;
+  // 分页器位置 'top'｜'bottom'｜'both'
+  @Input() paginationPosition = 'bottom';
   // 配置分页
   @Input() pagination = {
     pageSize: 10,
@@ -48,6 +53,15 @@ export class HnTableComponent implements OnInit, OnChanges {
   };
   // 分页数量菜单
   @Input() pageSizeOptions = [10, 20, 30, 40, 50];
+  // 分页是否可改变每页数量
+  @Input() showSizeChanger = true;
+  // 分页是否允许页码跳转
+  @Input() showQuickJumper = false;
+  // 只有一页数据时是否隐藏分页
+  @Input() hideOnSinglePage = false;
+  // 是否是简单分页
+  @Input() simplePage = false;
+
   // 滚动区域配置
   @Input() scroll: any = {};
   // 底部
@@ -57,8 +71,15 @@ export class HnTableComponent implements OnInit, OnChanges {
   // render函数
   @Input() render: any = {};
 
+  // 是否开启虚拟滚动
+  @Input() virtualScroll = false;
+  @Input() virtualItemSize = 54;
+  @Input() virtualMaxBufferPx = 200;
+  @Input() virtualMinBufferPx = 100;
+
   // 多选选中事件
-  @Output() checkChange: EventEmitter<any> = new EventEmitter();
+  @Output()
+  checkChange: EventEmitter<any> = new EventEmitter();
 
   // 多选相关变量start
   isAllDisplayDataChecked = false;
@@ -121,9 +142,11 @@ export class HnTableComponent implements OnInit, OnChanges {
    * 设置分页数量配置
    */
   private setPageSizeOptions(): void {
-    this.pageSizeOptions = [...this.pageSizeOptions, this.pagination.pageSize].sort((a, b) => {
+    const sizes = [...this.pageSizeOptions, this.pagination.pageSize].sort((a, b) => {
       return a - b;
     });
+
+    this.pageSizeOptions = [...Array.from(new Set(sizes))];
   }
 
   /**

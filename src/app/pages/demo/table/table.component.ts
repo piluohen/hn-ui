@@ -12,11 +12,9 @@ declare const require: any;
 })
 export class TableComponent implements OnInit {
   @ViewChild('baseTable') baseTable: any;
-
   @ViewChild('interfaceTable') interfaceTable: any;
-
+  @ViewChild('virtualTable') virtualTable: any;
   @ViewChild('linkTemp') linkTemp: any;
-
   @ViewChild('operateTemp') operateTemp: any;
 
   getListApi: any;

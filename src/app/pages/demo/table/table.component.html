@@ -18,6 +18,7 @@
   </div>
   <hn-table
     #baseTable
+    size="default"
     [columns]="columns"
     [data]="tableData"
     [params]="params"
@@ -25,6 +26,7 @@
     [showPagination]="true"
     [showSelect]="true"
     [pagination]="{pageSize: 3, pageIndex: 2}"
+    [simplePage]="false"
     [render]="{linkTemp: linkTemp, operateTemp: operateTemp}"
     (checkChange)="handleCheckChange($event)">
     <ng-template #linkTemp let-scope>
@@ -60,6 +62,18 @@
   </hn-table>
 
   <app-markdown-tab [list]="interfaceTabs"></app-markdown-tab>
+
+  <h2>虚拟滚动</h2>
+  <hn-table
+    #virtualTable
+    [virtualScroll]="true"
+    [columns]="columns"
+    [data]="tableData"
+    [params]="{}"
+    [scroll]="{x: '600px'}"
+    [showPagination]="false"
+    [showSelect]="false">
+  </hn-table>
 
   <markdown ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
 </div>
