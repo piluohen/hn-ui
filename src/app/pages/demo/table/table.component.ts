@@ -49,6 +49,8 @@ export class TableComponent implements OnInit {
   checkedData: any[] = [];
   numberOfChecked = 0;
 
+  virtualData: any[] = [];
+
   constructor(private http: HttpClient) {
     this.getListApi = (params: any = {}) => {
       return this.http.get('http://test.mgt.campus.huanuo-nsb.com/ipark-cost-service/mock/list', { params });
@@ -62,6 +64,8 @@ export class TableComponent implements OnInit {
       }
     });
     this.getData();
+    this.getVirtualData();
+    console.log(this.virtualTable);
   }
 
   getData() {
@@ -77,6 +81,19 @@ export class TableComponent implements OnInit {
           this.tableData = data;
         }
       });
+  }
+
+  getVirtualData() {
+    for (let i = 0; i < 20000; i++) {
+      this.virtualData.push({
+        id: i + 1,
+        index: i,
+        name: `Edward King`,
+        age: 32,
+        gender: `London`,
+        createTime: new Date().getTime()
+      });
+    }
   }
 
   handleView(scope: any = {}): void {
@@ -110,5 +127,13 @@ export class TableComponent implements OnInit {
   handleSearch(data: any): void {
     this.params = Utils.filterEmptyObj({ ...this.params, ...data });
     this.getData();
+  }
+
+  /**
+   * 虚拟滚动监听
+   * @param index 索引
+   */
+  handleVirtualChange(index: any): void {
+    console.log(index);
   }
 }

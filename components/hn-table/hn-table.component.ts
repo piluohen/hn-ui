@@ -13,8 +13,14 @@ import {
   OnChanges,
   ChangeDetectionStrategy,
   ViewEncapsulation,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ViewChild,
+  AfterViewInit,
+  OnDestroy
 } from '@angular/core';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { NzTableComponent } from 'ng-zorro-antd';
 
 @Component({
   selector: 'hn-table',
@@ -24,7 +30,9 @@ import {
   encapsulation: ViewEncapsulation.None,
   templateUrl: './hn-table.component.html'
 })
-export class HnTableComponent implements OnInit, OnChanges {
+export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+  @ViewChild('table') table: NzTableComponent;
+
   // 静态数据数组
   @Input() data: any[] = [];
   // 接口请求api
@@ -81,6 +89,9 @@ export class HnTableComponent implements OnInit, OnChanges {
   @Output()
   checkChange: EventEmitter<any> = new EventEmitter();
 
+  @Output()
+  virtualChange: EventEmitter<any> = new EventEmitter();
+
   // 多选相关变量start
   isAllDisplayDataChecked = false;
   isOperating = false;
@@ -98,6 +109,8 @@ export class HnTableComponent implements OnInit, OnChanges {
   loading = true;
   // 总条数
   total = 0;
+
+  destroy$ = new Subject();
 
   constructor(private cd: ChangeDetectorRef) {}
 
@@ -135,6 +148,17 @@ export class HnTableComponent implements OnInit, OnChanges {
         this.data = currentValue;
         this.getList();
       }
+    }
+  }
+
+  ngAfterViewInit() {
+    this.handleVirtualChange();
+  }
+
+  ngOnDestroy() {
+    if (this.virtualScroll) {
+      this.destroy$.next();
+      this.destroy$.complete();
     }
   }
 
@@ -268,5 +292,16 @@ export class HnTableComponent implements OnInit, OnChanges {
    */
   clearChecked() {
     this.checkAll(false);
+  }
+
+  /**
+   * 虚拟滚动监听
+   */
+  handleVirtualChange() {
+    if (this.virtualScroll) {
+      this.table.cdkVirtualScrollViewport.scrolledIndexChange.pipe(takeUntil(this.destroy$)).subscribe(data => {
+        this.virtualChange.emit(data);
+      });
+    }
   }
 }

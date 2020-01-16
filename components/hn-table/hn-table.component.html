@@ -1,10 +1,6 @@
 <div class="hn-table">
-  <!-- [nzVirtualScroll]="virtualScroll"
-    [nzVirtualItemSize]="virtualItemSize"
-    [nzVirtualMaxBufferPx]="virtualMaxBufferPx"
-    [nzVirtualMinBufferPx]="virtualMinBufferPx" -->
   <nz-table
-    #basicTable
+    #table
     [nzData]="tableData"
     [nzSize]="size"
     [nzShowPagination]="showPagination"
@@ -23,7 +19,11 @@
     [nzSimple]="simplePage"
     (nzPageIndexChange)="getList()"
     (nzPageSizeChange)="getList(true)"
-    [nzFooter]="footer">
+    [nzFooter]="footer"
+    [nzVirtualScroll]="virtualScroll"
+    [nzVirtualItemSize]="virtualItemSize"
+    [nzVirtualMaxBufferPx]="virtualMaxBufferPx"
+    [nzVirtualMinBufferPx]="virtualMinBufferPx">
     <thead>
       <tr>
         <th
@@ -44,27 +44,50 @@
       </tr>
     </thead>
     <tbody>
-      <!-- <ng-template nz-virtual-scroll [ngfor]=""></ng-template> -->
-      <tr *ngFor="let data of basicTable.data">
-        <td
-          *ngIf="showSelect"
-          nzLeft="0px"
-          nzShowCheckbox
-          [(nzChecked)]="mapOfCheckedId[data.id]"
-          [nzDisabled]="data.disabled"
-          (nzCheckedChange)="refreshStatus()"></td>
-        <td
-          *ngFor="let item of tableColumns;index as index"
-          [nzAlign]="item.align"
-          [nzLeft]="item.left"
-          [nzRight]="item.right">
-          <span *ngIf="!item.render">{{item.format ? item.format(data) : data[item.key]}}</span>
-          <ng-template [ngIf]="item.render" [ngTemplateOutlet]="item.render"
-            [ngTemplateOutletContext]="{ $implicit: {data: data, item: item}, index: index }">
+      <!-- 非虚拟滚动 -->
+      <ng-container *ngIf="!virtualScroll">
+        <tr *ngFor="let data of table.data">
+          <ng-template
+            [ngTemplateOutlet]="trTemp"
+            [ngTemplateOutletContext]="{ $implicit: data, index: index }">
           </ng-template>
-        </td>
-      </tr>
+        </tr>
+      </ng-container>
+      <!-- 虚拟滚动 -->
+      <ng-container *ngIf="virtualScroll">
+        <ng-template nz-virtual-scroll let-data let-index="index">
+          <tr>
+            <ng-template
+              [ngTemplateOutlet]="trTemp"
+              [ngTemplateOutletContext]="{ $implicit: data, index: index }">
+            </ng-template>
+          </tr>
+        </ng-template>
+      </ng-container>
     </tbody>
+    <!-- tr 模板 -->
+    <ng-template #trTemp let-data>
+      <td
+        *ngIf="showSelect"
+        nzLeft="0px"
+        nzShowCheckbox
+        [(nzChecked)]="mapOfCheckedId[data.id]"
+        [nzDisabled]="data.disabled"
+        (nzCheckedChange)="refreshStatus()"></td>
+      <td
+        *ngFor="let item of tableColumns;index as index"
+        [nzAlign]="item.align"
+        [nzLeft]="item.left"
+        [nzRight]="item.right">
+        <span *ngIf="!item.render">{{item.format ? item.format(data) : data[item.key]}}</span>
+        <ng-template
+          [ngIf]="item.render"
+          [ngTemplateOutlet]="item.render"
+          [ngTemplateOutletContext]="{ $implicit: {data: data, item: item}, index: index }">
+        </ng-template>
+      </td>
+    </ng-template>
+    <!-- total模板 -->
     <ng-template #totalTemp>
       <span>总计{{total}}条</span>
     </ng-template>
