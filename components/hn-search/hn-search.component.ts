@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  OnChanges,
   Input,
   Output,
   EventEmitter,
@@ -9,7 +8,7 @@ import {
   ViewEncapsulation,
   ViewChild
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { slideMotion } from 'ng-zorro-antd';
 
 @Component({
@@ -25,18 +24,15 @@ export class HnSearchComponent implements OnInit {
   @ViewChild('form') form: any;
 
   @Input() formList: any = [];
-
   @Input() keyword = 'searchContent';
-
   @Input() placeholder = '请输入查询条件';
-
   @Input() render: any;
-
   @Input() itemRender: any;
+  @Input() params = {};
 
   @Output() search: EventEmitter<any> = new EventEmitter();
 
-  params: any = {};
+  newParams: any = {};
 
   modeVisible: any = false;
 
@@ -65,6 +61,9 @@ export class HnSearchComponent implements OnInit {
    */
   handleReset(): void {
     this.form.clearForm();
+    const params = {};
+    params[this.keyword] = this.params[this.keyword];
+    this.search.emit(params);
   }
 
   /**
@@ -86,7 +85,7 @@ export class HnSearchComponent implements OnInit {
   }
 
   handleSubmit(event: any): void {
-    this.params = { ...this.params, ...event };
-    this.search.emit(this.params);
+    const params = { ...this.params, ...event };
+    this.search.emit(params);
   }
 }

@@ -6,9 +6,13 @@
 <div class="layout-content">
   <h2>高级搜索</h2>
   <div class="table-operation">
-    <hn-search [formList]="formList" (search)="handleSearch($event)" [itemRender]="{inputTemp: inputTemp}">
+    <hn-search
+      [formList]="formList"
+      [params]="params"
+      [itemRender]="{inputTemp: inputTemp}"
+      (search)="handleSearch($event)">
       <ng-template #inputTemp>
-        <input nz-input [(ngModel)]="params.input" placeholder="render input">
+        <input nz-input [(ngModel)]="params.input1" placeholder="render input">
       </ng-template>
     </hn-search>
   </div>

@@ -11,9 +11,7 @@ declare const require: any;
   styleUrls: ['./search.component.less']
 })
 export class SearchComponent implements OnInit {
-  params = {
-    input: ''
-  };
+  params = {};
 
   jsonParams: any;
 
@@ -35,8 +33,7 @@ export class SearchComponent implements OnInit {
    * @param data 搜索数据
    */
   handleSearch(data: any): void {
-    this.params = Utils.filterEmptyObj({ ...this.params, ...data });
+    this.params = Utils.filterEmptyObj({ ...data });
     this.jsonParams = JSON.stringify(this.params);
-    console.log(this.params);
   }
 }

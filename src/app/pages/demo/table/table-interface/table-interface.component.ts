@@ -63,6 +63,6 @@ export class TableInterfaceComponent implements OnInit {
    * @param data 搜索数据
    */
   handleSearch(data: any): void {
-    this.params = Utils.filterEmptyObj({ ...this.params, ...data });
+    this.params = Utils.filterEmptyObj({ ...data });
   }
 }
