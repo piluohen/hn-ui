@@ -48,13 +48,13 @@
     <tbody *ngIf="draggable" cdkDropList (cdkDropListDropped)="drop($event)">
       <ng-container *ngIf="!virtualScroll">
         <ng-container *ngFor="let data of tableData;index as index">
-          <tr *ngIf="data.draggable" cdkDrag>
+          <tr *ngIf="!data.disabled" cdkDrag>
             <ng-template
               [ngTemplateOutlet]="trTemp"
               [ngTemplateOutletContext]="{ $implicit: data }">
             </ng-template>
           </tr>
-          <tr *ngIf="!data.draggable">
+          <tr *ngIf="data.disabled">
             <ng-template
               [ngTemplateOutlet]="trTemp"
               [ngTemplateOutletContext]="{ $implicit: data }">

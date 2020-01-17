@@ -8,7 +8,16 @@ import { columns, item } from '../columns';
 export class TableDropComponent implements OnInit {
   @ViewChild('table') table: any;
 
-  columns = columns;
+  columns = [
+    {
+      title: '禁用拖拽',
+      key: 'disabled',
+      format: ({ disabled }) => {
+        return disabled ? '是' : '否';
+      }
+    },
+    ...columns
+  ];
   tableData: any[] = [];
   constructor() {}
 
@@ -18,7 +27,7 @@ export class TableDropComponent implements OnInit {
         id: i + 1,
         ...item,
         name: `刘备${i + 1}`,
-        draggable: i < 5
+        disabled: i > 4
       });
     }
   }

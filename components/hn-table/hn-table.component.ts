@@ -88,7 +88,7 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
 
   // 拖拽
   @Input() draggable = false;
-  @Input() draggData: any[] = [];
+  @Input() draggKey = 'deaggable';
 
   // 多选选中事件
   @Output()
@@ -318,11 +318,19 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   }
 
   /**
+   * 是否允许拖拽
+   * @param data 行数据
+   */
+  canDrag(data: any) {
+    return data[this.draggKey];
+  }
+
+  /**
    * 拖拽事件
    * @param event 事件
    */
   drop(event: CdkDragDrop<string[]>): void {
-    const list = this.draggData.length > 0 ? this.draggData : this.tableData;
+    const list = this.tableData;
     moveItemInArray(list, event.previousIndex, event.currentIndex);
     this.draggChange.emit({ event: event, list: list });
   }
