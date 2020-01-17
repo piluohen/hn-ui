@@ -59,12 +59,57 @@ export const formList = [
     validators: [Validators.required],
     errorMsg: '请输入'
   },
-  { label: '单选框', key: 'radio', type: 'radio', disabled: true, options: [...items] },
-  { label: '单选框按钮', key: 'radioBtn', type: 'radio-button', options: [...items] },
-  { label: '多选框', key: 'checkbox', type: 'checkbox', options: [...items] },
-  { label: '评分', key: 'rate', type: 'rate' },
-  { label: '选择框', key: 'select', type: 'select', options: [...items] },
-  { label: '树选择框', key: 'treeSelect', type: 'tree-select', options: [...treeList] },
+  {
+    label: '单选框',
+    key: 'radio',
+    type: 'radio',
+    disabled: true,
+    options: [...items]
+  },
+  {
+    label: '单选框按钮',
+    key: 'radioBtn',
+    type: 'radio-button',
+    options: [...items],
+    required: true,
+    validators: [Validators.required],
+    errorMsg: '请选择'
+  },
+  {
+    label: '多选框',
+    key: 'checkbox',
+    type: 'checkbox',
+    options: [...items],
+    required: true,
+    validators: [Validators.required],
+    errorMsg: '请选择'
+  },
+  {
+    label: '评分',
+    key: 'rate',
+    type: 'rate',
+    required: true,
+    validators: [Validators.required],
+    errorMsg: '请选择'
+  },
+  {
+    label: '选择框',
+    key: 'select',
+    type: 'select',
+    options: [...items],
+    required: true,
+    validators: [Validators.required],
+    errorMsg: '请选择'
+  },
+  {
+    label: '树选择框',
+    key: 'treeSelect',
+    type: 'tree-select',
+    options: [...treeList],
+    required: true,
+    validators: [Validators.required],
+    errorMsg: '请选择'
+  },
   {
     label: '级联选择',
     key: 'cascader',
@@ -73,20 +118,54 @@ export const formList = [
     nzValueProperty: 'key',
     nzLabelProperty: 'title'
   },
-  { label: '滑动输入条', key: 'slider', type: 'slider' },
-  { label: '开关', key: 'switch', type: 'switch' },
-  { label: '年', key: 'year', type: 'year' },
-  { label: '月', key: 'month', type: 'month' },
-  { label: '周', key: 'week', type: 'week' },
-  { label: '日', key: 'date', type: 'date' },
-  { label: '时刻', key: 'time', type: 'time' },
-  { label: '时间范围', key: 'range', type: 'range', col: 6 },
+  {
+    label: '滑动输入条',
+    key: 'slider',
+    type: 'slider',
+    required: true,
+    validators: [Validators.required],
+    errorMsg: '请选择'
+  },
+  {
+    label: '开关',
+    key: 'switch',
+    type: 'switch',
+    required: true,
+    validators: [Validators.required],
+    errorMsg: '请选择'
+  },
+  { label: '年', key: 'year', type: 'year', required: true, validators: [Validators.required], errorMsg: '请选择' },
+  { label: '月', key: 'month', type: 'month', required: true, validators: [Validators.required], errorMsg: '请选择' },
+  { label: '周', key: 'week', type: 'week', required: true, validators: [Validators.required], errorMsg: '请选择' },
+  { label: '日', key: 'date', type: 'date', required: true, validators: [Validators.required], errorMsg: '请选择' },
+  { label: '时刻', key: 'time', type: 'time', required: true, validators: [Validators.required], errorMsg: '请选择' },
+  {
+    label: '时间范围',
+    key: 'range',
+    type: 'range',
+    col: 6,
+    required: true,
+    validators: [Validators.required],
+    errorMsg: '请选择'
+  },
   {
     label: '子项',
     col: 12,
     children: [
-      { label: '输入框', key: 'inputChildren', type: 'input', renderKey: 'inputTemp' },
-      { label: '数字输入框', key: 'inputNumberChildren', type: 'input-number' }
-    ]
+      {
+        label: '输入框',
+        key: 'inputChildren',
+        type: 'input',
+        renderKey: 'inputTemp'
+      },
+      {
+        label: '数字输入框',
+        key: 'inputNumberChildren',
+        type: 'input-number'
+      }
+    ],
+    required: true,
+    validators: [Validators.required],
+    errorMsg: '请选择'
   }
 ];

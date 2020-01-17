@@ -6,7 +6,8 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectorRef
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -41,7 +42,7 @@ export class HnFormComponent implements OnInit, OnChanges {
 
   validateForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.formList = this.initFormList([...this.formList]);
@@ -144,6 +145,7 @@ export class HnFormComponent implements OnInit, OnChanges {
     } else {
       this.submitData();
     }
+    this.cd.markForCheck();
   }
 
   /**
