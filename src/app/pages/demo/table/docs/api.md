@@ -22,6 +22,8 @@
 | scroll             | 横向或纵向支持滚动，也可用于指定滚动区域的宽高度 | Object                |                            | 否   | {}                           |
 | footer             | 表格尾部                                         | string ｜ TemplateRef |                            | 否   | --                           |
 | render             | 模板对象                                         | Object                |                            | 否   | {}                           |
+| draggable          | 是否开启拖拽                                     | Boolean               |                            | 否   | false                        |
+| draggData          | 拖拽数据                                         | Array                 |                            | 否   | false                        |
 
 ## Event
 

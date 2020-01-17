@@ -1,0 +1,12 @@
+```HTML
+<hn-table
+  #table
+  size="default"
+  [columns]="columns"
+  [data]="tableData"
+  [params]="{}"
+  [draggable]="true"
+  [showSelect]="false"
+  (draggChange)="handleDraggChange($event)">
+</hn-table>
+```

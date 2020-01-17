@@ -4,6 +4,7 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { RouterModule } from '@angular/router';
 import { HttpExceptionInterceptor } from './httpExceptionInterceptor';
@@ -50,6 +51,7 @@ const DIRECTIVES = [ScrollDirective];
     HttpClientModule,
     RouterModule,
     MarkdownModule.forChild(),
+    DragDropModule,
     ...THIRD_MODULE
   ],
   declarations: [...COMPONENT, ...DIRECTIVES],
@@ -66,6 +68,7 @@ const DIRECTIVES = [ScrollDirective];
     HttpClientModule,
     RouterModule,
     MarkdownModule,
+    DragDropModule,
     ...THIRD_MODULE,
     ...COMPONENT,
     ...DIRECTIVES

@@ -9,7 +9,7 @@
       color: @primary-color;
       position: relative;
 
-      & + .table-btn {
+      &+.table-btn {
         margin-left: 10px;
         padding-left: 10px;
 
@@ -46,4 +46,12 @@
       float: left;
     }
   }
+}
+
+.cdk-drag-preview {
+  display: table;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
 }

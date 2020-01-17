@@ -43,28 +43,60 @@
           {{item.title}}</th>
       </tr>
     </thead>
-    <tbody>
-      <!-- 非虚拟滚动 -->
+
+    <!-- 允许拖拽 -->
+    <tbody *ngIf="draggable" cdkDropList (cdkDropListDropped)="drop($event)">
       <ng-container *ngIf="!virtualScroll">
-        <tr *ngFor="let data of table.data">
-          <ng-template
-            [ngTemplateOutlet]="trTemp"
-            [ngTemplateOutletContext]="{ $implicit: data, index: index }">
-          </ng-template>
-        </tr>
-      </ng-container>
-      <!-- 虚拟滚动 -->
-      <ng-container *ngIf="virtualScroll">
-        <ng-template nz-virtual-scroll let-data let-index="index">
-          <tr>
+        <ng-container *ngFor="let data of tableData;index as index">
+          <tr *ngIf="data.draggable" cdkDrag>
             <ng-template
               [ngTemplateOutlet]="trTemp"
-              [ngTemplateOutletContext]="{ $implicit: data, index: index }">
+              [ngTemplateOutletContext]="{ $implicit: data }">
+            </ng-template>
+          </tr>
+          <tr *ngIf="!data.draggable">
+            <ng-template
+              [ngTemplateOutlet]="trTemp"
+              [ngTemplateOutletContext]="{ $implicit: data }">
+            </ng-template>
+          </tr>
+        </ng-container>
+
+      </ng-container>
+      <ng-container *ngIf="virtualScroll">
+        <ng-template nz-virtual-scroll let-data let-index="index">
+          <tr cdkDrag>
+            <ng-template
+              [ngTemplateOutlet]="trTemp"
+              [ngTemplateOutletContext]="{ $implicit: data }">
             </ng-template>
           </tr>
         </ng-template>
       </ng-container>
     </tbody>
+
+    <!-- 不允许拖拽 -->
+    <tbody *ngIf="!draggable">
+      <ng-container *ngIf="!virtualScroll">
+        <tr *ngFor="let data of tableData">
+          <ng-template
+            [ngTemplateOutlet]="trTemp"
+            [ngTemplateOutletContext]="{ $implicit: data }">
+          </ng-template>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="virtualScroll">
+        <ng-template nz-virtual-scroll let-data let-index="index">
+          <tr>
+            <ng-template
+              [ngTemplateOutlet]="trTemp"
+              [ngTemplateOutletContext]="{ $implicit: data }">
+            </ng-template>
+          </tr>
+        </ng-template>
+      </ng-container>
+    </tbody>
+
     <!-- tr 模板 -->
     <ng-template #trTemp let-data>
       <td
@@ -87,6 +119,7 @@
         </ng-template>
       </td>
     </ng-template>
+
     <!-- total模板 -->
     <ng-template #totalTemp>
       <span>总计{{total}}条</span>

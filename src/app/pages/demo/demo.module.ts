@@ -11,6 +11,10 @@ import { ScrollListComponent } from './scroll-list/scroll-list.component';
 import { ButtonComponent } from './button/button.component';
 import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.component';
 import { TableComponent } from './table/table.component';
+import { TableBaseComponent } from './table/table-base/table-base.component';
+import { TableInterfaceComponent } from './table/table-interface/table-interface.component';
+import { TableDropComponent } from './table/table-drop/table-drop.component';
+import { TableVirtualComponent } from './table/table-virtual/table-virtual.component';
 import { DetailListComponent } from './detail-list/detail-list.component';
 import { ExportComponent } from './export/export.component';
 import { SearchComponent } from './search/search.component';
@@ -30,6 +34,10 @@ import { ImageComponent } from './image/image.component';
     ButtonComponent,
     CheckboxGroupComponent,
     TableComponent,
+    TableBaseComponent,
+    TableInterfaceComponent,
+    TableDropComponent,
+    TableVirtualComponent,
     DetailListComponent,
     ExportComponent,
     SearchComponent,

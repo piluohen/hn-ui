@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -53,7 +54,8 @@ const ngZorro = [
   NzSliderModule,
   NzSwitchModule,
   NzAddOnModule,
-  NzNoAnimationModule
+  NzNoAnimationModule,
+  DragDropModule
 ];
 
 @NgModule({

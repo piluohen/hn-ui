@@ -18,6 +18,7 @@ import {
   AfterViewInit,
   OnDestroy
 } from '@angular/core';
+import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { NzTableComponent } from 'ng-zorro-antd';
@@ -85,12 +86,21 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   @Input() virtualMaxBufferPx = 200;
   @Input() virtualMinBufferPx = 100;
 
+  // 拖拽
+  @Input() draggable = false;
+  @Input() draggData: any[] = [];
+
   // 多选选中事件
   @Output()
   checkChange: EventEmitter<any> = new EventEmitter();
 
+  // 滚动监听
   @Output()
   virtualChange: EventEmitter<any> = new EventEmitter();
+
+  // 拖拽监听
+  @Output()
+  draggChange: EventEmitter<any> = new EventEmitter();
 
   // 多选相关变量start
   isAllDisplayDataChecked = false;
@@ -110,7 +120,9 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   // 总条数
   total = 0;
 
-  destroy$ = new Subject();
+  draggIds: any[] = [];
+
+  private destroy$ = new Subject();
 
   constructor(private cd: ChangeDetectorRef) {}
 
@@ -290,18 +302,28 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   /**
    * 清除选中
    */
-  clearChecked() {
+  clearChecked(): void {
     this.checkAll(false);
   }
 
   /**
    * 虚拟滚动监听
    */
-  handleVirtualChange() {
+  private handleVirtualChange(): void {
     if (this.virtualScroll) {
       this.table.cdkVirtualScrollViewport.scrolledIndexChange.pipe(takeUntil(this.destroy$)).subscribe(data => {
         this.virtualChange.emit(data);
       });
     }
+  }
+
+  /**
+   * 拖拽事件
+   * @param event 事件
+   */
+  drop(event: CdkDragDrop<string[]>): void {
+    const list = this.draggData.length > 0 ? this.draggData : this.tableData;
+    moveItemInArray(list, event.previousIndex, event.currentIndex);
+    this.draggChange.emit({ event: event, list: list });
   }
 }
