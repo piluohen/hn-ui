@@ -127,9 +127,7 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   constructor(private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.setPageSizeOptions();
-    this.setTableColumns();
-    this.getList();
+    this.init();
   }
 
   ngOnChanges(changes: any) {
@@ -172,6 +170,12 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
       this.destroy$.next();
       this.destroy$.complete();
     }
+  }
+
+  init() {
+    this.setPageSizeOptions();
+    this.setTableColumns();
+    this.getList();
   }
 
   /**

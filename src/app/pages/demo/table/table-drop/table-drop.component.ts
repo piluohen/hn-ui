@@ -26,7 +26,7 @@ export class TableDropComponent implements OnInit {
       this.tableData.push({
         id: i + 1,
         ...item,
-        name: `刘备${i + 1}`,
+        name: `${item.name}${i}`,
         disabled: i > 4
       });
     }

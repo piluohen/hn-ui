@@ -16,7 +16,8 @@ export class TableVirtualComponent implements OnInit {
     for (let i = 0; i < 2000; i++) {
       this.tableData.push({
         id: i + 1,
-        ...item
+        ...item,
+        name: `${item.name}${i}`
       });
     }
   }
