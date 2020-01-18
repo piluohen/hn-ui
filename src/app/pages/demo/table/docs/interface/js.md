@@ -1,57 +1,35 @@
 ```JS
-import {
-  Component,
-  OnInit,
-  ViewChild
-} from '@angular/core';
-import {
-  HttpClient
-} from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Utils } from 'src/app/share/util/utils';
+import { formList } from '../../../../mock/formList';
+import { columns } from '../columns';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  selector: 'app-table-interface',
+  templateUrl: './table-interface.component.html'
 })
-export class TableComponent implements OnInit {
+export class TableInterfaceComponent implements OnInit {
   @ViewChild('table') table: any;
-  getListApi: any;
-  columns: any[] = [{
-      title: '名称',
-      key: 'name'
-    },
-    {
-      title: '性别',
-      key: 'gender'
-    },
-    {
-      title: '年龄',
-      key: 'age'
-    },
-    {
-      title: '出生日期',
-      key: 'createTime'
-    },
-    {
-      title: '链接',
-      key: 'link',
-      renderKey: 'linkTemp'
-    },
-    {
-      title: '操作',
-      right: '0px',
-      width: '80px',
-      renderKey: 'operateTemp'
-    }
-  ];
 
-  params: any = {};
+  getListApi: any;
+
+  columns: any[] = columns;
+
+  tableData: any[] = [];
+
+  params: any = {
+    input1: null
+  };
+
+  formList: any[] = formList;
+
+  checkedData: any[] = [];
+  numberOfChecked = 0;
 
   constructor(private http: HttpClient) {
     this.getListApi = (params: any = {}) => {
-      return this.http.get('http://test.mgt.campus.huanuo-nsb.com/ipark-cost-service/mock/list', {
-        params
-      });
+      return this.http.get('http://test.mgt.campus.huanuo-nsb.com/ipark-cost-service/mock/list', { params });
     };
   }
 
@@ -64,5 +42,30 @@ export class TableComponent implements OnInit {
   handleEdit(type: string, data: any = {}) {
     console.log(type, data);
   }
+
+  /**
+   * check选中操作
+   * @param data 数据
+   */
+  handleCheckChange(data: any) {
+    this.checkedData = data;
+    this.numberOfChecked = data.length;
+  }
+
+  /**
+   * 清除选中
+   */
+  handleClear() {
+    this.table.clearChecked();
+  }
+
+  /**
+   * 搜索方法
+   * @param data 搜索数据
+   */
+  handleSearch(data: any): void {
+    this.params = Utils.filterEmptyObj({ ...data });
+  }
 }
+
 ```

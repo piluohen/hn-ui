@@ -1,70 +1,57 @@
 ```JS
-import {
-  Component,
-  OnInit,
-  ViewChild
-} from '@angular/core';
-import {
-  HttpClient
-} from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Utils } from 'src/app/share/util/utils';
+import { formList } from '../../../../mock/formList';
+import { columns, item } from '../columns';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.scss']
+  selector: 'app-table-base',
+  templateUrl: './table-base.component.html'
 })
-export class TableComponent implements OnInit {
+export class TableBaseComponent implements OnInit {
   @ViewChild('table') table: any;
-  columns: any[] = [{
-      title: '名称',
-      key: 'name'
-    },
-    {
-      title: '性别',
-      key: 'gender'
-    },
-    {
-      title: '年龄',
-      key: 'age'
-    },
-    {
-      title: '出生日期',
-      key: 'createTime'
-    },
-    {
-      title: '链接',
-      key: 'link',
-      renderKey: 'linkTemp'
-    },
-    {
-      title: '操作',
-      right: '0px',
-      width: '80px',
-      renderKey: 'operateTemp'
-    }
-  ];
 
+  size = 'default';
+  sizeList: any[] = ['default', 'middle', 'small'];
+
+  showSelect = true;
+  showPagination = true;
+  pagePosition = 'bottom';
+  positionList: any[] = ['top', 'bottom', 'both'];
+  showSizeChanger = true;
+  showQuickJumper = false;
+  hideOnSinglePage = false;
+  simplePage = false;
+  bordered = false;
+  draggable = false;
+  pagination = {
+    pageSize: 10,
+    pageIndex: 1
+  };
+
+  columns: any[] = columns;
   tableData: any[] = [];
-
   params: any = {};
+  formList: any[] = formList;
+
+  checkedData: any[] = [];
+  numberOfChecked = 0;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.getData()
+    this.getData();
   }
 
   getData() {
-    const params: any = {
-      pageSize: 10,
-      pageNo: 1
-    };
-    this.getListApi(params).subscribe((res: any) => {
-      if (res.success) {
-        const data = res.data.list;
-        this.tableData = data;
-      }
-    });
+    for (let i = 0; i < 34; i++) {
+      this.tableData.push({
+        id: i + 1,
+        ...item,
+        name: `${item.name}${i}`
+      });
+    }
   }
 
   handleView(scope: any = {}): void {
@@ -74,5 +61,38 @@ export class TableComponent implements OnInit {
   handleEdit(type: string, data: any = {}) {
     console.log(type, data);
   }
+
+  /**
+   * check选中操作
+   * @param data 数据
+   */
+  handleCheckChange(data: any) {
+    this.checkedData = data;
+    this.numberOfChecked = data.length;
+  }
+
+  /**
+   * 清除选中
+   */
+  handleClear() {
+    this.table.clearChecked();
+  }
+
+  /**
+   * 搜索方法
+   * @param data 搜索数据
+   */
+  handleSearch(data: any): void {
+    this.params = Utils.filterEmptyObj({ ...this.params, ...data });
+    this.getData();
+  }
+
+  pageSizeChange(event: any): void {
+    this.table.init();
+  }
+  pageIndexChange(event: any): void {
+    this.table.init();
+  }
 }
+
 ```

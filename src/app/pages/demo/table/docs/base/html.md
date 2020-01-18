@@ -1,5 +1,95 @@
 ```HTML
-<hn-table #table [columns]="columns" [data]="tableData" [params]="params" [scroll]="{x: '600px'}" [showPagination]="true" [showSelect]="true" [render]="{linkTemp: linkTemp, operateTemp: operateTemp}">
+<div class="form-tab">
+  <div class="form-tab-item">配置项</div>
+  <div class="form-tab-item">
+    <span>尺寸：</span>
+    <nz-radio-group [(ngModel)]="size">
+      <label
+        *ngFor="let item of sizeList"
+        nz-radio-button
+        [nzValue]="item">
+        <span>{{item}}</span>
+      </label>
+    </nz-radio-group>
+  </div>
+  <div class="form-tab-item">
+    <span>边框：</span>
+    <nz-switch [(ngModel)]="bordered" name="bordered"></nz-switch>
+  </div>
+  <div class="form-tab-item">
+    <span>显示选择框：</span>
+    <nz-switch [(ngModel)]="showSelect" name="showSelect"></nz-switch>
+  </div>
+  <div class="form-tab-item">
+    <span>显示分页：</span>
+    <nz-switch [(ngModel)]="showPagination" name="showPagination"></nz-switch>
+  </div>
+  <div class="form-tab-item">
+    <span>显示每页数量选择：</span>
+    <nz-switch [(ngModel)]="showSizeChanger" name="showSizeChanger"></nz-switch>
+  </div>
+  <div class="form-tab-item">
+    <span>显示页码输入跳转：</span>
+    <nz-switch [(ngModel)]="showQuickJumper" name="showQuickJumper"></nz-switch>
+  </div>
+  <div class="form-tab-item">
+    <span>仅一页数据隐藏分页器（鸡肋，不要用）：</span>
+    <nz-switch [(ngModel)]="hideOnSinglePage" name="hideOnSinglePage"></nz-switch>
+  </div>
+  <div class="form-tab-item">
+    <span>简单分页：</span>
+    <nz-switch [(ngModel)]="simplePage" name="simplePage"></nz-switch>
+  </div>
+  <div class="form-tab-item">
+    <span>分页每页数量：</span>
+    <nz-input-number
+      [(ngModel)]="pagination.pageSize"
+      (ngModelChange)="pageSizeChange($event)"
+      (keyup.enter)="pageSizeChange($event)"></nz-input-number>
+  </div>
+  <div class="form-tab-item">
+    <span>分页页码：</span>
+    <nz-input-number
+      [(ngModel)]="pagination.pageIndex"
+      (ngModelChange)="pageIndexChange($event)"
+      (keyup.enter)="pageIndexChange($event)"></nz-input-number>
+  </div>
+  <div class="form-tab-item">
+    <span>分页器位置：</span>
+    <nz-radio-group [(ngModel)]="pagePosition">
+      <label
+        *ngFor="let item of positionList"
+        nz-radio-button
+        [nzValue]="item">
+        <span>{{item}}</span>
+      </label>
+    </nz-radio-group>
+  </div>
+  <div class="form-tab-item">
+    <span>允许拖拽：</span>
+    <nz-switch [(ngModel)]="draggable" name="draggable"></nz-switch>
+  </div>
+</div>
+
+<hn-table
+  #table
+  [size]="size"
+  [columns]="columns"
+  [data]="tableData"
+  [params]="params"
+  [showSelect]="showSelect"
+  [scroll]="{x: '600px'}"
+  [showPagination]="showPagination"
+  [paginationPosition]="pagePosition"
+  [pagination]="pagination"
+  [showSizeChanger]="showSizeChanger"
+  [showQuickJumper]="showQuickJumper"
+  [hideOnSinglePage]="hideOnSinglePage"
+  [simplePage]="simplePage"
+  [bordered]="bordered"
+  [draggable]="draggable"
+  [render]="{linkTemp: linkTemp, operateTemp: operateTemp}"
+  (checkChange)="handleCheckChange($event)">
   <ng-template #linkTemp let-scope>
     <a class="color-primary" (click)="handleView(scope)">{{scope.data[scope.item.key]}}</a>
   </ng-template>
