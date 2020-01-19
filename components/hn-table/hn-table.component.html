@@ -3,13 +3,13 @@
     #table
     [nzData]="tableData"
     [nzSize]="size"
+    [nzBordered]="bordered"
+    [nzScroll]="scroll"
     [nzShowPagination]="showPagination"
     [nzPaginationPosition]="paginationPosition"
     [nzFrontPagination]="false"
     [nzShowSizeChanger]="showSizeChanger"
     [nzShowQuickJumper]="showQuickJumper"
-    [nzBordered]="bordered"
-    [nzScroll]="scroll"
     [nzShowTotal]="totalTemp"
     [nzTotal]="total"
     [(nzPageIndex)]="pagination.pageIndex"
@@ -24,7 +24,7 @@
     [nzVirtualItemSize]="virtualItemSize"
     [nzVirtualMaxBufferPx]="virtualMaxBufferPx"
     [nzVirtualMinBufferPx]="virtualMinBufferPx">
-    <thead>
+    <thead (nzSortChange)="sort($event)" nzSingleSort="singleSort">
       <tr>
         <th
           *ngIf="showSelect"
@@ -33,14 +33,21 @@
           nzShowCheckbox
           [(nzChecked)]="isAllDisplayDataChecked"
           [nzIndeterminate]="isIndeterminate"
-          (nzCheckedChange)="checkAll($event)"></th>
+          (nzCheckedChange)="checkAll($event)"
+          [nzShowRowSelection]="showRowSelection"
+          [nzSelections]="selections"></th>
         <th
           *ngFor="let item of tableColumns"
           [nzWidth]="item.width"
           [nzAlign]="item.align"
           [nzLeft]="item.left"
-          [nzRight]="item.right">
-          {{item.title}}</th>
+          [nzRight]="item.right"
+          [nzShowSort]="item.showSort"
+          [nzSortKey]="item.sortKey || item.key"
+          [nzShowFilter]="item.showFilter"
+          [nzFilterMultiple]="item.filterMultiple"
+          [nzFilters]="item.filters || []"
+          (nzFilterChange)="item.filterChange($event)">{{item.title}}</th>
       </tr>
     </thead>
 

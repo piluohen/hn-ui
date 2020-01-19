@@ -1,0 +1,13 @@
+```HTML
+<hn-table
+  #table
+  size="default"
+  [columns]="columns"
+  [data]="tableData"
+  [params]="{}"
+  [showSelect]="true"
+  [singleSort]="false"
+  (checkChange)="handleCheckChange($event)"
+  (sortChange)="handleSortChange($event)">
+</hn-table>
+```

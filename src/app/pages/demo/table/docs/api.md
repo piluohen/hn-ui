@@ -23,10 +23,16 @@
 | footer             | 表格尾部                                         | string ｜ TemplateRef |                            | 否   | --                           |
 | render             | 模板对象                                         | Object                |                            | 否   | {}                           |
 | draggable          | 是否开启拖拽                                     | Boolean               |                            | 否   | false                        |
-| draggData          | 拖拽数据                                         | Array                 |                            | 否   | false                        |
+| singleSort         | 是否单列模式排序                                 | Boolean               |                            | 否   | false                        |
+
+<!-- | showRowSelection   | 显示下拉选择                                     | Boolean               |                            | 否   | false                            | -->
+<!-- | selections         | 下拉选择配置项，配合 showRowSelection 使用       | Array                 |                            | 否   | [{text: '', onSelect: () => {}}] | -->
 
 ## Event
 
-| 名称        | 描述           | 返回值 |
-| ----------- | -------------- | ------ |
-| checkChange | 多选项改变方法 | -      |
+| 名称          | 描述             | 返回值 |
+| ------------- | ---------------- | ------ |
+| checkChange   | 多选项改变方法   | -      |
+| sortChange    | 排序事件         | -      |
+| virtualChange | 虚拟滚动监听事件 | -      |
+| draggChange   | 拖拽监听         | -      |

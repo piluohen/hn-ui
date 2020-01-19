@@ -50,6 +50,13 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   @Input() contentKey: any = 'list';
   // 是否显示选择框
   @Input() showSelect = true;
+  // 是否border
+  @Input() bordered = false;
+  // 滚动区域配置
+  @Input() scroll: any = {};
+
+  @Input() showRowSelection = false;
+  @Input() selections: any[] = [];
 
   // 是否显示分页
   @Input() showPagination = true;
@@ -71,12 +78,8 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   // 是否是简单分页
   @Input() simplePage = false;
 
-  // 滚动区域配置
-  @Input() scroll: any = {};
   // 底部
   @Input() footer: any;
-  // 是否border
-  @Input() bordered = false;
   // render函数
   @Input() render: any = {};
 
@@ -90,14 +93,18 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   @Input() draggable = false;
   @Input() draggKey = 'deaggable';
 
+  // 单列排序模式
+  @Input() singleSort = false;
+
   // 多选选中事件
   @Output()
   checkChange: EventEmitter<any> = new EventEmitter();
-
+  // 排序事件
+  @Output()
+  sortChange: EventEmitter<any> = new EventEmitter();
   // 滚动监听
   @Output()
   virtualChange: EventEmitter<any> = new EventEmitter();
-
   // 拖拽监听
   @Output()
   draggChange: EventEmitter<any> = new EventEmitter();
@@ -308,6 +315,14 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
    */
   clearChecked(): void {
     this.checkAll(false);
+  }
+
+  /**
+   * 排序
+   * @param event 事件
+   */
+  sort(event: any): void {
+    this.sortChange.emit(event);
   }
 
   /**
