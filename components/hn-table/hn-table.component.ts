@@ -206,6 +206,9 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
         if (item.renderKey) {
           item.render = this.render[item.renderKey];
         }
+        if (item.thRenderKey) {
+          item.thRender = this.render[item.thRenderKey];
+        }
         return item;
       });
     } else {

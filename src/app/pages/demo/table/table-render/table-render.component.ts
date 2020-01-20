@@ -42,7 +42,7 @@ export class TableRenderComponent implements OnInit {
     },
     { title: '年龄', key: 'age', showSort: true },
     { title: '出生日期', key: 'createTime', showSort: true },
-    { title: '链接', key: 'link', renderKey: 'linkTemp' }
+    { title: '链接', key: 'link', renderKey: 'linkTemp', thRenderKey: 'linkThTemp' }
   ];
   tableData: any[] = [];
   tableOldData: any[] = [];
@@ -72,6 +72,10 @@ export class TableRenderComponent implements OnInit {
     }
     this.tableOldData = [...this.tableData];
     this.tableFilterData = [...this.tableData];
+  }
+
+  handleView(scope: any = {}): void {
+    window.open(scope.data[scope.item.key]);
   }
 
   /**

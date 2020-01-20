@@ -35,9 +35,10 @@
           [nzIndeterminate]="isIndeterminate"
           (nzCheckedChange)="checkAll($event)"
           [nzShowRowSelection]="showRowSelection"
-          [nzSelections]="selections"></th>
+          [nzSelections]="selections">
+        </th>
         <th
-          *ngFor="let item of tableColumns"
+          *ngFor="let item of tableColumns;index as index"
           [nzWidth]="item.width"
           [nzAlign]="item.align"
           [nzLeft]="item.left"
@@ -47,7 +48,15 @@
           [nzShowFilter]="item.showFilter"
           [nzFilterMultiple]="item.filterMultiple"
           [nzFilters]="item.filters || []"
-          (nzFilterChange)="item.filterChange($event)">{{item.title}}</th>
+          nzCustomFilter
+          (nzFilterChange)="item.filterChange($event)">
+          <span *ngIf="!item.thRender">{{item.title}}</span>
+          <ng-template
+            [ngIf]="item.thRender"
+            [ngTemplateOutlet]="item.thRender"
+            [ngTemplateOutletContext]="{ $implicit: {item: item}, index: index }">
+          </ng-template>
+        </th>
       </tr>
     </thead>
 
