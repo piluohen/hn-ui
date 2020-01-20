@@ -91,7 +91,7 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
 
   // 拖拽
   @Input() draggable = false;
-  @Input() draggKey = 'deaggable';
+  @Input() draggDisabledKey = 'disabled';
 
   // 单列排序模式
   @Input() singleSort = false;
@@ -341,7 +341,11 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
    * @param data 行数据
    */
   canDrag(data: any) {
-    return data[this.draggKey];
+    if (this.draggable) {
+      return !data[this.draggDisabledKey];
+    } else {
+      return false;
+    }
   }
 
   /**

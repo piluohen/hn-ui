@@ -20,9 +20,10 @@
 | simplePage         | 是否为简单分页                                   | Boolean               |                            | 否   | false                        |
 | bordered           | 是否带 border 边框                               | Boolean               |                            | 否   | false                        |
 | scroll             | 横向或纵向支持滚动，也可用于指定滚动区域的宽高度 | Object                |                            | 否   | {}                           |
-| footer             | 表格尾部                                         | string ｜ TemplateRef |                            | 否   | --                           |
+| footer             | 表格尾部                                         | String ｜ TemplateRef |                            | 否   | --                           |
 | render             | 模板对象                                         | Object                |                            | 否   | {}                           |
 | draggable          | 是否开启拖拽                                     | Boolean               |                            | 否   | false                        |
+| draggDisabledKey   | 禁用拖拽 key 值                                  | String                |                            | 否   | disabled                     |
 | singleSort         | 是否单列模式排序                                 | Boolean               |                            | 否   | false                        |
 
 <!-- | showRowSelection   | 显示下拉选择                                     | Boolean               |                            | 否   | false                            | -->
