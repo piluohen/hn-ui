@@ -26,10 +26,107 @@
     [nzVirtualMinBufferPx]="virtualMinBufferPx">
     <thead (nzSortChange)="sort($event)" nzSingleSort="singleSort">
       <tr>
+        <ng-template [ngTemplateOutlet]="thTemp"></ng-template>
+      </tr>
+    </thead>
+
+    <!-- 允许拖拽 -->
+    <tbody *ngIf="draggable" cdkDropList (cdkDropListDropped)="drop($event)">
+      <ng-container *ngIf="!virtualScroll">
+        <ng-container *ngFor="let data of tableData; index as index">
+          <tr *ngIf="canDrag(data)" cdkDrag>
+            <ng-template [ngTemplateOutlet]="tdTemp" [ngTemplateOutletContext]="{ $implicit: data }"> </ng-template>
+          </tr>
+          <tr *ngIf="!canDrag(data)">
+            <ng-template [ngTemplateOutlet]="tdTemp" [ngTemplateOutletContext]="{ $implicit: data }"> </ng-template>
+          </tr>
+          <ng-container *ngIf="expandRender && data.expand">
+            <tr [nzExpand]="data.expand">
+              <ng-template
+                [ngTemplateOutlet]="expandRender"
+                [ngTemplateOutletContext]="{ $implicit: data }">
+              </ng-template>
+            </tr>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="virtualScroll">
+        <ng-template nz-virtual-scroll let-data let-index="index">
+          <tr *ngIf="canDrag(data)" cdkDrag>
+            <ng-template [ngTemplateOutlet]="tdTemp" [ngTemplateOutletContext]="{ $implicit: data }"> </ng-template>
+          </tr>
+          <tr *ngIf="!canDrag(data)">
+            <ng-template [ngTemplateOutlet]="tdTemp" [ngTemplateOutletContext]="{ $implicit: data }"> </ng-template>
+          </tr>
+          <ng-container *ngIf="expandRender && data.expand">
+            <tr [nzExpand]="data.expand">
+              <ng-template
+                [ngTemplateOutlet]="expandRender"
+                [ngTemplateOutletContext]="{ $implicit: data }">
+              </ng-template>
+            </tr>
+          </ng-container>
+        </ng-template>
+      </ng-container>
+    </tbody>
+
+    <!-- 不允许拖拽 -->
+    <tbody *ngIf="!draggable">
+      <ng-container *ngIf="!virtualScroll">
+        <ng-container *ngFor="let data of tableData; index as index">
+          <ng-template [ngTemplateOutlet]="trTemp" [ngTemplateOutletContext]="{ $implicit: data }"> </ng-template>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngIf="virtualScroll">
+        <ng-template nz-virtual-scroll let-data let-index="index">
+          <ng-template [ngTemplateOutlet]="trTemp" [ngTemplateOutletContext]="{ $implicit: data }"> </ng-template>
+        </ng-template>
+      </ng-container>
+    </tbody>
+
+    <!-- tr 模板 -->
+    <ng-template #trTemp let-data>
+      <tr>
+        <ng-template [ngTemplateOutlet]="tdTemp" [ngTemplateOutletContext]="{ $implicit: data }"> </ng-template>
+      </tr>
+      <ng-container *ngIf="expandRender && data.expand">
+        <tr [nzExpand]="data.expand">
+          <ng-template
+            [ngTemplateOutlet]="expandRender"
+            [ngTemplateOutletContext]="{ $implicit: data }">
+          </ng-template>
+        </tr>
+      </ng-container>
+    </ng-template>
+
+    <!-- th 模板 -->
+    <ng-template #thTemp>
+      <th
+        *ngIf="showSelect"
+        nzLeft="0px"
+        nzWidth="80px"
+        nzShowCheckbox
+        [(nzChecked)]="isAllDisplayDataChecked"
+        [nzIndeterminate]="isIndeterminate"
+        (nzCheckedChange)="checkAll($event)"
+        [nzShowRowSelection]="showRowSelection"
+        [nzSelections]="selections">
+      </th>
+      <ng-container *ngFor="let item of tableColumns; index as index">
         <th
-          *ngIf="showSelect"
-          nzLeft="0px"
-          nzWidth="80px"
+          *ngIf="item.showExpand"
+          [nzWidth]="item.width || '60px'"
+          [nzAlign]="item.align || 'center'"
+          [nzLeft]="item.left || '0px'"
+          [nzRight]="item.right"
+          nzShowExpand>
+        </th>
+        <th
+          *ngIf="item.showCheckbox"
+          [nzWidth]="item.width || '60px'"
+          [nzAlign]="item.align || 'center'"
+          [nzLeft]="item.left"
+          [nzRight]="item.right"
           nzShowCheckbox
           [(nzChecked)]="isAllDisplayDataChecked"
           [nzIndeterminate]="isIndeterminate"
@@ -38,7 +135,7 @@
           [nzSelections]="selections">
         </th>
         <th
-          *ngFor="let item of tableColumns;index as index"
+          *ngIf="!item.showExpand && !item.showCheckbox"
           [nzWidth]="item.width"
           [nzAlign]="item.align"
           [nzLeft]="item.left"
@@ -48,73 +145,19 @@
           [nzShowFilter]="item.showFilter"
           [nzFilterMultiple]="item.filterMultiple"
           [nzFilters]="item.filters || []"
-          nzCustomFilter
           (nzFilterChange)="item.filterChange($event)">
-          <span *ngIf="!item.thRender">{{item.title}}</span>
+          <span *ngIf="!item.thRender">{{ item.title }}</span>
           <ng-template
             [ngIf]="item.thRender"
             [ngTemplateOutlet]="item.thRender"
-            [ngTemplateOutletContext]="{ $implicit: {item: item}, index: index }">
+            [ngTemplateOutletContext]="{ $implicit: { item: item }, index: index }">
           </ng-template>
         </th>
-      </tr>
-    </thead>
-
-    <!-- 允许拖拽 -->
-    <tbody *ngIf="draggable" cdkDropList (cdkDropListDropped)="drop($event)">
-      <ng-container *ngIf="!virtualScroll">
-        <ng-container *ngFor="let data of tableData;index as index">
-          <tr *ngIf="canDrag(data)" cdkDrag>
-            <ng-template
-              [ngTemplateOutlet]="trTemp"
-              [ngTemplateOutletContext]="{ $implicit: data }">
-            </ng-template>
-          </tr>
-          <tr *ngIf="!canDrag(data)">
-            <ng-template
-              [ngTemplateOutlet]="trTemp"
-              [ngTemplateOutletContext]="{ $implicit: data }">
-            </ng-template>
-          </tr>
-        </ng-container>
-
       </ng-container>
-      <ng-container *ngIf="virtualScroll">
-        <ng-template nz-virtual-scroll let-data let-index="index">
-          <tr cdkDrag>
-            <ng-template
-              [ngTemplateOutlet]="trTemp"
-              [ngTemplateOutletContext]="{ $implicit: data }">
-            </ng-template>
-          </tr>
-        </ng-template>
-      </ng-container>
-    </tbody>
+    </ng-template>
 
-    <!-- 不允许拖拽 -->
-    <tbody *ngIf="!draggable">
-      <ng-container *ngIf="!virtualScroll">
-        <tr *ngFor="let data of tableData">
-          <ng-template
-            [ngTemplateOutlet]="trTemp"
-            [ngTemplateOutletContext]="{ $implicit: data }">
-          </ng-template>
-        </tr>
-      </ng-container>
-      <ng-container *ngIf="virtualScroll">
-        <ng-template nz-virtual-scroll let-data let-index="index">
-          <tr>
-            <ng-template
-              [ngTemplateOutlet]="trTemp"
-              [ngTemplateOutletContext]="{ $implicit: data }">
-            </ng-template>
-          </tr>
-        </ng-template>
-      </ng-container>
-    </tbody>
-
-    <!-- tr 模板 -->
-    <ng-template #trTemp let-data>
+    <!-- td 模板 -->
+    <ng-template #tdTemp let-data>
       <td
         *ngIf="showSelect"
         nzLeft="0px"
@@ -122,23 +165,42 @@
         [(nzChecked)]="mapOfCheckedId[data.id]"
         [nzDisabled]="data.disabled"
         (nzCheckedChange)="refreshStatus()"></td>
-      <td
-        *ngFor="let item of tableColumns;index as index"
-        [nzAlign]="item.align"
-        [nzLeft]="item.left"
-        [nzRight]="item.right">
-        <span *ngIf="!item.render">{{item.format ? item.format(data) : data[item.key]}}</span>
-        <ng-template
-          [ngIf]="item.render"
-          [ngTemplateOutlet]="item.render"
-          [ngTemplateOutletContext]="{ $implicit: {data: data, item: item}, index: index }">
-        </ng-template>
-      </td>
+      <ng-container *ngFor="let item of tableColumns; index as index">
+        <td
+          *ngIf="item.showExpand"
+          nzShowExpand
+          [(nzExpand)]="data.expand"
+          [nzAlign]="item.align || 'center'"
+          [nzLeft]="item.left || '0px'"
+          [nzRight]="item.right"
+          (nzExpandChange)="item.expandChange($event, {data:data, item:item})"></td>
+        <td
+          *ngIf="item.showCheckbox"
+          nzShowCheckbox
+          [nzAlign]="item.align || 'center'"
+          [nzLeft]="item.left"
+          [nzRight]="item.right"
+          [(nzChecked)]="mapOfCheckedId[data.id]"
+          [nzDisabled]="data.disabled"
+          (nzCheckedChange)="refreshStatus()"></td>
+        <td
+          *ngIf="!item.showExpand && !item.showCheckbox"
+          [nzAlign]="item.align"
+          [nzLeft]="item.left"
+          [nzRight]="item.right">
+          <span *ngIf="!item.render">{{ item.format ? item.format(data) : data[item.key] }}</span>
+          <ng-template
+            [ngIf]="item.render"
+            [ngTemplateOutlet]="item.render"
+            [ngTemplateOutletContext]="{ $implicit: { data: data, item: item }, index: index }">
+          </ng-template>
+        </td>
+      </ng-container>
     </ng-template>
 
     <!-- total模板 -->
     <ng-template #totalTemp>
-      <span>总计{{total}}条</span>
+      <span>总计{{ total }}条</span>
     </ng-template>
   </nz-table>
 </div>

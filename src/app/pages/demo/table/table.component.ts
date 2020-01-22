@@ -39,6 +39,11 @@ export class TableComponent implements OnInit {
     { title: 'JS', markdown: require('raw-loader!./docs/drop/js.md') }
   ];
 
+  expandTabs: any[] = [
+    { title: 'HTML', markdown: require('raw-loader!./docs/expand/html.md') },
+    { title: 'JS', markdown: require('raw-loader!./docs/expand/js.md') }
+  ];
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {}

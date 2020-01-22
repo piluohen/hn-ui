@@ -29,7 +29,7 @@ export class TableBaseComponent implements OnInit {
     pageIndex: 1
   };
 
-  columns: any[] = columns;
+  columns: any[] = [...columns];
   tableData: any[] = [];
   params: any = {};
   formList: any[] = formList;

@@ -8,7 +8,7 @@ import { columns, item } from '../columns';
 export class TableVirtualComponent implements OnInit {
   @ViewChild('table') table: any;
 
-  columns = columns;
+  columns = [...columns];
   tableData: any[] = [];
   constructor() {}
 

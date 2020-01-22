@@ -2,8 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { columns, item } from '../columns';
 @Component({
   selector: 'app-table-render',
-  templateUrl: './table-render.component.html',
-  styleUrls: ['./table-render.component.less']
+  templateUrl: './table-render.component.html'
 })
 export class TableRenderComponent implements OnInit {
   @ViewChild('table') table: any;

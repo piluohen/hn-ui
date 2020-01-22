@@ -9,7 +9,7 @@
 | columns            | 列数据                                           | Array                 |                            | 是   | []                           |
 | totalKey           | 总数据字段的 key                                 | String                |                            | 否   | total                        |
 | contentKey         | 数据内容的 key                                   | String                |                            | 否   | list                         |
-| showSelect         | 是否使用多选功能                                 | Boolean               |                            | 否   | true                         |
+| showSelect         | 是否使用多选功能(1.1.6 之后不建议使用)           | Boolean               |                            | 否   | false                        |
 | showPagination     | 是否分页                                         | Boolean               |                            | 否   | true                         |
 | paginationPosition | 分页器位置                                       | String                | bottom \| top \| both      | 否   | bottom                       |
 | pagination         | 配置分页页码与每页数量                           | Object                |                            | 否   | {pageSize: 10, pageIndex: 1} |
@@ -21,7 +21,8 @@
 | bordered           | 是否带 border 边框                               | Boolean               |                            | 否   | false                        |
 | scroll             | 横向或纵向支持滚动，也可用于指定滚动区域的宽高度 | Object                |                            | 否   | {}                           |
 | footer             | 表格尾部                                         | String ｜ TemplateRef |                            | 否   | --                           |
-| render             | 模板对象                                         | Object                |                            | 否   | {}                           |
+| render             | 模板对象                                         | TemplateRef           |                            | 否   | {}                           |
+| expandRender       | 展开 render 模板                                 | TemplateRef           |                            | 否   |                              |
 | draggable          | 是否开启拖拽                                     | Boolean               |                            | 否   | false                        |
 | draggDisabledKey   | 禁用拖拽 key 值                                  | String                |                            | 否   | disabled                     |
 | singleSort         | 是否单列模式排序                                 | Boolean               |                            | 否   | false                        |

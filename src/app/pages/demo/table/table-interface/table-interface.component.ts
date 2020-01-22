@@ -13,7 +13,7 @@ export class TableInterfaceComponent implements OnInit {
 
   getListApi: any;
 
-  columns: any[] = columns;
+  columns: any[] = [...columns];
 
   tableData: any[] = [];
 

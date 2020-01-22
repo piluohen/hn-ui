@@ -13,17 +13,21 @@
   <app-table-interface></app-table-interface>
   <app-markdown-tab [list]="interfaceTabs"></app-markdown-tab>
 
+  <h2>展开收缩</h2>
+  <app-table-expand></app-table-expand>
+  <app-markdown-tab [list]="expandTabs"></app-markdown-tab>
+
   <h2>筛选、过滤、排序</h2>
   <app-table-render></app-table-render>
   <app-markdown-tab [list]="renderTabs"></app-markdown-tab>
 
-  <h2>虚拟滚动</h2>
-  <app-table-virtual></app-table-virtual>
-  <app-markdown-tab [list]="virtualTabs"></app-markdown-tab>
-
   <h2>拖拽</h2>
   <app-table-drop></app-table-drop>
   <app-markdown-tab [list]="dropTabs"></app-markdown-tab>
+
+  <h2>虚拟滚动</h2>
+  <app-table-virtual></app-table-virtual>
+  <app-markdown-tab [list]="virtualTabs"></app-markdown-tab>
 
   <markdown ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
 </div>

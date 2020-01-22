@@ -49,7 +49,7 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   // 内容列表字段
   @Input() contentKey: any = 'list';
   // 是否显示选择框
-  @Input() showSelect = true;
+  @Input() showSelect = false;
   // 是否border
   @Input() bordered = false;
   // 滚动区域配置
@@ -80,8 +80,10 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
 
   // 底部
   @Input() footer: any;
-  // render函数
+  // render
   @Input() render: any = {};
+  // expandRender模板
+  @Input() expandRender: any = {};
 
   // 是否开启虚拟滚动
   @Input() virtualScroll = false;
@@ -357,7 +359,9 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
    */
   drop(event: CdkDragDrop<string[]>): void {
     const list = this.tableData;
+    console.log(this.tableData);
     moveItemInArray(list, event.previousIndex, event.currentIndex);
     this.draggChange.emit({ event: event, list: list });
+    this.cd.markForCheck();
   }
 }

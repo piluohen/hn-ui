@@ -1,0 +1,36 @@
+```HTML
+<div class="form-tab">
+  <div class="form-tab-item">配置项</div>
+  <div class="form-tab-item">
+    <span>允许拖拽：</span>
+    <nz-switch [(ngModel)]="draggable" name="draggable"></nz-switch>
+  </div>
+</div>
+
+<hn-table
+  #table
+  size="default"
+  [columns]="columns"
+  [data]="tableData"
+  [params]="{}"
+  [scroll]="{x: '1200px'}"
+  [showSelect]="false"
+  [expandRender]="expandRender"
+  [draggable]="draggable"
+  (draggChange)="handleDraggChange($event)"
+  (checkChange)="handleCheckChange($event)">
+  <ng-template #expandRender let-data>
+    <td></td>
+    <td colspan="6">
+      <hn-table
+        size="small"
+        [columns]="childColumns"
+        [data]="data.children"
+        [params]="{}"
+        [showSelect]="false"
+        [showPagination]="false">
+      </hn-table>
+    </td>
+  </ng-template>
+</hn-table>
+```
