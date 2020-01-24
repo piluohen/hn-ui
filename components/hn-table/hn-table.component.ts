@@ -82,8 +82,9 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   @Input() footer: any;
   // render
   @Input() render: any = {};
+  @Input() theadRender: any;
   // expandRender模板
-  @Input() expandRender: any = {};
+  @Input() expandRender: any;
 
   // 是否开启虚拟滚动
   @Input() virtualScroll = false;
@@ -359,7 +360,6 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
    */
   drop(event: CdkDragDrop<string[]>): void {
     const list = this.tableData;
-    console.log(this.tableData);
     moveItemInArray(list, event.previousIndex, event.currentIndex);
     this.draggChange.emit({ event: event, list: list });
     this.cd.markForCheck();

@@ -1,4 +1,4 @@
-## Api
+## hn-table Api
 
 | 参数               | 描述                                             | 类型                  | 可选值                     | 必须 | 默认值                       |
 | ------------------ | ------------------------------------------------ | --------------------- | -------------------------- | ---- | ---------------------------- |
@@ -22,6 +22,7 @@
 | scroll             | 横向或纵向支持滚动，也可用于指定滚动区域的宽高度 | Object                |                            | 否   | {}                           |
 | footer             | 表格尾部                                         | String ｜ TemplateRef |                            | 否   | --                           |
 | render             | 模板对象                                         | TemplateRef           |                            | 否   | {}                           |
+| theadRender        | thead 模板                                       | TemplateRef           |                            | 否   |                              |
 | expandRender       | 展开 render 模板                                 | TemplateRef           |                            | 否   |                              |
 | draggable          | 是否开启拖拽                                     | Boolean               |                            | 否   | false                        |
 | draggDisabledKey   | 禁用拖拽 key 值                                  | String                |                            | 否   | disabled                     |
@@ -38,3 +39,52 @@
 | sortChange    | 排序事件         | -      |
 | virtualChange | 虚拟滚动监听事件 | -      |
 | draggChange   | 拖拽监听         | -      |
+
+## columns Api
+
+### 基本
+
+| 参数  | 描述                   | 类型   | 可选值                  | 必须 | 默认值 |
+| ----- | ---------------------- | ------ | ----------------------- | ---- | ------ |
+| title | th 标题                | String |                         | 否   |        |
+| key   | 列数据 key 值          | String |                         | 否   |        |
+| width | 列宽度                 | String |                         | 否   |        |
+| align | 水平方向位置           | String | left \| center \| right | 否   | 'left' |
+| left  | 浮动到左侧距边框的位置 | String |                         | 否   |        |
+| right | 浮动到左侧距边框的位置 | String |                         | 否   |        |
+
+### render
+
+| 参数        | 描述                                                | 类型   | 可选值 | 必须 | 默认值 |
+| ----------- | --------------------------------------------------- | ------ | ------ | ---- | ------ |
+| renderkey   | td render 模板 key 值，配合 hn-table 的 render 使用 | String |        | 否   |        |
+| thRenderkey | th render 模板 key 值，配合 hn-table 的 render 使用 | String |        | 否   |        |
+
+### 展开
+
+| 参数           | 描述                                 | 类型    | 可选值 | 必须 | 默认值 |
+| -------------- | ------------------------------------ | ------- | ------ | ---- | ------ |
+| showExpand     | 显示展开按钮，配合 expandRender 使用 | Boolean |        | 否   | false  |
+| (expandChange) | 展开监听方法                         | Event   |        |      |        |  |
+
+### 多选
+
+| 参数         | 描述                              | 类型    | 可选值 | 必须 | 默认值 |
+| ------------ | --------------------------------- | ------- | ------ | ---- | ------ |
+| showCheckbox | 显示多选框，配合 checkChange 使用 | Boolean |        | 否   | false  |
+
+### 排序
+
+| 参数     | 描述                               | 类型    | 可选值 | 必须 | 默认值 |
+| -------- | ---------------------------------- | ------- | ------ | ---- | ------ |
+| showSort | 显示排序按钮，配合 sortChange 使用 | Boolean |        | 否   | false  |
+| sortKey  | 排序字段 key 值                    | String  |        | 否   | false  |
+
+### 过滤
+
+| 参数           | 描述                               | 类型    | 可选值 | 必须 | 默认值                  |
+| -------------- | ---------------------------------- | ------- | ------ | ---- | ----------------------- |
+| showFilter     | 显示过滤按钮，配合 sortChange 使用 | Boolean |        | 否   | false                   |
+| filterMultiple | 是否多选过滤                       | String  |        | 否   | false                   |
+| filters        | 过滤待选项                         | Array   |        | 否   | [{text: '', value: ''}] |
+| (filterChange) | 过滤监听方法                       | Event   |        | 否   |                         |

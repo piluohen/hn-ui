@@ -25,7 +25,12 @@
     [nzVirtualMaxBufferPx]="virtualMaxBufferPx"
     [nzVirtualMinBufferPx]="virtualMinBufferPx">
     <thead (nzSortChange)="sort($event)" nzSingleSort="singleSort">
-      <tr>
+      <ng-template
+        [ngIf]="theadRender"
+        [ngTemplateOutlet]="theadRender"
+        [ngTemplateOutletContext]="{ $implicit: tableColumns }">
+      </ng-template>
+      <tr *ngIf="!theadRender">
         <ng-template [ngTemplateOutlet]="thTemp"></ng-template>
       </tr>
     </thead>
@@ -90,12 +95,10 @@
         <ng-template [ngTemplateOutlet]="tdTemp" [ngTemplateOutletContext]="{ $implicit: data }"> </ng-template>
       </tr>
       <ng-container *ngIf="expandRender && data.expand">
-        <tr [nzExpand]="data.expand">
-          <ng-template
-            [ngTemplateOutlet]="expandRender"
-            [ngTemplateOutletContext]="{ $implicit: data }">
-          </ng-template>
-        </tr>
+        <ng-template
+          [ngTemplateOutlet]="expandRender"
+          [ngTemplateOutletContext]="{ $implicit: data }">
+        </ng-template>
       </ng-container>
     </ng-template>
 
@@ -140,10 +143,10 @@
           [nzAlign]="item.align"
           [nzLeft]="item.left"
           [nzRight]="item.right"
-          [nzShowSort]="item.showSort"
+          [nzShowSort]="item.showSort || false"
           [nzSortKey]="item.sortKey || item.key"
-          [nzShowFilter]="item.showFilter"
-          [nzFilterMultiple]="item.filterMultiple"
+          [nzShowFilter]="item.showFilter || false"
+          [nzFilterMultiple]="item.filterMultiple || false"
           [nzFilters]="item.filters || []"
           (nzFilterChange)="item.filterChange($event)">
           <span *ngIf="!item.thRender">{{ item.title }}</span>
