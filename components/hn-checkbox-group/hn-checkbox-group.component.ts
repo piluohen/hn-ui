@@ -33,7 +33,7 @@ import { InputBoolean } from 'ng-zorro-antd/core';
 export class HnCheckboxGroupComponent implements ControlValueAccessor, OnInit, OnDestroy {
   @Input() options: any[] = [];
 
-  @Input() @InputBoolean() disabled = false;
+  @Input() @InputBoolean() hnDisabled = false;
 
   @Input() @InputBoolean() checkAll = false;
 
@@ -123,7 +123,7 @@ export class HnCheckboxGroupComponent implements ControlValueAccessor, OnInit, O
    * @param isDisabled 是否禁用
    */
   setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.hnDisabled = isDisabled;
     this.cdr.markForCheck();
   }
 

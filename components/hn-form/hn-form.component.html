@@ -64,7 +64,7 @@
         [placeholder]="data.placeHolder || ''"
         [nzSize]="data.nzSize"
         [rows]="data.rows"
-        [nzAutosize]="data.autosize">
+        [nzAutosize]="data.autosize || false">
         </textarea>
 
       <nz-input-number
@@ -108,7 +108,7 @@
       <hn-checkbox-group
         *ngIf="data.type === 'checkbox'"
         [formControlName]="data.key"
-        [disabled]="data.disabled"
+        [hnDisabled]="data.disabled"
         [options]="data.options">
       </hn-checkbox-group>
 
