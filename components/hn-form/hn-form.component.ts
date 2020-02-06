@@ -32,6 +32,8 @@ export class HnFormComponent implements OnInit, OnChanges {
 
   @Input() hasValidator = true;
 
+  @Input() disabled = false;
+
   @Input() render: any;
 
   @Output() hnSubmit: EventEmitter<any> = new EventEmitter();
@@ -45,10 +47,7 @@ export class HnFormComponent implements OnInit, OnChanges {
   constructor(private fb: FormBuilder, private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
-    this.formList = this.initFormList([...this.formList]);
-    this.initForm();
-    this.oldParams = JSON.stringify(this.params);
-    this.initFormParams();
+    this.init();
   }
 
   ngOnChanges(changes: any) {
@@ -62,6 +61,13 @@ export class HnFormComponent implements OnInit, OnChanges {
     }
   }
 
+  init() {
+    this.formList = this.initFormList([...this.formList]);
+    this.initForm();
+    this.oldParams = JSON.stringify(this.params);
+    this.initFormParams();
+  }
+
   /**
    * 初始化formList
    */
@@ -73,6 +79,9 @@ export class HnFormComponent implements OnInit, OnChanges {
       }
       if (item.renderKey) {
         item.render = this.render[item.renderKey];
+      }
+      if (this.disabled) {
+        item.disabled = true;
       }
       list.push(item);
     });
@@ -97,7 +106,7 @@ export class HnFormComponent implements OnInit, OnChanges {
       if (item.children) {
         form = { ...form, ...this.setInitForm(item.children) };
       } else {
-        form[item.key] = [null, item.validators || []];
+        form[item.key] = [{ value: null, disabled: item.disabled }, item.validators || []];
       }
     });
     return form;

@@ -47,6 +47,17 @@ export const formList = [
     label: '输入框',
     key: 'input',
     type: 'input',
+    disabled: false,
+    required: true,
+    validators: [Validators.required, Validators.maxLength(5)],
+    errorMsg: '请输入不超过5个字符'
+  },
+  {
+    label: '输入域',
+    key: 'textarea',
+    type: 'textarea',
+    rows: 4,
+    disabled: false,
     required: true,
     validators: [Validators.required, Validators.maxLength(5)],
     errorMsg: '请输入不超过5个字符'
@@ -55,6 +66,7 @@ export const formList = [
     label: '数字输入框',
     key: 'inputNumber',
     type: 'input-number',
+    disabled: false,
     required: true,
     validators: [Validators.required],
     errorMsg: '请输入'
@@ -63,7 +75,7 @@ export const formList = [
     label: '单选框',
     key: 'radio',
     type: 'radio',
-    disabled: true,
+    disabled: false,
     options: [...items]
   },
   {

@@ -18,6 +18,8 @@ export class FormComponent implements OnInit {
 
   hasValidator = true;
 
+  disabled = false;
+
   labelWidth = '100px';
 
   params: any = {
@@ -44,6 +46,11 @@ export class FormComponent implements OnInit {
   hasValidatorList: any[] = [
     { label: '开启校验', value: true },
     { label: '关闭校验', value: false }
+  ];
+
+  disabledList: any[] = [
+    { label: '禁用表单', value: true },
+    { label: '非禁用', value: false }
   ];
 
   formList: any[] = formList;

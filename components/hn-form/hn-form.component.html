@@ -1,5 +1,4 @@
 <form class="hn-form" nz-form [nzLayout]="mode" [formGroup]="validateForm" (keyup.enter)="submitForm()">
-
   <ng-container *ngIf="mode === 'horizontal'">
     <nz-form-item *ngFor="let data of formList" nzFlex>
       <ng-template [ngTemplateOutlet]="itemTemp"
@@ -54,14 +53,26 @@
         nz-input
         [formControlName]="data.key"
         [placeholder]="data.placeHolder || ''"
+        [nzSize]="data.nzSize"
         [type]="data.inputType || 'text'"
         [maxlength]="data.maxlength || 30" />
+
+      <textarea
+        *ngIf="data.type === 'textarea'"
+        nz-input
+        [formControlName]="data.key"
+        [placeholder]="data.placeHolder || ''"
+        [nzSize]="data.nzSize"
+        [rows]="data.rows"
+        [nzAutosize]="data.autosize">
+        </textarea>
 
       <nz-input-number
         *ngIf="data.type === 'input-number'"
         [formControlName]="data.key"
         [nzPlaceHolder]="data.placeHolder || ''"
         [nzDisabled]="data.disabled"
+        [nzSize]="data.nzSize"
         [nzMin]="data.nzMin || '-Infinity'"
         [nzMax]="data.nzMax || 'Infinity'"
         [nzStep]="data.nzStep || 1"
@@ -97,6 +108,7 @@
       <hn-checkbox-group
         *ngIf="data.type === 'checkbox'"
         [formControlName]="data.key"
+        [disabled]="data.disabled"
         [options]="data.options">
       </hn-checkbox-group>
 

@@ -8,6 +8,7 @@
 | params       |        参数数据        |   Object    |                                                           |  是  | {}         |
 | hasExplain   |  是否开启文字错误提示  |   Boolean   |                                                           |  否  | true       |
 | hasValidator |      是否开启校验      |   Boolean   |                                                           |  否  | true       |
+| disabled     |      是否禁用表单      |   Boolean   |                                                           |  否  | false      |
 | render       | control 内容自定义模板 | TemplateRef |                                                           |  否  |            |
 
 ## Event
