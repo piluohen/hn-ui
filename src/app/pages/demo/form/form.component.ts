@@ -18,7 +18,7 @@ export class FormComponent implements OnInit {
 
   hasValidator = true;
 
-  disabled = true;
+  disabled = false;
 
   labelWidth = '100px';
 
