@@ -11,14 +11,14 @@
     [nzShowSizeChanger]="showSizeChanger"
     [nzShowQuickJumper]="showQuickJumper"
     [nzShowTotal]="totalTemp"
-    [nzTotal]="total"
+    [nzTotal]="tableTotal"
     [(nzPageIndex)]="pagination.pageIndex"
     [(nzPageSize)]="pagination.pageSize"
     [nzPageSizeOptions]="pageSizeOptions"
     [nzHideOnSinglePage]="hideOnSinglePage"
     [nzSimple]="simplePage"
-    (nzPageIndexChange)="getList()"
-    (nzPageSizeChange)="getList(true)"
+    (nzPageIndexChange)="hnPageIndexChange($event)"
+    (nzPageSizeChange)="hnPageSizeChange($event)"
     [nzFooter]="footer"
     [nzVirtualScroll]="virtualScroll"
     [nzVirtualItemSize]="virtualItemSize"
@@ -203,7 +203,7 @@
 
     <!-- total模板 -->
     <ng-template #totalTemp>
-      <span>总计{{ total }}条</span>
+      <span>总计{{ tableTotal }}条</span>
     </ng-template>
   </nz-table>
 </div>

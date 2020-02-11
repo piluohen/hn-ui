@@ -1,3 +1,4 @@
+```JS
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Utils } from 'src/app/share/util/utils';
@@ -5,10 +6,10 @@ import { formList } from '../../../../mock/formList';
 import { columns } from '../columns';
 
 @Component({
-  selector: 'app-table-interface',
-  templateUrl: './table-interface.component.html'
+  selector: 'app-table-local',
+  templateUrl: './table-local.component.html'
 })
-export class TableInterfaceComponent implements OnInit {
+export class TableLocalComponent implements OnInit {
   @ViewChild('table') table: any;
 
   getListApi: any;
@@ -16,6 +17,8 @@ export class TableInterfaceComponent implements OnInit {
   columns: any[] = [...columns];
 
   tableData: any[] = [];
+
+  total = 0;
 
   params: any = {
     input1: null
@@ -32,7 +35,24 @@ export class TableInterfaceComponent implements OnInit {
     };
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getList();
+  }
+
+  getList() {
+    const params = {
+      name: '2323'
+    };
+    this.http
+      .post('http://test.mgt.campus.huanuo-nsb.com/ipark-cost-service/mock/list?page=1&size=10', { params })
+      .subscribe(res => {
+        if (res['success']) {
+          const data = res['data'];
+          this.tableData = data.list;
+          this.total = data.total;
+        }
+      });
+  }
 
   handleView(scope: any = {}): void {
     window.open(scope.data[scope.item.key]);
@@ -63,6 +83,18 @@ export class TableInterfaceComponent implements OnInit {
    * @param data 搜索数据
    */
   handleSearch(data: any): void {
-    this.params = Utils.filterEmptyObj({ ...data });
+    this.getList();
+  }
+
+  handlePageIndexChange(data: any): void {
+    console.log(data);
+    this.getList();
+  }
+
+  handlePageSizeChange(data: any): void {
+    console.log(data);
+    this.getList();
   }
 }
+
+```

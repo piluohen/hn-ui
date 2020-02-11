@@ -36,6 +36,8 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
 
   // 静态数据数组
   @Input() data: any[] = [];
+  // 总条数
+  @Input() total = 0;
   // 接口请求api
   @Input() api: any;
   // 尺寸 'middle'｜'small'｜'default'
@@ -111,6 +113,12 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   // 拖拽监听
   @Output()
   draggChange: EventEmitter<any> = new EventEmitter();
+  // 分页页码改变事件
+  @Output()
+  pageIndexChange: EventEmitter<any> = new EventEmitter();
+  // 分页size改变事件
+  @Output()
+  pageSizeChange: EventEmitter<any> = new EventEmitter();
 
   // 多选相关变量start
   isAllDisplayDataChecked = false;
@@ -128,7 +136,7 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   // 加载中
   loading = true;
   // 总条数
-  total = 0;
+  tableTotal = 0;
 
   draggIds: any[] = [];
 
@@ -239,9 +247,9 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
    * @param data 本地数据
    */
   getLocalData(): void {
-    this.total = this.data.length;
-    if (this.showPagination) {
-      const { pageSize, pageIndex } = this.pagination;
+    this.tableTotal = this.total || this.data.length;
+    const { pageSize, pageIndex } = this.pagination;
+    if (this.showPagination && this.data.length > pageSize) {
       const data = [...this.data];
       const first = pageSize * (pageIndex - 1);
       const end = pageSize * pageIndex;
@@ -268,7 +276,7 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
       if (res.success) {
         const data = res.data;
         if (data) {
-          this.total = data[this.totalKey];
+          this.tableTotal = data[this.totalKey];
           this.tableData = [...data[this.contentKey]].map((item, i) => {
             return {
               ...item,
@@ -363,5 +371,21 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
     moveItemInArray(list, event.previousIndex, event.currentIndex);
     this.draggChange.emit({ event: event, list: list });
     this.cd.markForCheck();
+  }
+
+  /**
+   * 分页页码改变事件
+   */
+  hnPageIndexChange(event: any) {
+    this.pageIndexChange.emit(event);
+    this.getList();
+  }
+
+  /**
+   * 分页size改变时间
+   */
+  hnPageSizeChange(event: any) {
+    this.pageSizeChange.emit(event);
+    this.getList(true);
   }
 }

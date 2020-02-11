@@ -23,6 +23,12 @@ export class TableComponent implements OnInit {
     { title: 'columns', markdown: require('raw-loader!./docs/columns.md') }
   ];
 
+  localTabs: any[] = [
+    { title: 'HTML', markdown: require('raw-loader!./docs/local/html.md') },
+    { title: 'JS', markdown: require('raw-loader!./docs/local/js.md') },
+    { title: 'columns', markdown: require('raw-loader!./docs/columns.md') }
+  ];
+
   renderTabs: any[] = [
     { title: 'HTML', markdown: require('raw-loader!./docs/render/html.md') },
     { title: 'JS', markdown: require('raw-loader!./docs/render/js.md') }

@@ -14,6 +14,7 @@ import { CheckboxGroupComponent } from './checkbox-group/checkbox-group.componen
 import { TableComponent } from './table/table.component';
 import { TableBaseComponent } from './table/table-base/table-base.component';
 import { TableInterfaceComponent } from './table/table-interface/table-interface.component';
+import { TableLocalComponent } from './table/table-local/table-local.component';
 import { TableRenderComponent } from './table/table-render/table-render.component';
 import { TableDropComponent } from './table/table-drop/table-drop.component';
 import { TableVirtualComponent } from './table/table-virtual/table-virtual.component';
@@ -40,6 +41,7 @@ import { ImageComponent } from './image/image.component';
     TableComponent,
     TableBaseComponent,
     TableInterfaceComponent,
+    TableLocalComponent,
     TableRenderComponent,
     TableDropComponent,
     TableVirtualComponent,
