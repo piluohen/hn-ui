@@ -771,6 +771,8 @@ Apache-2.0
  
 
 
+undefined
+
 tinycolor2
 MIT
 Copyright (c), Brian Grinstead, http://briangrinstead.com
@@ -880,8 +882,6 @@ SOFTWARE.
 
 web-animations-js
 Apache-2.0
-
-undefined
 
 zone.js
 MIT
