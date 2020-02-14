@@ -168,12 +168,18 @@ export const formList = [
         label: '输入框',
         key: 'inputChildren',
         type: 'input',
-        renderKey: 'inputTemp'
+        renderKey: 'inputTemp',
+        required: true,
+        validators: [Validators.required],
+        errorMsg: '请选择'
       },
       {
-        label: '数字输入框',
+        label: '',
         key: 'inputNumberChildren',
-        type: 'input-number'
+        type: 'input-number',
+        required: true,
+        validators: [Validators.required],
+        errorMsg: '请选择'
       }
     ],
     required: true,
