@@ -59,6 +59,13 @@ export class HnFormComponent implements OnInit, OnChanges {
         this.initFormParams();
       }
     }
+    if (changes.formList) {
+      const { currentValue, firstChange } = changes.formList;
+      if (!firstChange) {
+        this.formList = currentValue;
+        this.init();
+      }
+    }
   }
 
   init() {
