@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
-import { NgZorroModule } from '../ng-zorro.module';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
+import { NzIconModule, NzInputModule, NzCheckboxModule, NzDatePickerModule } from 'ng-zorro-antd';
 import { HnSingleSearchComponent } from './hn-single-search.component';
 
 @NgModule({
-  imports: [NgZorroModule],
+  imports: [CommonModule, FormsModule, NzIconModule, NzInputModule, NzCheckboxModule, NzDatePickerModule],
   declarations: [HnSingleSearchComponent],
   exports: [HnSingleSearchComponent]
 })

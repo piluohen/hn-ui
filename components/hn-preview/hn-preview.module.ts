@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { NgZorroModule } from '../ng-zorro.module';
+import { CommonModule } from '@angular/common';
 
+import { NzModalModule } from 'ng-zorro-antd';
 import { HnPreviewComponent } from './hn-preview.component';
 
 @NgModule({
-  imports: [NgZorroModule],
+  imports: [CommonModule, NzModalModule],
   declarations: [HnPreviewComponent],
   exports: [HnPreviewComponent]
 })

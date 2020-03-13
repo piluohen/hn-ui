@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { NgZorroModule } from '../ng-zorro.module';
+import { CommonModule } from '@angular/common';
 
+import { NzEmptyModule, NzIconModule } from 'ng-zorro-antd';
 import { HnListComponent } from './hn-list.component';
 
 @NgModule({
-  imports: [NgZorroModule],
+  imports: [CommonModule, NzIconModule, NzEmptyModule],
   declarations: [HnListComponent],
   exports: [HnListComponent]
 })

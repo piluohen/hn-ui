@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { NgZorroModule } from '../ng-zorro.module';
+import { CommonModule } from '@angular/common';
 
-import { HnHighlightModule } from '../hn-highlight/highlight.module';
-
+import { HnHighlightModule } from 'hn-ui/hn-highlight';
 import { HnTreeComponent } from './hn-tree.component';
 import { HnTreeNodeComponent } from './hn-tree-node.component';
+import { NzIconModule, NzNoAnimationModule, NzAddOnModule } from 'ng-zorro-antd';
 
 @NgModule({
-  imports: [NgZorroModule, HnHighlightModule],
+  imports: [CommonModule, NzIconModule, NzAddOnModule, NzNoAnimationModule, HnHighlightModule],
   declarations: [HnTreeComponent, HnTreeNodeComponent],
   exports: [HnTreeComponent, HnTreeNodeComponent]
 })

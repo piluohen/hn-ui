@@ -14,7 +14,7 @@
     "build-test": "ng build --prod --configuration=test",
     "test": "ng test",
     "lint": "ng lint",
-    "lib": "ng build hn-ui-lib && npm run style",
+    "lib": "node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build hn-ui-lib && npm run style",
     "style": "node build/compile-styles.js && cp README.md publish/README.md"
   },
   "private": false,

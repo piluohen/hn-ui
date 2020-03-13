@@ -21,7 +21,6 @@ import {
 import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { NzTableComponent } from 'ng-zorro-antd';
 
 @Component({
   selector: 'hn-table',
@@ -32,7 +31,7 @@ import { NzTableComponent } from 'ng-zorro-antd';
   templateUrl: './hn-table.component.html'
 })
 export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
-  @ViewChild('table') table: NzTableComponent;
+  @ViewChild('table') table: any;
 
   // 静态数据数组
   @Input() data: any[] = [];

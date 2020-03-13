@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { NgZorroModule } from '../ng-zorro.module';
+import { CommonModule } from '@angular/common';
 
+import { HnButtonModule } from 'hn-ui/hn-button';
 import { HnExportComponent } from './hn-export.component';
-import { HnButtonModule } from '../hn-button/hn-button.module';
 
 @NgModule({
-  imports: [NgZorroModule, HnButtonModule],
+  imports: [CommonModule, HnButtonModule],
   declarations: [HnExportComponent],
   exports: [HnExportComponent]
 })

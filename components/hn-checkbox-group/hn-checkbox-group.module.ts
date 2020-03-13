@@ -1,18 +1,12 @@
 import { NgModule } from '@angular/core';
-import { NgZorroModule } from '../ng-zorro.module';
+import { CommonModule } from '@angular/common';
 
+import { NzCheckboxModule } from 'ng-zorro-antd';
 import { HnCheckboxGroupComponent } from './hn-checkbox-group.component';
 
-
 @NgModule({
-  imports: [
-    NgZorroModule
-  ],
-  declarations: [
-    HnCheckboxGroupComponent
-  ],
-  exports: [HnCheckboxGroupComponent],
-
+  imports: [CommonModule, NzCheckboxModule],
+  declarations: [HnCheckboxGroupComponent],
+  exports: [HnCheckboxGroupComponent]
 })
-export class HnCheckboxGroupModule { }
-
+export class HnCheckboxGroupModule {}

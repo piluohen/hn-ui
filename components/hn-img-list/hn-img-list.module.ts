@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { NgZorroModule } from '../ng-zorro.module';
+import { CommonModule } from '@angular/common';
 
 import { HnImgListComponent } from './hn-img-list.component';
-import { HnPreviewModule } from '../hn-preview/hn-preview.module';
-import { HnImageModule } from '../hn-image/hn-image.module';
+import { HnPreviewModule } from 'hn-ui/hn-preview';
+import { HnImageModule } from 'hn-ui/hn-image';
 
 @NgModule({
-  imports: [NgZorroModule, HnPreviewModule, HnImageModule],
+  imports: [CommonModule, HnPreviewModule, HnImageModule],
   declarations: [HnImgListComponent],
   exports: [HnImgListComponent]
 })

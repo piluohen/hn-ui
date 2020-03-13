@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
-import { NgZorroModule } from '../ng-zorro.module';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
+import { NzIconModule, NzInputModule } from 'ng-zorro-antd';
+import { HnFormModule } from 'hn-ui/hn-form';
 import { HnSearchComponent } from './hn-search.component';
-import { HnFormModule } from '../hn-form/hn-form.module';
 
 @NgModule({
-  imports: [NgZorroModule, HnFormModule],
+  imports: [CommonModule, FormsModule, NzIconModule, NzInputModule, HnFormModule],
   declarations: [HnSearchComponent],
   exports: [HnSearchComponent]
 })

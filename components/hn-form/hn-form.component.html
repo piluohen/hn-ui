@@ -1,13 +1,13 @@
 <form class="hn-form" nz-form [nzLayout]="mode" [formGroup]="validateForm" (keyup.enter)="submitForm()">
   <ng-container *ngIf="mode === 'horizontal'">
-    <ng-container *ngFor="let data of formList">
+    <ng-container *ngFor="let data of formList;index as index">
       <ng-template [ngTemplateOutlet]="itemTemp"
         [ngTemplateOutletContext]="{ $implicit: data, index: index }">
       </ng-template>
     </ng-container>
   </ng-container>
   <ng-container *ngIf="mode === 'vertical' || mode === 'inline'">
-    <ng-container *ngFor="let data of formList">
+    <ng-container *ngFor="let data of formList;index as index">
       <ng-template [ngTemplateOutlet]="itemTemp"
         [ngTemplateOutletContext]="{ $implicit: data, index: index }">
       </ng-template>
@@ -15,7 +15,7 @@
   </ng-container>
   <ng-container *ngIf="mode === 'grid' || mode === 'grid-vertical'">
     <div nz-row nzType="flex" style="flex-wrap: wrap;" [nzGutter]="20">
-      <div nz-col *ngFor="let data of formList" [nzSpan]="data.col || 6">
+      <div nz-col *ngFor="let data of formList;index as index" [nzSpan]="data.col || 6">
         <ng-container>
           <ng-template [ngTemplateOutlet]="itemTemp"
             [ngTemplateOutletContext]="{ $implicit: data, index: index }">
@@ -28,14 +28,14 @@
   <ng-template #itemTemp let-data>
     <ng-container *ngIf="!data.children">
       <ng-template [ngTemplateOutlet]="controlTemp"
-        [ngTemplateOutletContext]="{ $implicit: data, index: index }">
+        [ngTemplateOutletContext]="{ $implicit: data }">
       </ng-template>
     </ng-container>
     <div *ngIf="data.children" class="hn-form-children" nzType="flex" nz-row [nzGutter]="10">
       <div
         class="hn-form-children-item"
         nz-col
-        *ngFor="let item of data.children"
+        *ngFor="let item of data.children; index as index"
         [nzSpan]="mode !== 'inline' && (item.col || 12)">
         <ng-template [ngTemplateOutlet]="controlTemp"
           [ngTemplateOutletContext]="{ $implicit: item, index: index }">
@@ -290,7 +290,7 @@
 
         </ng-template>
         <ng-template [ngTemplateOutlet]="data.render ? data.render : contentTemp"
-          [ngTemplateOutletContext]="{ $implicit: data, index: index }">
+          [ngTemplateOutletContext]="{ $implicit: data }">
         </ng-template>
         <nz-form-explain
           *ngIf="hasValidator && hasExplain && validateForm.get(data.key)?.dirty && validateForm.get(data.key)?.errors && data.errorMsg">
