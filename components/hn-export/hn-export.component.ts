@@ -5,7 +5,7 @@ import { HttpParams } from '@angular/common/http';
 @Component({
   selector: 'hn-export',
   templateUrl: './hn-export.component.html',
-  styleUrls: ['./hn-export.component.less']
+  styles: ['.hn-export { display: inline-block }']
 })
 export class HnExportComponent implements OnInit {
   @Input() icon = 'download';

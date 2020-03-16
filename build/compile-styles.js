@@ -38,11 +38,14 @@ const targetPath = path.resolve(__dirname, '../publish');
 const componentFolders = fs.readdirSync(targetPath);
 
 componentFolders.forEach(dir => {
-  if (fs.existsSync(`${sourcePath}/${dir}/${dir}.component.less`)) {
-    fs.copySync(
-      path.resolve(`${sourcePath}/${dir}/${dir}.component.less`),
-      path.resolve(`${targetPath}/${dir}/${dir}.component.less`)
-    );
+  let style = `${dir}/style`;
+  if (fs.existsSync(`${sourcePath}/${style}`)) {
+    fs.copySync(path.resolve(`${sourcePath}/${style}`), path.resolve(`${targetPath}/${style}`));
+
+    const lessContent = `@import "${path.posix.join(`${targetPath}/${style}`, 'index.less')}";`;
+
+    compileLess(lessContent, path.join(`${targetPath}/${style}`, 'index.css'), false).catch(e => console.log(e));
+    compileLess(lessContent, path.join(`${targetPath}/${style}`, 'index.min.css'), true).catch(e => console.log(e));
   }
 });
 
