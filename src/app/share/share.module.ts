@@ -21,7 +21,7 @@ import { AuthService } from '../auth.service';
 import { ScrollDirective } from '../directive/scroll.directive';
 import { LayoutComponent } from '../components/layout/layout.component';
 
-import { MarkdownTabComponent } from '../components/model/markdown-tab/markdown-tab.component';
+import { MarkdownTabComponent } from '../components/markdown-tab/markdown-tab.component';
 
 /**
  *公共组件
