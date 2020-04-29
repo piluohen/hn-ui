@@ -50,8 +50,8 @@ componentFolders.forEach(dir => {
 });
 
 fs.copySync(path.resolve(sourcePath, 'style'), path.resolve(targetPath, 'style'));
-fs.writeFileSync(`${targetPath}/hn-ui.less`, fs.readFileSync(`${sourcePath}/hn-ui.less`));
+fs.writeFileSync(`${targetPath}/style/hn-ui.less`, fs.readFileSync(`${sourcePath}/style/hn-ui.less`));
 
-const lessContent = `@import "${path.posix.join(targetPath, 'hn-ui.less')}";`;
-compileLess(lessContent, path.join(targetPath, 'hn-ui.css'), false).catch(e => console.log(e));
-compileLess(lessContent, path.join(targetPath, 'hn-ui.min.css'), true).catch(e => console.log(e));
+const lessContent = `@import "${path.posix.join(targetPath, 'style/hn-ui.less')}";`;
+compileLess(lessContent, path.join(`${targetPath}/style`, 'hn-ui.css'), false).catch(e => console.log(e));
+compileLess(lessContent, path.join(`${targetPath}/style`, 'hn-ui.min.css'), true).catch(e => console.log(e));
