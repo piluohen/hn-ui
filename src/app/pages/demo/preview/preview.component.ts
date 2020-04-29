@@ -19,15 +19,15 @@ export class PreviewComponent implements OnInit {
   ];
 
   imgListTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/hn-img-list/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/hn-img-list/js.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/hn-img-list/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/hn-img-list/js.md').default }
   ];
 
-  imgListApiMarkdown = require('raw-loader!./docs/hn-img-list/api.md');
+  imgListApiMarkdown = require('raw-loader!./docs/hn-img-list/api.md').default;
 
-  previewTabs: any[] = [{ title: 'HTML', markdown: require('raw-loader!./docs/hn-preview/html.md') }];
+  previewTabs: any[] = [{ title: 'HTML', markdown: require('raw-loader!./docs/hn-preview/html.md').default }];
 
-  previewApiMarkdown = require('raw-loader!./docs/hn-preview/api.md');
+  previewApiMarkdown = require('raw-loader!./docs/hn-preview/api.md').default;
 
   constructor() {}
 

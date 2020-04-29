@@ -9,47 +9,47 @@ declare const require: any;
   styleUrls: ['./table.component.less']
 })
 export class TableComponent implements OnInit {
-  apiMarkdown = require('raw-loader!./docs/api.md');
+  apiMarkdown = require('raw-loader!./docs/api.md').default;
 
   baseTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/base/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/base/js.md') },
-    { title: 'columns', markdown: require('raw-loader!./docs/columns.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/base/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/base/js.md').default },
+    { title: 'columns', markdown: require('raw-loader!./docs/columns.md').default }
   ];
 
   interfaceTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/interface/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/interface/js.md') },
-    { title: 'columns', markdown: require('raw-loader!./docs/columns.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/interface/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/interface/js.md').default },
+    { title: 'columns', markdown: require('raw-loader!./docs/columns.md').default }
   ];
 
   localTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/local/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/local/js.md') },
-    { title: 'columns', markdown: require('raw-loader!./docs/columns.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/local/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/local/js.md').default },
+    { title: 'columns', markdown: require('raw-loader!./docs/columns.md').default }
   ];
 
   renderTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/render/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/render/js.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/render/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/render/js.md').default }
   ];
 
   virtualTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/virtual/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/virtual/js.md') },
-    { title: 'columns', markdown: require('raw-loader!./docs/columns.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/virtual/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/virtual/js.md').default },
+    { title: 'columns', markdown: require('raw-loader!./docs/columns.md').default }
   ];
 
   dropTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/drop/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/drop/js.md') },
-    { title: 'columns', markdown: require('raw-loader!./docs/columns.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/drop/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/drop/js.md').default },
+    { title: 'columns', markdown: require('raw-loader!./docs/columns.md').default }
   ];
 
   expandTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/expand/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/expand/js.md') },
-    { title: 'columns', markdown: require('raw-loader!./docs/columns.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/expand/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/expand/js.md').default },
+    { title: 'columns', markdown: require('raw-loader!./docs/columns.md').default }
   ];
 
   constructor(private http: HttpClient) {}

@@ -10,7 +10,7 @@ declare const require: any;
 export class CountupComponent implements OnInit {
   value: any = 500;
   value1 = 435.45;
-  apiMarkdown = require('raw-loader!./docs/api.md');
+  apiMarkdown = require('raw-loader!./docs/api.md').default;
 
   constructor() {}
 

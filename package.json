@@ -20,7 +20,7 @@
   "private": false,
   "dependencies": {
     "countup.js": "^2.0.4",
-    "ng-zorro-antd": "~7.5.0"
+    "ng-zorro-antd": "~8.5.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.25",

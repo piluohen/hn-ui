@@ -25,18 +25,18 @@ export class ImageComponent implements OnInit {
   ];
 
   baseTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/base/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/base/js.md') },
-    { title: 'CSS', markdown: require('raw-loader!./docs/base/css.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/base/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/base/js.md').default },
+    { title: 'CSS', markdown: require('raw-loader!./docs/base/css.md').default }
   ];
 
   lazyTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/lazy/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/lazy/js.md') },
-    { title: 'CSS', markdown: require('raw-loader!./docs/lazy/css.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/lazy/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/lazy/js.md').default },
+    { title: 'CSS', markdown: require('raw-loader!./docs/lazy/css.md').default }
   ];
 
-  apiMarkdown = require('raw-loader!./docs/api.md');
+  apiMarkdown = require('raw-loader!./docs/api.md').default;
 
   constructor() {}
 

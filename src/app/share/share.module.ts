@@ -15,7 +15,6 @@ import { MarkdownModule, MarkedOptions, MarkedRenderer } from 'ngx-markdown';
 import { HnUiModule } from 'components/hn-ui.module';
 // import { HnUiModule } from 'publish';
 
-import { HttpService } from '../service/http/http.service';
 import { AuthService } from '../auth.service';
 
 import { ScrollDirective } from '../directive/scroll.directive';
@@ -56,7 +55,6 @@ const DIRECTIVES = [ScrollDirective];
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpExceptionInterceptor, multi: true },
     { provide: NZ_I18N, useValue: zh_CN },
-    HttpService,
     AuthService
   ],
   exports: [

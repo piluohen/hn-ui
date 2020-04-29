@@ -18,11 +18,11 @@ export class TreeComponent implements OnInit {
     { label: '关闭手风琴', value: false }
   ];
 
-  apiMarkdown = require('raw-loader!./docs/api.md');
+  apiMarkdown = require('raw-loader!./docs/api.md').default;
 
   baseTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/js.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/js.md').default }
   ];
 
   // 全部tree数据

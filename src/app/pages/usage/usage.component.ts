@@ -8,7 +8,7 @@ declare const require: any;
   styleUrls: ['./usage.component.less']
 })
 export class UsageComponent implements OnInit {
-  apiMarkdown = require('raw-loader!./docs/api.md');
+  apiMarkdown = require('raw-loader!./docs/api.md').default;
 
   constructor() {}
 

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/app/service/http/http.service';
 import { Utils } from 'src/app/share/util/utils';
 import { formList } from '../../../mock/formList';
 
@@ -15,16 +14,16 @@ export class SearchComponent implements OnInit {
 
   jsonParams: any;
 
-  apiMarkdown = require('raw-loader!./docs/api.md');
+  apiMarkdown = require('raw-loader!./docs/api.md').default;
 
   markdownTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/js.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/js.md').default }
   ];
 
   formList: any[] = formList;
 
-  constructor(private http: HttpService) {}
+  constructor() {}
 
   ngOnInit() {}
 

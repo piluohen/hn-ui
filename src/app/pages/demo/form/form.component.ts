@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpService } from 'src/app/service/http/http.service';
 import { formList } from '../../../mock/formList';
 
 declare const require: any;
@@ -29,11 +28,11 @@ export class FormComponent implements OnInit {
 
   jsonParams = {};
 
-  apiMarkdown = require('raw-loader!./docs/api.md');
+  apiMarkdown = require('raw-loader!./docs/api.md').default;
 
   markdownTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/js.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/js.md').default }
   ];
 
   btnList: any[] = ['horizontal', 'vertical', 'inline', 'grid', 'grid-vertical'];
@@ -55,7 +54,7 @@ export class FormComponent implements OnInit {
 
   formList: any[] = formList;
 
-  constructor(private http: HttpService) {}
+  constructor() {}
 
   ngOnInit() {
     setTimeout(() => {

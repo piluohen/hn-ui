@@ -8,11 +8,11 @@ declare const require: any;
   styleUrls: ['./detail-list.component.less']
 })
 export class DetailListComponent implements OnInit {
-  apiMarkdown = require('raw-loader!./docs/api.md');
+  apiMarkdown = require('raw-loader!./docs/api.md').default;
 
   markdownTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/js.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/js.md').default }
   ];
 
   mode = 'horizontal';

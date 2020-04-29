@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/app/service/http/http.service';
+import { HttpClient } from '@angular/common/http';
 
 declare const require: any;
 
@@ -13,14 +13,14 @@ export class ExportComponent implements OnInit {
 
   params = {};
 
-  apiMarkdown = require('raw-loader!./docs/api.md');
+  apiMarkdown = require('raw-loader!./docs/api.md').default;
 
   markdownTabs: any[] = [
-    { title: 'HTML', markdown: require('raw-loader!./docs/html.md') },
-    { title: 'JS', markdown: require('raw-loader!./docs/js.md') }
+    { title: 'HTML', markdown: require('raw-loader!./docs/html.md').default },
+    { title: 'JS', markdown: require('raw-loader!./docs/js.md').default }
   ];
 
-  constructor(private http: HttpService) {
+  constructor(private http: HttpClient) {
     this.exportApi = () => {
       return this.http.get('http://test.mgt.campus.huanuo-nsb.com/ipark-company/outputValue/excel/export', this.params);
     };

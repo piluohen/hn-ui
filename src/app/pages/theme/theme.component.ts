@@ -8,7 +8,7 @@ declare const require: any;
   styleUrls: ['./theme.component.less']
 })
 export class ThemeComponent implements OnInit {
-  apiMarkdown = require('raw-loader!./docs/api.md');
+  apiMarkdown = require('raw-loader!./docs/api.md').default;
 
   constructor() {}
 

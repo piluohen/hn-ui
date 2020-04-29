@@ -7,7 +7,7 @@ declare const require: any;
   templateUrl: './log.component.html'
 })
 export class LogComponent implements OnInit {
-  apiMarkdown = require('raw-loader!../../../../CHANGELOG.md');
+  apiMarkdown = require('raw-loader!../../../../CHANGELOG.md').default;
 
   constructor() {}
 
