@@ -1,7 +1,7 @@
 # Hn-ui
 
-基于 Angular7、ng-zorro-antd7.5.0（建议安装版本） 拓展的组件库。
-目的：让开发更简单
+- 基于 Angular、ng-zorro-antd 拓展的组件库。
+- 目的：配置化开发，让开发更简单
 
 ## 文档及 demo
 

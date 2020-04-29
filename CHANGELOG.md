@@ -1,5 +1,9 @@
 ## 更新日志
 
+### 8.0.0
+
+- 【Update】更新到 8.0.0，适用于 angular 8，ng-zorro-antd 8.5.1 版本
+
 ### 7.0.1
 
 - 【style】修改样式文件打包目录： hn-ui.scss, hn-ui.min.scss, hn-ui.less 变更到 style 目录
