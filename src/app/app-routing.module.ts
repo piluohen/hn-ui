@@ -23,6 +23,13 @@ const appRoutes: Routes = [
     }
   },
   {
+    path: 'log',
+    loadChildren: './pages/log/log.module#LogModule',
+    data: {
+      breadcrumb: '更新日志'
+    }
+  },
+  {
     path: 'demo',
     loadChildren: './pages/demo/demo.module#DemoModule',
     data: {

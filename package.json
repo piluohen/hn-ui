@@ -15,7 +15,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "lib": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build hn-ui-lib && npm run style",
-    "style": "node build/compile-styles.js && cp README.md publish/README.md"
+    "style": "node build/compile-styles.js && cp README.md publish/README.md && cp CHANGELOG.md publish/CHANGELOG.md"
   },
   "private": false,
   "dependencies": {

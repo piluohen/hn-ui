@@ -12,6 +12,12 @@ export const menuList = [
     selected: false
   },
   {
+    title: '更新日志',
+    icon: 'database',
+    path: '/log',
+    selected: false
+  },
+  {
     title: '组件',
     icon: 'dashboard',
     open: true,
