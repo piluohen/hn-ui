@@ -28,7 +28,7 @@ import { isInContainer } from 'hn-ui/core';
   templateUrl: './hn-image.component.html'
 })
 export class HnImageComponent implements OnInit, OnDestroy {
-  @ViewChild('hnImage') hnImage: any;
+  @ViewChild('hnImage', { static: true }) hnImage: any;
 
   @Input() src: string;
   @Input() alt: string;

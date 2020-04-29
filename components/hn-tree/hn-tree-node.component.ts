@@ -31,7 +31,7 @@ import { HnTreeBaseService, HnTreeNode, treeCollapseMotion, HnFormatBeforeDropEv
   animations: [treeCollapseMotion]
 })
 export class HnTreeNodeComponent implements OnInit, OnChanges, OnDestroy {
-  @ViewChild('dragElement') dragElement: ElementRef;
+  @ViewChild('dragElement', { static: true }) dragElement: ElementRef;
 
   /**
    * for global property

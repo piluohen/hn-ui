@@ -10,28 +10,28 @@ const appRoutes: Routes = [
   },
   {
     path: 'usage',
-    loadChildren: './pages/usage/usage.module#UsageModule',
+    loadChildren: () => import('./pages/usage/usage.module').then(m => m.UsageModule),
     data: {
       breadcrumb: '如何使用'
     }
   },
   {
     path: 'theme',
-    loadChildren: './pages/theme/theme.module#ThemeModule',
+    loadChildren: () => import('./pages/theme/theme.module').then(m => m.ThemeModule),
     data: {
       breadcrumb: '定制主题'
     }
   },
   {
     path: 'log',
-    loadChildren: './pages/log/log.module#LogModule',
+    loadChildren: () => import('./pages/log/log.module').then(m => m.LogModule),
     data: {
       breadcrumb: '更新日志'
     }
   },
   {
     path: 'demo',
-    loadChildren: './pages/demo/demo.module#DemoModule',
+    loadChildren: () => import('./pages/demo/demo.module').then(m => m.DemoModule),
     data: {
       breadcrumb: '组件'
     }

@@ -31,7 +31,7 @@ import { Subject } from 'rxjs';
   templateUrl: './hn-table.component.html'
 })
 export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
-  @ViewChild('table') table: any;
+  @ViewChild('table', { static: true }) table: any;
 
   // 静态数据数组
   @Input() data: any[] = [];

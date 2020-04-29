@@ -6,7 +6,7 @@ import { columns, item } from '../columns';
   templateUrl: './table-virtual.component.html'
 })
 export class TableVirtualComponent implements OnInit {
-  @ViewChild('table') table: any;
+  @ViewChild('table', { static: true }) table: any;
 
   columns = [...columns];
   tableData: any[] = [];

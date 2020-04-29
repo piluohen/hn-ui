@@ -77,7 +77,9 @@ export class HnTreeComponent extends HnTreeBase implements OnInit, OnDestroy, Co
   @Input() hnNodeTitle = 'title';
 
   @Input() hnTreeTemplate: TemplateRef<{ $implicit: HnTreeNode }>;
-  @ContentChild('nzTreeTemplate') hnTreeTemplateChild: TemplateRef<{ $implicit: HnTreeNode }>;
+  @ContentChild('nzTreeTemplate', { static: false }) hnTreeTemplateChild: TemplateRef<{
+    $implicit: HnTreeNode;
+  }>;
   get treeTemplate(): TemplateRef<{ $implicit: HnTreeNode }> {
     return this.hnTreeTemplate || this.hnTreeTemplateChild;
   }

@@ -6,7 +6,7 @@ import { columns, item } from '../columns';
   templateUrl: './table-expand.component.html'
 })
 export class TableExpandComponent implements OnInit {
-  @ViewChild('table') table: any;
+  @ViewChild('table', { static: true }) table: any;
 
   draggable = false;
 

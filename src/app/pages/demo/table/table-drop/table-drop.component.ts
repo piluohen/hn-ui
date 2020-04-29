@@ -6,7 +6,7 @@ import { columns, item } from '../columns';
   templateUrl: './table-drop.component.html'
 })
 export class TableDropComponent implements OnInit {
-  @ViewChild('table') table: any;
+  @ViewChild('table', { static: true }) table: any;
 
   columns = [
     {

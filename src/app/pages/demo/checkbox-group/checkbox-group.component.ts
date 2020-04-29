@@ -9,7 +9,7 @@ declare const require: any;
   styleUrls: ['./checkbox-group.component.less']
 })
 export class CheckboxGroupComponent implements OnInit {
-  @ViewChild('group') group: any;
+  @ViewChild('group', { static: false }) group: any;
 
   options: any = [];
 

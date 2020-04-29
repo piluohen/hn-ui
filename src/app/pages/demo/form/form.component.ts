@@ -10,7 +10,7 @@ declare const require: any;
   styleUrls: ['./form.component.less']
 })
 export class FormComponent implements OnInit {
-  @ViewChild('form') form: any;
+  @ViewChild('form', { static: true }) form: any;
 
   mode = 'grid';
 

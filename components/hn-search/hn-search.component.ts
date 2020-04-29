@@ -21,7 +21,7 @@ import { slideMotion } from 'ng-zorro-antd';
   animations: [slideMotion]
 })
 export class HnSearchComponent implements OnInit {
-  @ViewChild('form') form: any;
+  @ViewChild('form', { static: false }) form: any;
 
   @Input() formList: any = [];
   @Input() keyword = 'searchContent';

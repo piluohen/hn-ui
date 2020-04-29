@@ -9,7 +9,7 @@ import { columns } from '../columns';
   templateUrl: './table-interface.component.html'
 })
 export class TableInterfaceComponent implements OnInit {
-  @ViewChild('table') table: any;
+  @ViewChild('table', { static: true }) table: any;
 
   getListApi: any;
 

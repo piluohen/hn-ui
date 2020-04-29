@@ -9,7 +9,7 @@ import { columns, item } from '../columns';
   templateUrl: './table-base.component.html'
 })
 export class TableBaseComponent implements OnInit {
-  @ViewChild('table') table: any;
+  @ViewChild('table', { static: true }) table: any;
 
   size = 'default';
   sizeList: any[] = ['default', 'middle', 'small'];

@@ -5,7 +5,7 @@ import { columns, item } from '../columns';
   templateUrl: './table-render.component.html'
 })
 export class TableRenderComponent implements OnInit {
-  @ViewChild('table') table: any;
+  @ViewChild('table', { static: true }) table: any;
 
   selections: any[] = [
     {
