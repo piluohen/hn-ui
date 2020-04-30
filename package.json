@@ -61,7 +61,7 @@
     "rxjs": "~6.5.5",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "^3.8.3",
+    "typescript": "~3.8.3",
     "url-search-params-polyfill": "^5.0.0",
     "web-animations-js": "^2.3.2",
     "zone.js": "~0.10.2"
