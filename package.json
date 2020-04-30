@@ -14,7 +14,7 @@
     "build-test": "ng build --prod --configuration=test",
     "test": "ng test",
     "lint": "ng lint",
-    "lib": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build hn-ui-lib && npm run style",
+    "lib": "node --max_old_space_size=4096 ./node_modules/@angular/cli/bin/ng build hn-ui-lib --prod && npm run style",
     "style": "node build/compile-styles.js && cp README.md publish/README.md && cp CHANGELOG.md publish/CHANGELOG.md"
   },
   "private": false,
@@ -54,6 +54,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "less": "^3.10.3",
     "less-plugin-clean-css": "^1.5.1",
+    "less-plugin-npm-import": "^2.1.0",
     "ng-packagr": "^9.0.0",
     "ng2-cookies": "^1.0.12",
     "ngx-markdown": "^8.1.0",

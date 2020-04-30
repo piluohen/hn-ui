@@ -2,7 +2,6 @@ import {
   Component,
   OnInit,
   Input,
-  TemplateRef,
   EventEmitter,
   ChangeDetectionStrategy,
   ViewEncapsulation,

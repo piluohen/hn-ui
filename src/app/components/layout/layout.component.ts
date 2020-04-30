@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { menuList } from '../../mock/menu';
 import { takeUntil, filter } from 'rxjs/operators';
