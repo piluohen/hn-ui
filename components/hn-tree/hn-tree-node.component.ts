@@ -18,7 +18,9 @@ import {
 import { fromEvent, Observable, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
-import { InputBoolean, NzNoAnimationDirective } from 'ng-zorro-antd/core';
+import { InputBoolean } from 'ng-zorro-antd/core/util';
+
+import { NzNoAnimationDirective } from 'ng-zorro-antd/core/no-animation';
 
 import { HnTreeBaseService, HnTreeNode, treeCollapseMotion, HnFormatBeforeDropEvent } from 'hn-ui/core';
 

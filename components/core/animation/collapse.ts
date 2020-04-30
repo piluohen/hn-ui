@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger, AnimationTriggerMetadata } from '@angular/animations';
-import { AnimationCurves } from 'ng-zorro-antd/core';
+import { AnimationCurves } from 'ng-zorro-antd/core/animation';
 
 export const treeCollapseMotion: AnimationTriggerMetadata = trigger('treeCollapseMotion', [
   transition(':leave', [

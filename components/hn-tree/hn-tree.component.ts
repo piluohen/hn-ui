@@ -20,7 +20,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { isNotNil, InputBoolean, NzNoAnimationDirective } from 'ng-zorro-antd/core';
+import { InputBoolean, isNotNil } from 'ng-zorro-antd/core/util';
+
+import { NzNoAnimationDirective } from 'ng-zorro-antd/core/no-animation';
 
 import {
   HnTreeBase,

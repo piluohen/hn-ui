@@ -14,7 +14,7 @@
         <li nz-submenu *ngIf="menu.children" [nzOpen]="menu.open" [nzOpen]="menu.selected"
           [ngClass]="menu.selected? 'ant-menu-submenu-selected':''">
           <span title>
-            <i nz-icon [type]="menu.icon" *ngIf="menu.icon"></i>
+            <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
             <span class="nav-text">{{ menu.title }}</span>
           </span>
           <ul>
@@ -31,7 +31,7 @@
           [nzSelected]="menu.selected"
           [ngClass]="menu.selected? 'ant-menu-item-selected':''">
           <a [routerLink]="menu.path">
-            <i nz-icon [type]="menu.icon" *ngIf="menu.icon"></i>
+            <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
             <span class="nav-text">{{ menu.title }}</span>
           </a>
         </li>

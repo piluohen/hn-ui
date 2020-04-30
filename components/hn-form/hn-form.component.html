@@ -56,6 +56,7 @@
       </nz-form-label>
       <nz-form-control
         [ngClass]="{'has-error': hasValidator && validateForm.get(data.key)?.dirty && validateForm.get(data.key)?.errors}"
+        [nzErrorTip]="data.errorMsg"
         style="flex: 1;">
         <ng-template #contentTemp let-data>
           <input
@@ -292,10 +293,10 @@
         <ng-template [ngTemplateOutlet]="data.render ? data.render : contentTemp"
           [ngTemplateOutletContext]="{ $implicit: data }">
         </ng-template>
-        <nz-form-explain
+        <!-- <nz-form-explain
           *ngIf="hasValidator && hasExplain && validateForm.get(data.key)?.dirty && validateForm.get(data.key)?.errors && data.errorMsg">
           {{data.errorMsg}}
-        </nz-form-explain>
+        </nz-form-explain> -->
       </nz-form-control>
     </nz-form-item>
   </ng-template>
