@@ -61,7 +61,7 @@ export class HnUiModule {
   /**
    * @deprecated Use `HnUiModule` instead.
    */
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<HnUiModule> {
     return {
       ngModule: HnUiModule
     };
