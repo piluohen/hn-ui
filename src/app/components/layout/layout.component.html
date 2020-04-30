@@ -11,25 +11,20 @@
     </div>
     <ul class="hn-menu" nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <ng-container *ngFor="let menu of menusList;index as index">
-        <li nz-submenu *ngIf="menu.children" [nzOpen]="menu.open" [nzOpen]="menu.selected"
-          [ngClass]="menu.selected? 'ant-menu-submenu-selected':''">
+        <li nz-submenu *ngIf="menu.children" [(nzOpen)]="menu.open">
           <span title>
             <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
             <span class="nav-text">{{ menu.title }}</span>
           </span>
           <ul>
             <li nz-menu-item *ngFor="let li of menu.children"
-              nzMatchRouter
-              [nzSelected]="li.selected"
-              [ngClass]="li.selected? 'ant-menu-item-selected':''">
+              nzMatchRouter>
               <a [routerLink]="li.path">{{li.title}}</a>
             </li>
           </ul>
         </li>
         <li nz-menu-item *ngIf="!menu.children"
-          nzMatchRouter
-          [nzSelected]="menu.selected"
-          [ngClass]="menu.selected? 'ant-menu-item-selected':''">
+          nzMatchRouter>
           <a [routerLink]="menu.path">
             <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
             <span class="nav-text">{{ menu.title }}</span>

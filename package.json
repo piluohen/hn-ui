@@ -9,7 +9,7 @@
   "description": "An Components for Angular",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --aot --host 0.0.0.0 --port 3660 --proxy-config proxy.conf.json --open",
+    "start": "ng serve --host 0.0.0.0 --port 3660 --proxy-config proxy.conf.json --open",
     "build": "ng build --prod",
     "build-test": "ng build --prod --configuration=test",
     "test": "ng test",
