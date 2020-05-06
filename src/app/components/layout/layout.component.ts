@@ -10,20 +10,30 @@ import { Subject } from 'rxjs';
   styleUrls: ['./layout.component.less']
 })
 export class LayoutComponent implements OnInit {
+  @ViewChild('scrollContent', { static: true }) scrollContent: any;
+
   // 折叠菜单
   isCollapsed = false;
 
-  menusList: any[] = [];
+  menusList: any[] = [...menuList];
 
   destroy$ = new Subject();
 
   routerEvent: any;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    this.updateRoute();
+    // this.updateRoute();
   }
 
   ngOnInit() {}
+
+  /**
+   * 监听路由变化，页面滚动到最顶部
+   */
+  onActivate(event: any) {
+    const el = this.scrollContent.elementRef.nativeElement;
+    el.scrollTo(0, 0);
+  }
 
   /**
    * 监听路由变更，解决菜单高亮问题
@@ -38,7 +48,8 @@ export class LayoutComponent implements OnInit {
         const { url } = data as any;
         // this.menusList = this.updateMenu([...menuList], url);
         this.menusList = [...menuList];
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
+        console.log();
       });
   }
 

@@ -44,8 +44,8 @@
         <div class="header-right">
           <a class="header-item" href="https://github.com/piluohen/hn-ui" target="_blank">GitHub</a>
           <a class="header-item" href="https://marketplace.visualstudio.com/items?itemName=piluohen.hn-ui-snippets"
-            target="_blank">Hn-ui
-            Snippets</a>
+            target="_blank">Hn-ui Snippets
+          </a>
         </div>
       </div>
     </nz-header>
@@ -53,8 +53,8 @@
       <nz-breadcrumb [nzAutoGenerate]="true">
       </nz-breadcrumb>
     </div>
-    <nz-content style="overflow: auto">
-      <router-outlet></router-outlet>
+    <nz-content #scrollContent style="overflow: auto">
+      <router-outlet (activate)='onActivate($event)'></router-outlet>
     </nz-content>
   </nz-layout>
 </nz-layout>

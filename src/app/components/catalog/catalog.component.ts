@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-catalog',
@@ -9,14 +8,11 @@ import { Router } from '@angular/router';
 export class CatalogComponent implements OnInit {
   @Input() list: any[] = [];
 
-  constructor(private router: Router) {
-    console.log(this.router);
-  }
+  constructor() {}
 
   ngOnInit() {}
 
   handleClick(event: any) {
-    console.log(event);
     window.location.hash = event;
   }
 }
