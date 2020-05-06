@@ -19,9 +19,10 @@
   (draggChange)="handleDraggChange($event)"
   (checkChange)="handleCheckChange($event)">
   <ng-template #expandRender let-data>
+
     <tr>
       <td></td>
-      <td colspan="7">
+      <td colspan="9">
         <hn-table
           size="small"
           [columns]="childColumns"

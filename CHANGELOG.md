@@ -3,10 +3,11 @@
 ### 9.1.0
 
 - [hn-table] 兼容 ng-zorro-antd 9.x nz-table 变动
-  1. table 删除 showSelect、singleSort、sortChange，增加 tableLayout、loading；
-  2. columns 增加 breakWord、ellipsis；
-  3. 排序 删除 sortKey，增加 sortFn、sortDirections、sortOrder
-  4. 过滤 增加 filterFn
+  1. [table 属性] 删除 showSelect、singleSort、sortChange，增加 tableLayout、loading；
+  2. [columns 基础] 增加 breakWord、ellipsis；
+  3. [columns 排序] 删除 sortKey，增加 sortFn、sortDirections、sortOrder
+  4. [columns 过滤] 增加 filterFn
+  5. [columns 展开] 增加 indentSize
 
 ### 9.0.0
 

@@ -107,13 +107,13 @@
     <ng-template #thTemp>
       <ng-container *ngFor="let item of tableColumns; index as index">
         <!-- 展开按钮 -->
-        <th
+        <!-- <th
           *ngIf="item.showExpand"
           [nzWidth]="item.width || '60px'"
           [nzAlign]="item.align || 'center'"
           [nzLeft]="item.left || '0px'"
           [nzRight]="item.right || false">
-        </th>
+        </th> -->
         <!-- 选择框 -->
         <th
           *ngIf="item.showCheckbox"
@@ -129,7 +129,7 @@
         </th>
         <!-- 常规表头 -->
         <th
-          *ngIf="!item.showExpand && !item.showCheckbox"
+          *ngIf="!item.showCheckbox"
           [nzWidth]="item.width"
           [nzAlign]="item.align"
           [nzLeft]="item.left || false"
@@ -159,14 +159,15 @@
     <!-- td 模板 -->
     <ng-template #tdTemp let-data>
       <ng-container *ngFor="let item of tableColumns; index as index">
-        <td
+        <!-- <td
           *ngIf="item.showExpand"
           nzShowExpand
+          [nzIndentSize]="item.indentSize"
           [(nzExpand)]="data.expand"
           [nzAlign]="item.align || 'center'"
           [nzLeft]="item.left || '0px'"
           [nzRight]="item.right || false"
-          (nzExpandChange)="item.expandChange($event, {data:data, item:item})"></td>
+          (nzExpandChange)="item.expandChange($event, {data:data, item:item})"></td> -->
         <td
           *ngIf="item.showCheckbox"
           [nzShowCheckbox]="item.showCheckbox || false"
@@ -177,12 +178,16 @@
           [nzDisabled]="data.disabled"
           (nzCheckedChange)="refreshStatus()"></td>
         <td
-          *ngIf="!item.showExpand && !item.showCheckbox"
+          *ngIf="!item.showCheckbox"
           [nzAlign]="item.align"
           [nzLeft]="item.left || false"
           [nzRight]="item.right || false"
           [nzBreakWord]="item.breakWord"
-          [nzEllipsis]="item.ellipsis">
+          [nzEllipsis]="item.ellipsis"
+          [nzShowExpand]="item.showExpand"
+          [nzIndentSize]="item.indentSize"
+          [(nzExpand)]="data.expand"
+          (nzExpandChange)="item.expandChange($event, {data:data, item:item})">
           <span *ngIf="!item.render">{{ item.format ? item.format(data) : data[item.key] }}</span>
           <ng-template
             [ngIf]="item.render"
