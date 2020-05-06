@@ -29,6 +29,12 @@ export class PreviewComponent implements OnInit {
 
   previewApiMarkdown = require('raw-loader!./docs/hn-preview/api.md').default;
 
+  catalogList: any[] = [
+    { id: 'base', title: '示例' },
+    { id: 'imgList', title: 'hn-img-list' },
+    { id: 'preview', title: 'hn-preview' }
+  ];
+
   constructor() {}
 
   ngOnInit() {}

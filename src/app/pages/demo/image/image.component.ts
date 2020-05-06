@@ -38,6 +38,12 @@ export class ImageComponent implements OnInit {
 
   apiMarkdown = require('raw-loader!./docs/api.md').default;
 
+  catalogList: any[] = [
+    { id: 'fit', title: 'fit示例' },
+    { id: 'lazy', title: '懒加载' },
+    { id: 'api', title: 'API' }
+  ];
+
   constructor() {}
 
   ngOnInit() {}

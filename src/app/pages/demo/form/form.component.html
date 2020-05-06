@@ -3,8 +3,10 @@
   </nz-breadcrumb>
 </div>
 
+<app-catalog [list]="catalogList"></app-catalog>
+
 <div class="layout-content">
-  <h2>表单示例</h2>
+  <h2 id="base">表单示例</h2>
   <div class="form-tab">
     <div class="form-tab-item">配置项</div>
     <nz-radio-group class="form-tab-item" [(ngModel)]="mode">
@@ -60,5 +62,5 @@
 
   <app-markdown-tab [list]="markdownTabs"></app-markdown-tab>
 
-  <markdown ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
+  <markdown id="api" ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
 </div>

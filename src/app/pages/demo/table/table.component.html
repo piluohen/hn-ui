@@ -3,35 +3,37 @@
   </nz-breadcrumb>
 </div>
 
+<app-catalog [list]="catalogList"></app-catalog>
+
 <div class="layout-content">
 
-  <h2>基础示例</h2>
+  <h2 id="base">基础示例</h2>
   <app-table-base></app-table-base>
   <app-markdown-tab [list]="baseTabs"></app-markdown-tab>
 
-  <h2>远程请求示例</h2>
+  <h2 id="interface">远程请求示例</h2>
   <app-table-interface></app-table-interface>
   <app-markdown-tab [list]="interfaceTabs"></app-markdown-tab>
 
-  <h2>不使用api自动请求远程数据，本地请求远程数据</h2>
+  <h2 id="local">不使用api自动请求远程数据，本地请求远程数据</h2>
   <app-table-local></app-table-local>
   <app-markdown-tab [list]="localTabs"></app-markdown-tab>
 
-  <h2>展开收缩</h2>
+  <h2 id="expand">展开收缩</h2>
   <app-table-expand></app-table-expand>
   <app-markdown-tab [list]="expandTabs"></app-markdown-tab>
 
-  <h2>筛选、过滤、排序</h2>
+  <h2 id="render">筛选、过滤、排序</h2>
   <app-table-render></app-table-render>
   <app-markdown-tab [list]="renderTabs"></app-markdown-tab>
 
-  <h2>拖拽</h2>
+  <h2 id="drop">拖拽</h2>
   <app-table-drop></app-table-drop>
   <app-markdown-tab [list]="dropTabs"></app-markdown-tab>
 
-  <h2>虚拟滚动</h2>
+  <h2 id="virtual">虚拟滚动</h2>
   <app-table-virtual></app-table-virtual>
   <app-markdown-tab [list]="virtualTabs"></app-markdown-tab>
 
-  <markdown ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
+  <markdown id="api" ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
 </div>

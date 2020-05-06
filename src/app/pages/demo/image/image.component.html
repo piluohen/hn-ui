@@ -3,8 +3,11 @@
   </nz-breadcrumb>
 </div>
 
+
 <div class="layout-content">
-  <h2>fit示例</h2>
+  <app-catalog [list]="catalogList"></app-catalog>
+
+  <h2 id="fit">fit示例</h2>
   <div class="form-tab">
     <nz-radio-group class="form-tab-item" [(ngModel)]="fit">
       <label
@@ -21,7 +24,7 @@
 
   <app-markdown-tab [list]="baseTabs"></app-markdown-tab>
 
-  <h2>懒加载</h2>
+  <h2 id="lazy">懒加载</h2>
   <div class="image-lazy-container" #divTarget>
     <div class="image-lazy-list">
       <div class="image-lazy-item" *ngFor="let item of imgList; index as index">
@@ -37,6 +40,6 @@
 
   <app-markdown-tab [list]="lazyTabs"></app-markdown-tab>
 
-  <markdown>{{apiMarkdown}}</markdown>
+  <markdown id="api">{{apiMarkdown}}</markdown>
 
 </div>

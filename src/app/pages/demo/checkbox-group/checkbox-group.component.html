@@ -2,9 +2,10 @@
   <nz-breadcrumb [nzAutoGenerate]="true">
   </nz-breadcrumb>
 </div>
+<app-catalog [list]="catalogList"></app-catalog>
 
 <div class="layout-content">
-  <h2>基础示例</h2>
+  <h2 id="base">基础示例</h2>
   <div>
     <hn-checkbox-group [options]="options" [checkAll]="true" [(ngModel)]="value"
       (ngModelChange)="handleChange($event)">
@@ -14,7 +15,7 @@
 
   <app-markdown-tab [list]="baseTabs"></app-markdown-tab>
 
-  <h2>form表单</h2>
+  <h2 id="form">form表单</h2>
   <div>
     <form nz-form [formGroup]="validateForm" nzLayout="horizontal">
       <nz-form-item nzFlex>
@@ -31,6 +32,6 @@
 
   <app-markdown-tab [list]="formTabs"></app-markdown-tab>
 
-  <markdown ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
+  <markdown id="api" ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
 
 </div>

@@ -2,9 +2,10 @@
   <nz-breadcrumb [nzAutoGenerate]="true">
   </nz-breadcrumb>
 </div>
+<app-catalog [list]="catalogList"></app-catalog>
 
 <div class="layout-content">
-  <h2>ant-button 默认用法</h2>
+  <h2 id="default">ant-button 默认用法</h2>
   <div class="button-list">
     <div class="button-list-item">
       <button nz-button nzType="default">默认按钮</button>
@@ -21,7 +22,7 @@
       <button nz-button nzType="link" [disabled]="true">link</button>
     </div>
   </div>
-  <h2>基础用法</h2>
+  <h2 id="base">基础用法</h2>
   <div class="button-list">
     <div class="button-list-item">
       <hn-button>默认按钮</hn-button>
@@ -47,7 +48,7 @@
 
   <app-markdown-tab [list]="baseTabs"></app-markdown-tab>
 
-  <h2>带icon图标</h2>
+  <h2 id="icon">带icon图标</h2>
   <div class="button-list">
     <div class="button-list-item">
       <hn-button loading="true">默认按钮</hn-button>
@@ -64,7 +65,7 @@
 
   <app-markdown-tab [list]="iconTabs"></app-markdown-tab>
 
-  <h2>size、shape用法</h2>
+  <h2 id="size">size、shape用法</h2>
   <div class="button-list">
     <div class="button-list-item">
       <hn-button shape="circle" icon="search"></hn-button>
@@ -80,7 +81,7 @@
 
   <app-markdown-tab [list]="sizeTabs"></app-markdown-tab>
 
-  <h2>幽灵按钮</h2>
+  <h2 id="ghost">幽灵按钮</h2>
   <div class="button-list button-ghost-list">
     <div class="button-list-item">
       <hn-button [ghost]="true">默认按钮</hn-button>
@@ -106,7 +107,7 @@
 
   <app-markdown-tab [list]="ghostTabs"></app-markdown-tab>
 
-  <h2>block用法</h2>
+  <h2 id="block">block用法</h2>
   <div class="button-list">
     <div class="button-list-item" nz-row nzGutter="20">
       <div nz-col nzSpan="6">
@@ -140,6 +141,6 @@
 
   <app-markdown-tab [list]="blockTabs"></app-markdown-tab>
 
-  <markdown ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
+  <markdown id="api" ngPreserveWhitespaces>{{apiMarkdown}}</markdown>
 
 </div>

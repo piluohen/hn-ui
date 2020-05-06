@@ -54,6 +54,11 @@ export class FormComponent implements OnInit {
 
   formList: any[] = formList;
 
+  catalogList: any[] = [
+    { id: 'base', title: '表单示例' },
+    { id: 'api', title: 'API' }
+  ];
+
   constructor() {}
 
   ngOnInit() {

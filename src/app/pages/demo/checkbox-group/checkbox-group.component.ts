@@ -29,6 +29,12 @@ export class CheckboxGroupComponent implements OnInit {
     { title: 'JS', markdown: require('raw-loader!./docs/form/js.md').default }
   ];
 
+  catalogList: any[] = [
+    { id: 'base', title: '基础用法' },
+    { id: 'form', title: 'form表单' },
+    { id: 'api', title: 'API' }
+  ];
+
   constructor(private fb: FormBuilder) {
     this.validateForm = this.fb.group({
       checkbox: [this.value]
