@@ -13,7 +13,6 @@
   [data]="tableData"
   [params]="{}"
   [scroll]="{x: '600px'}"
-  [showSelect]="false"
   [expandRender]="expandRender"
   [draggable]="draggable"
   (draggChange)="handleDraggChange($event)"
@@ -27,7 +26,6 @@
           [columns]="childColumns"
           [data]="data.children"
           [params]="{}"
-          [showSelect]="false"
           [showPagination]="false">
         </hn-table>
       </td>

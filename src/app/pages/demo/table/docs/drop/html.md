@@ -6,7 +6,7 @@
   [data]="tableData"
   [params]="{}"
   [draggable]="true"
-  [showSelect]="false"
+  draggDisabledKey="disabled"
   (draggChange)="handleDraggChange($event)">
 </hn-table>
 ```

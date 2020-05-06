@@ -13,24 +13,24 @@
   [columns]="columns"
   [data]="tableData"
   [params]="{}"
-  [scroll]="{x: '1200px'}"
-  [showSelect]="false"
+  [scroll]="{x: '600px'}"
   [expandRender]="expandRender"
   [draggable]="draggable"
   (draggChange)="handleDraggChange($event)"
   (checkChange)="handleCheckChange($event)">
   <ng-template #expandRender let-data>
-    <td></td>
-    <td colspan="6">
-      <hn-table
-        size="small"
-        [columns]="childColumns"
-        [data]="data.children"
-        [params]="{}"
-        [showSelect]="false"
-        [showPagination]="false">
-      </hn-table>
-    </td>
+    <tr>
+      <td></td>
+      <td colspan="7">
+        <hn-table
+          size="small"
+          [columns]="childColumns"
+          [data]="data.children"
+          [params]="{}"
+          [showPagination]="false">
+        </hn-table>
+      </td>
+    </tr>
   </ng-template>
 </hn-table>
 ```

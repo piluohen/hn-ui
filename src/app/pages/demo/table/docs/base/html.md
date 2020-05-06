@@ -18,7 +18,7 @@
   </div>
   <div class="form-tab-item">
     <span>显示选择框：</span>
-    <nz-switch [(ngModel)]="showSelect" name="showSelect"></nz-switch>
+    <nz-switch [(ngModel)]="showCheckbox" name="showCheckbox" (ngModelChange)="handleShowCheckbox($event)"></nz-switch>
   </div>
   <div class="form-tab-item">
     <span>显示分页：</span>
@@ -77,7 +77,6 @@
   [columns]="columns"
   [data]="tableData"
   [params]="params"
-  [showSelect]="showSelect"
   [scroll]="{x: '600px'}"
   [showPagination]="showPagination"
   [paginationPosition]="pagePosition"

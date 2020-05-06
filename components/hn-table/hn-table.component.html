@@ -4,7 +4,9 @@
     [nzData]="tableData"
     [nzSize]="size"
     [nzBordered]="bordered"
+    [nzTableLayout]="tableLayout"
     [nzScroll]="scroll"
+    [nzLoading]="loading"
     [nzShowPagination]="showPagination"
     [nzPaginationPosition]="paginationPosition"
     [nzFrontPagination]="false"
@@ -23,7 +25,7 @@
     [nzVirtualItemSize]="virtualItemSize"
     [nzVirtualMaxBufferPx]="virtualMaxBufferPx"
     [nzVirtualMinBufferPx]="virtualMinBufferPx">
-    <thead (nzSortChange)="sort($event)" nzSingleSort="singleSort">
+    <thead>
       <ng-template
         [ngIf]="theadRender"
         [ngTemplateOutlet]="theadRender"
@@ -103,48 +105,44 @@
 
     <!-- th 模板 -->
     <ng-template #thTemp>
-      <th
-        *ngIf="showSelect"
-        nzLeft="0px"
-        nzWidth="80px"
-        nzShowCheckbox
-        [(nzChecked)]="isAllDisplayDataChecked"
-        [nzIndeterminate]="isIndeterminate"
-        (nzCheckedChange)="checkAll($event)"
-        [nzShowRowSelection]="showRowSelection"
-        [nzSelections]="selections">
-      </th>
       <ng-container *ngFor="let item of tableColumns; index as index">
+        <!-- 展开按钮 -->
         <th
           *ngIf="item.showExpand"
           [nzWidth]="item.width || '60px'"
           [nzAlign]="item.align || 'center'"
           [nzLeft]="item.left || '0px'"
-          [nzRight]="item.right"
-          nzShowExpand>
+          [nzRight]="item.right || false">
         </th>
+        <!-- 选择框 -->
         <th
           *ngIf="item.showCheckbox"
           [nzWidth]="item.width || '60px'"
           [nzAlign]="item.align || 'center'"
-          [nzLeft]="item.left"
-          [nzRight]="item.right"
-          nzShowCheckbox
+          [nzLeft]="item.left || false"
+          [nzRight]="item.right || false"
+          [nzShowCheckbox]="item.showCheckbox"
+          [nzDisabled]="item.disabled"
           [(nzChecked)]="isAllDisplayDataChecked"
           [nzIndeterminate]="isIndeterminate"
-          (nzCheckedChange)="checkAll($event)"
-          [nzShowRowSelection]="showRowSelection"
-          [nzSelections]="selections">
+          (nzCheckedChange)="checkAll($event)">
         </th>
+        <!-- 常规表头 -->
         <th
           *ngIf="!item.showExpand && !item.showCheckbox"
           [nzWidth]="item.width"
           [nzAlign]="item.align"
-          [nzLeft]="item.left"
-          [nzRight]="item.right"
+          [nzLeft]="item.left || false"
+          [nzRight]="item.right || false"
+          [nzBreakWord]="item.breakWord"
+          [nzEllipsis]="item.ellipsis"
           [nzShowSort]="item.showSort || false"
-          [nzSortKey]="item.sortKey || item.key"
+          [nzSortFn]="item.sortFn || true"
+          [nzSortDirections]="item.sortDirections || ['ascend', 'descend', null]"
+          [nzSortOrder]="item.sortOrder"
+          (nzSortOrderChange)="item.sortOrderChange($event)"
           [nzShowFilter]="item.showFilter || false"
+          [nzFilterFn]="item.nzFilterFn || true"
           [nzFilterMultiple]="item.filterMultiple || false"
           [nzFilters]="item.filters || []"
           (nzFilterChange)="item.filterChange($event)">
@@ -160,13 +158,6 @@
 
     <!-- td 模板 -->
     <ng-template #tdTemp let-data>
-      <td
-        *ngIf="showSelect"
-        nzLeft="0px"
-        nzShowCheckbox
-        [(nzChecked)]="mapOfCheckedId[data.id]"
-        [nzDisabled]="data.disabled"
-        (nzCheckedChange)="refreshStatus()"></td>
       <ng-container *ngFor="let item of tableColumns; index as index">
         <td
           *ngIf="item.showExpand"
@@ -174,22 +165,24 @@
           [(nzExpand)]="data.expand"
           [nzAlign]="item.align || 'center'"
           [nzLeft]="item.left || '0px'"
-          [nzRight]="item.right"
+          [nzRight]="item.right || false"
           (nzExpandChange)="item.expandChange($event, {data:data, item:item})"></td>
         <td
           *ngIf="item.showCheckbox"
-          nzShowCheckbox
+          [nzShowCheckbox]="item.showCheckbox || false"
           [nzAlign]="item.align || 'center'"
-          [nzLeft]="item.left"
-          [nzRight]="item.right"
+          [nzLeft]="item.left || false"
+          [nzRight]="item.right || false"
           [(nzChecked)]="mapOfCheckedId[data.id]"
           [nzDisabled]="data.disabled"
           (nzCheckedChange)="refreshStatus()"></td>
         <td
           *ngIf="!item.showExpand && !item.showCheckbox"
           [nzAlign]="item.align"
-          [nzLeft]="item.left"
-          [nzRight]="item.right">
+          [nzLeft]="item.left || false"
+          [nzRight]="item.right || false"
+          [nzBreakWord]="item.breakWord"
+          [nzEllipsis]="item.ellipsis">
           <span *ngIf="!item.render">{{ item.format ? item.format(data) : data[item.key] }}</span>
           <ng-template
             [ngIf]="item.render"

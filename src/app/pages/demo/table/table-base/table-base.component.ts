@@ -14,7 +14,7 @@ export class TableBaseComponent implements OnInit {
   size = 'default';
   sizeList: any[] = ['default', 'middle', 'small'];
 
-  showSelect = true;
+  showCheckbox = false;
   showPagination = true;
   pagePosition = 'bottom';
   positionList: any[] = ['top', 'bottom', 'both'];
@@ -61,11 +61,25 @@ export class TableBaseComponent implements OnInit {
     console.log(type, data);
   }
 
+  handleShowCheckbox(val: any) {
+    if (val) {
+      this.columns = [
+        {
+          showCheckbox: true
+        },
+        ...columns
+      ];
+    } else {
+      this.columns = [...columns];
+    }
+  }
+
   /**
    * check选中操作
    * @param data 数据
    */
   handleCheckChange(data: any) {
+    console.log('选中', data);
     this.checkedData = data;
     this.numberOfChecked = data.length;
   }

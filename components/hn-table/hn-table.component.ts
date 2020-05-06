@@ -49,15 +49,17 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   @Input() totalKey: any = 'total';
   // 内容列表字段
   @Input() contentKey: any = 'list';
-  // 是否显示选择框
-  @Input() showSelect = false;
   // 是否border
   @Input() bordered = false;
+  // 表格布局方式 'auto' | 'fixed'
+  @Input() tableLayout = 'auto';
   // 滚动区域配置
   @Input() scroll: any = {};
+  // 加载中
+  @Input() loading = true;
 
-  @Input() showRowSelection = false;
-  @Input() selections: any[] = [];
+  // @Input() showRowSelection = false;
+  // @Input() selections: any[] = [];
 
   // 是否显示分页
   @Input() showPagination = true;
@@ -97,9 +99,6 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   @Input() draggable = false;
   @Input() draggDisabledKey = 'disabled';
 
-  // 单列排序模式
-  @Input() singleSort = false;
-
   // 多选选中事件
   @Output()
   checkChange: EventEmitter<any> = new EventEmitter();
@@ -132,8 +131,7 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
   tableData: any[] = [];
   // 表格列
   tableColumns: any[] = [];
-  // 加载中
-  loading = true;
+
   // 总条数
   tableTotal = 0;
 
@@ -246,6 +244,7 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
    * @param data 本地数据
    */
   getLocalData(): void {
+    this.loading = true;
     this.tableTotal = this.total || this.data.length;
     const { pageSize, pageIndex } = this.pagination;
     if (this.showPagination && this.data.length > pageSize) {
@@ -256,6 +255,7 @@ export class HnTableComponent implements OnInit, OnChanges, AfterViewInit, OnDes
     } else {
       this.tableData = this.data || [];
     }
+    this.loading = false;
     this.initCheck();
   }
 
