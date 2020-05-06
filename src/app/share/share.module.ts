@@ -21,12 +21,21 @@ import { ScrollDirective } from '../directive/scroll.directive';
 import { LayoutComponent } from '../components/layout/layout.component';
 
 import { MarkdownTabComponent } from '../components/markdown-tab/markdown-tab.component';
+import { CatalogComponent } from '../components/catalog/catalog.component';
 
 /**
  *公共组件
  * @type {any[]}
  */
-const COMPONENT = [TrustUrlPipe, TrustHtmlPipe, TrustScriptPipe, TrustStylePipe, LayoutComponent, MarkdownTabComponent];
+const COMPONENT = [
+  TrustUrlPipe,
+  TrustHtmlPipe,
+  TrustScriptPipe,
+  TrustStylePipe,
+  LayoutComponent,
+  MarkdownTabComponent,
+  CatalogComponent
+];
 
 /**
  * 第三方模块

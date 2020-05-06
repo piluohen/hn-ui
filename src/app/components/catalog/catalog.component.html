@@ -1,0 +1,5 @@
+<nz-affix class="catalog" [nzOffsetTop]="0" nzTarget=".ant-layout-content">
+  <nz-anchor nzAffix="false" nzshowinkinfixed (nzClick)="handleClick($event)">
+    <nz-link *ngFor="let item of list" [nzHref]="'#' + item.id" [nzTitle]="item.title"></nz-link>
+  </nz-anchor>
+</nz-affix>
