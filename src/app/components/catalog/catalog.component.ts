@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-catalog',
@@ -13,6 +14,7 @@ export class CatalogComponent implements OnInit {
   ngOnInit() {}
 
   handleClick(event: any) {
-    window.location.hash = event;
+    const el = document.querySelectorAll(event)[0];
+    el.scrollIntoView();
   }
 }
