@@ -15,6 +15,6 @@ export class CatalogComponent implements OnInit {
 
   handleClick(event: any) {
     const el = document.querySelectorAll(event)[0];
-    el.scrollIntoView();
+    el.scrollIntoView({ block: 'center', inline: 'nearest' });
   }
 }
