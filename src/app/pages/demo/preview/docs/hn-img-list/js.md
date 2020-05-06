@@ -26,7 +26,6 @@ export class PreviewComponent implements OnInit {
   ngOnInit() {}
 
   handleClick(data: any): void {
-    console.log('点击了图片列表子项', data);
   }
 }
 

@@ -59,7 +59,6 @@ export class TableLocalComponent implements OnInit {
   }
 
   handleEdit(type: string, data: any = {}) {
-    console.log(type, data);
   }
 
   /**
@@ -87,12 +86,10 @@ export class TableLocalComponent implements OnInit {
   }
 
   handlePageIndexChange(data: any): void {
-    console.log(data);
     this.getList();
   }
 
   handlePageSizeChange(data: any): void {
-    console.log(data);
     this.getList();
   }
 }

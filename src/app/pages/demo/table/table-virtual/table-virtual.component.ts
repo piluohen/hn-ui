@@ -26,7 +26,5 @@ export class TableVirtualComponent implements OnInit {
    * 虚拟滚动监听
    * @param index 索引
    */
-  handleVirtualChange(index: any): void {
-    console.log(index);
-  }
+  handleVirtualChange(index: any): void {}
 }

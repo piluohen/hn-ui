@@ -38,9 +38,7 @@ export class TableInterfaceComponent implements OnInit {
     window.open(scope.data[scope.item.key]);
   }
 
-  handleEdit(type: string, data: any = {}) {
-    console.log(type, data);
-  }
+  handleEdit(type: string, data: any = {}) {}
 
   /**
    * check选中操作

@@ -49,7 +49,6 @@ export class LayoutComponent implements OnInit {
         // this.menusList = this.updateMenu([...menuList], url);
         this.menusList = [...menuList];
         // window.scrollTo(0, 0);
-        console.log();
       });
   }
 

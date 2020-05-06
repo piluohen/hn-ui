@@ -57,9 +57,7 @@ export class TableLocalComponent implements OnInit {
     window.open(scope.data[scope.item.key]);
   }
 
-  handleEdit(type: string, data: any = {}) {
-    console.log(type, data);
-  }
+  handleEdit(type: string, data: any = {}) {}
 
   /**
    * check选中操作
@@ -86,12 +84,10 @@ export class TableLocalComponent implements OnInit {
   }
 
   handlePageIndexChange(data: any): void {
-    console.log(data);
     this.getList();
   }
 
   handlePageSizeChange(data: any): void {
-    console.log(data);
     this.getList();
   }
 }

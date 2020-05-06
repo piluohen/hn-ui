@@ -97,9 +97,7 @@ export class TableRenderComponent implements OnInit {
    * 选中操作
    * @param event 选中项
    */
-  handleCheckChange(event: any): void {
-    console.log('选中', event);
-  }
+  handleCheckChange(event: any): void {}
 
   /**
    * 排序

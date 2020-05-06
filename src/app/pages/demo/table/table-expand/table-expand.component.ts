@@ -13,9 +13,7 @@ export class TableExpandComponent implements OnInit {
   columns: any[] = [
     {
       showExpand: true,
-      expandChange: (event: any, value: any) => {
-        console.log('展开or收起', event, value);
-      }
+      expandChange: (event: any, value: any) => {}
     },
     {
       showCheckbox: true,
@@ -55,15 +53,11 @@ export class TableExpandComponent implements OnInit {
    * 选中操作
    * @param event 选中项
    */
-  handleCheckChange(event: any): void {
-    console.log('选中', event);
-  }
+  handleCheckChange(event: any): void {}
 
   /**
    * 拖拽监听
    * @param event 事件
    */
-  handleDraggChange(event): void {
-    console.log(event);
-  }
+  handleDraggChange(event): void {}
 }

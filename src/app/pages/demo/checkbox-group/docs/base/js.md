@@ -14,6 +14,5 @@ constructor() {
 }
 
 handleChange(data: any): void {
-  console.log(data);
 }
 ```

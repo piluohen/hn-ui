@@ -40,7 +40,6 @@ export class TableInterfaceComponent implements OnInit {
   }
 
   handleEdit(type: string, data: any = {}) {
-    console.log(type, data);
   }
 
   /**

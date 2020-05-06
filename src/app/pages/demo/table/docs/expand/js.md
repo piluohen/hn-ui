@@ -15,7 +15,6 @@ export class TableExpandComponent implements OnInit {
     {
       showExpand: true,
       expandChange: (event: any, value: any) => {
-        console.log('展开or收起', event, value);
       }
     },
     {
@@ -57,7 +56,6 @@ export class TableExpandComponent implements OnInit {
    * @param event 选中项
    */
   handleCheckChange(event: any): void {
-    console.log('选中', event);
   }
 
   /**
@@ -65,7 +63,6 @@ export class TableExpandComponent implements OnInit {
    * @param event 事件
    */
   handleDraggChange(event): void {
-    console.log(event);
   }
 }
 

@@ -57,9 +57,7 @@ export class TableBaseComponent implements OnInit {
     window.open(scope.data[scope.item.key]);
   }
 
-  handleEdit(type: string, data: any = {}) {
-    console.log(type, data);
-  }
+  handleEdit(type: string, data: any = {}) {}
 
   handleShowCheckbox(val: any) {
     if (val) {
@@ -79,7 +77,6 @@ export class TableBaseComponent implements OnInit {
    * @param data 数据
    */
   handleCheckChange(data: any) {
-    console.log('选中', data);
     this.checkedData = data;
     this.numberOfChecked = data.length;
   }

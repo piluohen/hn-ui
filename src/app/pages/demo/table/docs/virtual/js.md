@@ -27,7 +27,6 @@ export class TableVirtualComponent implements OnInit {
    * @param index 索引
    */
   handleVirtualChange(index: any): void {
-    console.log(index);
   }
 }
 

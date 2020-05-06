@@ -46,11 +46,7 @@ export class CheckboxGroupComponent implements OnInit {
 
   ngOnInit() {}
 
-  handleChange(data: any): void {
-    console.log(data);
-  }
+  handleChange(data: any): void {}
 
-  handleSave(): void {
-    console.log(this.validateForm.value);
-  }
+  handleSave(): void {}
 }

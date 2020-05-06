@@ -36,7 +36,5 @@ export class TableDropComponent implements OnInit {
    * 拖拽监听
    * @param event 事件
    */
-  handleDraggChange(event): void {
-    console.log(event);
-  }
+  handleDraggChange(event): void {}
 }

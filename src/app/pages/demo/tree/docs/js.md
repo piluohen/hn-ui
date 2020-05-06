@@ -58,7 +58,6 @@ export class TreeComponent implements OnInit {
    * 搜索
    */
   handleSearchValue(event: any) {
-    console.log(event);
     this.searchNum = event.matchedKeys.length;
   }
 
@@ -67,14 +66,12 @@ export class TreeComponent implements OnInit {
    * @param event 展开事件
    */
   handleExpandChange(event: any): void {
-    console.log(event);
   }
 
   /**
    * 选择多选框
    */
   handleCheckBoxChange(event: any) {
-    console.log(event);
   }
 }
 

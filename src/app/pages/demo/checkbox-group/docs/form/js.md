@@ -19,10 +19,8 @@ constructor(
 }
 
 handleChange(data: any): void {
-  console.log(data);
 }
 
 handleSave(): void {
-  console.log(this.validateForm.value);
 }
 ```
