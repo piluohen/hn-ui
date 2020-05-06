@@ -36,7 +36,8 @@ export class LayoutComponent implements OnInit {
       )
       .subscribe(data => {
         const { url } = data as any;
-        this.menusList = this.updateMenu([...menuList], url);
+        // this.menusList = this.updateMenu([...menuList], url);
+        this.menusList = [...menuList];
         window.scrollTo(0, 0);
       });
   }
