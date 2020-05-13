@@ -1,5 +1,13 @@
 <div class="layout-content">
   <div class="color-list">
-    <span *ngFor="let item of colorList" [class]="'color-' + item">{{ item }}</span>
+    <div class="item" *ngFor="let item of colorList" [style]="{ color: item.color }">
+      <span>{{ item.title }}</span>
+      <span>{{ item.color }}</span>
+    </div>
+  </div>
+  <div class="color-danger">注：这是该网站的颜色变量，跟组件库无关，该颜色变量覆盖了组件库的颜色变量</div>
+  <div>
+    详细请了解
+    <a [routerLink]="'/theme'">主题定制</a>
   </div>
 </div>

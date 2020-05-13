@@ -4,8 +4,7 @@ declare const require: any;
 
 @Component({
   selector: 'app-preview',
-  templateUrl: './preview.component.html',
-  styleUrls: ['./preview.component.less']
+  templateUrl: './preview.component.html'
 })
 export class PreviewComponent implements OnInit {
   imgList: any = [
